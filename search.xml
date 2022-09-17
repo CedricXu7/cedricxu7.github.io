@@ -459,9 +459,9 @@
       
         <tags>
             
-            <tag> spark </tag>
-            
             <tag> hadoop </tag>
+            
+            <tag> spark </tag>
             
             <tag> scala </tag>
             
