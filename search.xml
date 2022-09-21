@@ -13,7 +13,7 @@
       
       <categories>
           
-          <category> 深度学习 </category>
+          <category> 自然语言处理 </category>
           
       </categories>
       
@@ -49,10 +49,6 @@
       
         <tags>
             
-            <tag> ubuntu </tag>
-            
-            <tag> 部署 </tag>
-            
             <tag> VMware </tag>
             
         </tags>
@@ -71,14 +67,12 @@
       
       <categories>
           
-          <category> 安装教程 </category>
+          <category> 安装笔记 </category>
           
       </categories>
       
       
         <tags>
-            
-            <tag> 部署 </tag>
             
             <tag> anaconda </tag>
             
@@ -100,7 +94,7 @@
       
       <categories>
           
-          <category> 安装教程 </category>
+          <category> 安装笔记 </category>
           
       </categories>
       
@@ -108,8 +102,6 @@
         <tags>
             
             <tag> python </tag>
-            
-            <tag> ubuntu </tag>
             
             <tag> 编译 </tag>
             
@@ -129,18 +121,14 @@
       
       <categories>
           
-          <category> 机器学习 </category>
+          <category> 算法笔记 </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> 梯度下降 </tag>
-            
             <tag> 算法详解 </tag>
-            
-            <tag> 深入了解 </tag>
             
         </tags>
       
@@ -192,8 +180,6 @@
             
             <tag> 软件异常 </tag>
             
-            <tag> idea </tag>
-            
             <tag> maven </tag>
             
             <tag> lombok </tag>
@@ -214,14 +200,14 @@
       
       <categories>
           
-          <category> 换源笔记 </category>
+          <category> 安装笔记 </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> maven </tag>
+            <tag> 配置 </tag>
             
             <tag> 换源 </tag>
             
@@ -270,7 +256,7 @@
       
       <categories>
           
-          <category> 安装教程 </category>
+          <category> 安装笔记 </category>
           
       </categories>
       
@@ -306,11 +292,7 @@
             
             <tag> 软件异常 </tag>
             
-            <tag> intellj </tag>
-            
             <tag> spark </tag>
-            
-            <tag> 领域初涉 </tag>
             
         </tags>
       
@@ -337,9 +319,7 @@
             
             <tag> 软件异常 </tag>
             
-            <tag> idea </tag>
-            
-            <tag> intellj </tag>
+            <tag> 热部署 </tag>
             
         </tags>
       
@@ -364,11 +344,7 @@
       
         <tags>
             
-            <tag> java </tag>
-            
-            <tag> utf8 </tag>
-            
-            <tag> gbk </tag>
+            <tag> 编码转换 </tag>
             
         </tags>
       
@@ -393,11 +369,13 @@
       
         <tags>
             
-            <tag> 软件异常 </tag>
-            
             <tag> windows </tag>
             
             <tag> cmd </tag>
+            
+            <tag> 端口占用 </tag>
+            
+            <tag> 终结进程 </tag>
             
         </tags>
       
@@ -415,7 +393,7 @@
       
       <categories>
           
-          <category> 安装教程 </category>
+          <category> 安装笔记 </category>
           
       </categories>
       
@@ -426,11 +404,7 @@
             
             <tag> zookeeper </tag>
             
-            <tag> nohup </tag>
-            
-            <tag> big data </tag>
-            
-            <tag> ubuntu </tag>
+            <tag> 配置 </tag>
             
         </tags>
       
@@ -448,20 +422,16 @@
       
       <categories>
           
-          <category> 安装教程 </category>
+          <category> 安装笔记 </category>
           
       </categories>
       
       
         <tags>
             
+            <tag> 配置 </tag>
+            
             <tag> hadoop </tag>
-            
-            <tag> spark </tag>
-            
-            <tag> scala </tag>
-            
-            <tag> jdk </tag>
             
         </tags>
       
@@ -470,7 +440,7 @@
     
     
     <entry>
-      <title>tensorflow下深度学习报错显存不够的应对措施</title>
+      <title>tensorflow报错显存不够的应对措施</title>
       <link href="/2021/09/13/tensorflow%E4%B8%8B%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%8A%A5%E9%94%99%E6%98%BE%E5%AD%98%E4%B8%8D%E5%A4%9F%E7%9A%84%E5%BA%94%E5%AF%B9%E6%8E%AA%E6%96%BD/"/>
       <url>/2021/09/13/tensorflow%E4%B8%8B%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%8A%A5%E9%94%99%E6%98%BE%E5%AD%98%E4%B8%8D%E5%A4%9F%E7%9A%84%E5%BA%94%E5%AF%B9%E6%8E%AA%E6%96%BD/</url>
       
@@ -490,9 +460,9 @@
             
             <tag> python </tag>
             
-            <tag> 深度学习 </tag>
+            <tag> 软件异常 </tag>
             
-            <tag> 显存不够 </tag>
+            <tag> OOM </tag>
             
         </tags>
       
@@ -519,8 +489,6 @@
             
             <tag> 软件异常 </tag>
             
-            <tag> ubuntu </tag>
-            
             <tag> dash to dock </tag>
             
         </tags>
@@ -545,10 +513,6 @@
       
       
         <tags>
-            
-            <tag> hadoop </tag>
-            
-            <tag> 大数据 </tag>
             
             <tag> 集群搭建 </tag>
             
@@ -575,8 +539,6 @@
       
         <tags>
             
-            <tag> python </tag>
-            
             <tag> 软件异常 </tag>
             
             <tag> base64 </tag>
@@ -599,7 +561,7 @@
       
       <categories>
           
-          <category> 深度学习 </category>
+          <category> 图像识别 </category>
           
       </categories>
       
@@ -636,10 +598,6 @@
         <tags>
             
             <tag> python </tag>
-            
-            <tag> 控制台 </tag>
-            
-            <tag> 单行刷新 </tag>
             
         </tags>
       
@@ -697,8 +655,6 @@
             
             <tag> tensorflow </tag>
             
-            <tag> 日志打印 </tag>
-            
         </tags>
       
     </entry>
@@ -715,7 +671,7 @@
       
       <categories>
           
-          <category> 安装教程 </category>
+          <category> 安装笔记 </category>
           
       </categories>
       
@@ -750,10 +706,6 @@
       
       
         <tags>
-            
-            <tag> python </tag>
-            
-            <tag> 领域初涉 </tag>
             
             <tag> KNN </tag>
             
@@ -802,18 +754,16 @@
       
       <categories>
           
-          <category> 解决方案 </category>
+          <category> 采坑记录 </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> 软件异常 </tag>
+            <tag> redis </tag>
             
             <tag> ubuntu </tag>
-            
-            <tag> redis </tag>
             
         </tags>
       
@@ -831,14 +781,12 @@
       
       <categories>
           
-          <category> 换源笔记 </category>
+          <category> 安装笔记 </category>
           
       </categories>
       
       
         <tags>
-            
-            <tag> ubuntu </tag>
             
             <tag> 换源 </tag>
             
@@ -892,11 +840,9 @@
       
         <tags>
             
-            <tag> c++ </tag>
+            <tag> 软件异常 </tag>
             
             <tag> 未识别标识符 </tag>
-            
-            <tag> visual studio </tag>
             
         </tags>
       
@@ -921,13 +867,9 @@
       
         <tags>
             
-            <tag> keras </tag>
+            <tag> python </tag>
             
-            <tag> 领域初涉 </tag>
-            
-            <tag> 一维卷积 </tag>
-            
-            <tag> 神经网络 </tag>
+            <tag> 卷积神经网络 </tag>
             
         </tags>
       
@@ -954,11 +896,9 @@
             
             <tag> python </tag>
             
-            <tag> 线性回归 </tag>
+            <tag> 算法详解 </tag>
             
             <tag> 算法实现 </tag>
-            
-            <tag> 算法推导 </tag>
             
         </tags>
       
@@ -1014,8 +954,6 @@
             
             <tag> windows </tag>
             
-            <tag> scalars无显示 </tag>
-            
         </tags>
       
     </entry>
@@ -1038,8 +976,6 @@
       
       
         <tags>
-            
-            <tag> 局域网 </tag>
             
             <tag> HTTP代理 </tag>
             
@@ -1068,15 +1004,11 @@
       
         <tags>
             
-            <tag> python </tag>
-            
             <tag> 软件异常 </tag>
-            
-            <tag> scapy </tag>
             
             <tag> b&#39; </tag>
             
-            <tag> rdpcap </tag>
+            <tag> 流量解包 </tag>
             
         </tags>
       
@@ -1100,10 +1032,6 @@
       
       
         <tags>
-            
-            <tag> python </tag>
-            
-            <tag> 领域初涉 </tag>
             
             <tag> 支持向量机 </tag>
             
@@ -1150,16 +1078,12 @@
       
       <categories>
           
-          <category> 安装教程 </category>
+          <category> 安装笔记 </category>
           
       </categories>
       
       
         <tags>
-            
-            <tag> oracle </tag>
-            
-            <tag> plsql </tag>
             
             <tag> 数据库可视化 </tag>
             
@@ -1192,6 +1116,8 @@
             
             <tag> insert编辑模式 </tag>
             
+            <tag> vim </tag>
+            
         </tags>
       
     </entry>
@@ -1208,7 +1134,7 @@
       
       <categories>
           
-          <category> 安装教程 </category>
+          <category> 安装笔记 </category>
           
       </categories>
       
@@ -1217,9 +1143,7 @@
             
             <tag> VMware </tag>
             
-            <tag> centos6.5 </tag>
-            
-            <tag> oracle </tag>
+            <tag> Oracle </tag>
             
             <tag> 桥接模式 </tag>
             
@@ -1239,7 +1163,7 @@
       
       <categories>
           
-          <category> 安装教程 </category>
+          <category> 安装笔记 </category>
           
       </categories>
       
@@ -1248,9 +1172,7 @@
             
             <tag> VMware </tag>
             
-            <tag> centos6.5 </tag>
-            
-            <tag> VMware Tools </tag>
+            <tag> Oracle </tag>
             
         </tags>
       
