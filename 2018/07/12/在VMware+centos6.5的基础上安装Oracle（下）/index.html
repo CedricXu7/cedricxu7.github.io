@@ -177,23 +177,23 @@
 <p><code>vi /etc/redhat-release</code></p>
 <p>修改原系统标识并保存退出</p>
 <h4 id="2-6-完成Oracle依赖包的下载"><a href="#2-6-完成Oracle依赖包的下载" class="headerlink" title="2.6 完成Oracle依赖包的下载"></a>2.6 完成Oracle依赖包的下载</h4><p>首先确保centos连接上了网络（默认连接配置即可，及虚拟机使用NAT模式，centos连接使用DHCP自动获取，windows网络适配器打开了网络共享，并且共享网络指向VM8网络适配器），你问我网络在哪儿看？下图所示，拿走不谢，记住是鼠标右击那个网络图标，至于如何知道连没连上网，终端输入<code>ping www.baidu.com</code>，能获取到信息就是连上了，不管连上没连上记得按 <code>ctrl+c</code> 退出ping的状态，不然会一直执行的</p>
-<p><img src="https://gitee.com/langzihan/repo-of-images/raw/master/hexo_langzihan/%E5%9C%A8VMware+centos6.5%E7%9A%84%E5%9F%BA%E7%A1%80%E4%B8%8A%E5%AE%89%E8%A3%85Oracle%EF%BC%88%E4%B8%8B%EF%BC%89/2021-10-14-70-e82c92.png" alt="img"></p>
+<p><img src="https://blog-src.oss-cn-beijing.aliyuncs.com/images/%E5%9C%A8VMware%2Bcentos6.5%E7%9A%84%E5%9F%BA%E7%A1%80%E4%B8%8A%E5%AE%89%E8%A3%85Oracle%EF%BC%88%E4%B8%8B%EF%BC%89/2021-10-14-70-e82c92.png" alt="img"></p>
 <p>root终端输入以下命令</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install binutils compat-libstdc++-33 elfutils-libelf elfutils-libelf-devel glibc glibc-common glibc-devel gcc gcc-c++ libaio-devel libaio libgcc libstdc++ libstdc++-devel make sysstat unixODBC unixODBC-devel pdksh numactl-devel glibc-headers</span><br></pre></td></tr></table></figure>
-<p><img src="https://gitee.com/langzihan/repo-of-images/raw/master/hexo_langzihan/%E5%9C%A8VMware+centos6.5%E7%9A%84%E5%9F%BA%E7%A1%80%E4%B8%8A%E5%AE%89%E8%A3%85Oracle%EF%BC%88%E4%B8%8B%EF%BC%89/2021-10-14-70-a125f8.png" alt="img"></p>
+<p><img src="https://blog-src.oss-cn-beijing.aliyuncs.com/images/%E5%9C%A8VMware%2Bcentos6.5%E7%9A%84%E5%9F%BA%E7%A1%80%E4%B8%8A%E5%AE%89%E8%A3%85Oracle%EF%BC%88%E4%B8%8B%EF%BC%89/2021-10-14-70-a125f8.png" alt="img"></p>
 <p>到这里依赖包就全下载完成了，可以考虑更改成网络连接状态了</p>
 <h3 id="3-网络桥接的实现"><a href="#3-网络桥接的实现" class="headerlink" title="3 网络桥接的实现"></a>3 网络桥接的实现</h3><h4 id="3-1-创建桥接"><a href="#3-1-创建桥接" class="headerlink" title="3.1 创建桥接"></a>3.1 创建桥接</h4><p>先要保证网络适配器中有桥接网络的存在，虚拟机工具栏中点开编辑选项，选中下拉菜单中的虚拟网络编辑器（推荐先关闭虚拟机在进行操作，开着虚拟机操作时网络桥接是无法选中自动选项的）</p>
-<p><img src="https://gitee.com/langzihan/repo-of-images/raw/master/hexo_langzihan/%E5%9C%A8VMware+centos6.5%E7%9A%84%E5%9F%BA%E7%A1%80%E4%B8%8A%E5%AE%89%E8%A3%85Oracle%EF%BC%88%E4%B8%8B%EF%BC%89/2021-10-14-70-9d8531.png" alt="img"></p>
+<p><img src="https://blog-src.oss-cn-beijing.aliyuncs.com/images/%E5%9C%A8VMware%2Bcentos6.5%E7%9A%84%E5%9F%BA%E7%A1%80%E4%B8%8A%E5%AE%89%E8%A3%85Oracle%EF%BC%88%E4%B8%8B%EF%BC%89/2021-10-14-70-9d8531.png" alt="img"></p>
 <p>如果你的虚拟网络适配器有桥接模式，可以直接跳过虚拟机的相关设置</p>
-<p><img src="https://gitee.com/langzihan/repo-of-images/raw/master/hexo_langzihan/%E5%9C%A8VMware+centos6.5%E7%9A%84%E5%9F%BA%E7%A1%80%E4%B8%8A%E5%AE%89%E8%A3%85Oracle%EF%BC%88%E4%B8%8B%EF%BC%89/2021-10-14-70-be397a.png" alt="img"></p>
+<p><img src="https://blog-src.oss-cn-beijing.aliyuncs.com/images/%E5%9C%A8VMware%2Bcentos6.5%E7%9A%84%E5%9F%BA%E7%A1%80%E4%B8%8A%E5%AE%89%E8%A3%85Oracle%EF%BC%88%E4%B8%8B%EF%BC%89/2021-10-14-70-be397a.png" alt="img"></p>
 <p>赋予管理员权限之后就可以执行添加网络的操作了，添加一个网络，并在VMnet信息那一块选中桥接模式，桥到的复选框选择自动（关闭了虚拟机进行设置，默认是自动），然后点击确认即可</p>
 <p>然后就在虚拟机设置中修改网络适配器的连接方式为桥接模式即可</p>
-<h4 id="3-2-centos网络配置"><a href="#3-2-centos网络配置" class="headerlink" title="3.2 centos网络配置"></a>3.2 centos网络配置</h4><h5 id="3-2-1-了解windows上的IPv4、DNS"><a href="#3-2-1-了解windows上的IPv4、DNS" class="headerlink" title="3.2.1 了解windows上的IPv4、DNS"></a>3.2.1 了解windows上的IPv4、DNS</h5><p>windows下启动控制台，输入ipconfig/all 查看网络信息，以下是我的以太网适配器的IPv4信息<br><img src="https://gitee.com/langzihan/repo-of-images/raw/master/hexo_langzihan/%E5%9C%A8VMware+centos6.5%E7%9A%84%E5%9F%BA%E7%A1%80%E4%B8%8A%E5%AE%89%E8%A3%85Oracle%EF%BC%88%E4%B8%8B%EF%BC%89/2021-10-14-70-2eece5.png" alt="img"></p>
+<h4 id="3-2-centos网络配置"><a href="#3-2-centos网络配置" class="headerlink" title="3.2 centos网络配置"></a>3.2 centos网络配置</h4><h5 id="3-2-1-了解windows上的IPv4、DNS"><a href="#3-2-1-了解windows上的IPv4、DNS" class="headerlink" title="3.2.1 了解windows上的IPv4、DNS"></a>3.2.1 了解windows上的IPv4、DNS</h5><p>windows下启动控制台，输入ipconfig/all 查看网络信息，以下是我的以太网适配器的IPv4信息<br><img src="https://blog-src.oss-cn-beijing.aliyuncs.com/images/%E5%9C%A8VMware%2Bcentos6.5%E7%9A%84%E5%9F%BA%E7%A1%80%E4%B8%8A%E5%AE%89%E8%A3%85Oracle%EF%BC%88%E4%B8%8B%EF%BC%89/2021-10-14-70-2eece5.png" alt="img"></p>
 <p>所以我的虚拟机网络设置要和windows处于同一个网段，也就是说必须是<code>192.168.1.*</code>，至于网关我推荐一致就行，以下是我的网络连接的设置，仅供参考</p>
-<p><code>192.168.1.120    255.255.255.0    192.168.1.1    DNS：192.168.1.1</code><br><img src="https://gitee.com/langzihan/repo-of-images/raw/master/hexo_langzihan/%E5%9C%A8VMware+centos6.5%E7%9A%84%E5%9F%BA%E7%A1%80%E4%B8%8A%E5%AE%89%E8%A3%85Oracle%EF%BC%88%E4%B8%8B%EF%BC%89/2021-10-14-70-405726.png" alt="img"></p>
+<p><code>192.168.1.120    255.255.255.0    192.168.1.1    DNS：192.168.1.1</code><br><img src="https://blog-src.oss-cn-beijing.aliyuncs.com/images/%E5%9C%A8VMware%2Bcentos6.5%E7%9A%84%E5%9F%BA%E7%A1%80%E4%B8%8A%E5%AE%89%E8%A3%85Oracle%EF%BC%88%E4%B8%8B%EF%BC%89/2021-10-14-70-405726.png" alt="img"></p>
 <p>设置完成后使用centos中的终端和windows终端都ping一下看看是否都能连接</p>
-<p><img src="https://gitee.com/langzihan/repo-of-images/raw/master/hexo_langzihan/%E5%9C%A8VMware+centos6.5%E7%9A%84%E5%9F%BA%E7%A1%80%E4%B8%8A%E5%AE%89%E8%A3%85Oracle%EF%BC%88%E4%B8%8B%EF%BC%89/2021-10-14-70-d40b94.png" alt="img"></p>
-<p><img src="https://gitee.com/langzihan/repo-of-images/raw/master/hexo_langzihan/%E5%9C%A8VMware+centos6.5%E7%9A%84%E5%9F%BA%E7%A1%80%E4%B8%8A%E5%AE%89%E8%A3%85Oracle%EF%BC%88%E4%B8%8B%EF%BC%89/dedd7697ce329be9861bf23ae23f5411.png" alt="img"></p>
+<p><img src="https://blog-src.oss-cn-beijing.aliyuncs.com/images/%E5%9C%A8VMware%2Bcentos6.5%E7%9A%84%E5%9F%BA%E7%A1%80%E4%B8%8A%E5%AE%89%E8%A3%85Oracle%EF%BC%88%E4%B8%8B%EF%BC%89/2021-10-14-70-d40b94.png" alt="img"></p>
+<p><img src="https://blog-src.oss-cn-beijing.aliyuncs.com/images/%E5%9C%A8VMware%2Bcentos6.5%E7%9A%84%E5%9F%BA%E7%A1%80%E4%B8%8A%E5%AE%89%E8%A3%85Oracle%EF%BC%88%E4%B8%8B%EF%BC%89/dedd7697ce329be9861bf23ae23f5411.png" alt="img"></p>
 <p>到这里网络设置，呸，到这里网络设置刚刚开始</p>
 <p>设置完以上的连接信息后，<code>/etc/sysconfig/network-scripts</code>目录下的<code>ifcfg-eth0</code>文件中的<code>ONBOOT</code>属性默认就是<code>yes</code>了，不需要再去修改了</p>
 <h5 id="3-2-2-关闭防火墙"><a href="#3-2-2-关闭防火墙" class="headerlink" title="3.2.2 关闭防火墙"></a>3.2.2 关闭防火墙</h5><p>root终端中输入以下命令</p>
@@ -206,13 +206,13 @@
 <p><code>vim /etc/hosts</code> </p>
 <p>在host文件中插入一行，用于DNS解析主机地址，前面的地址是centos的IPv4地址，后面的centos是之前安装系统时设定的主机名，这样设置可以使oracle的监听器启动的更快</p>
 <p><code>192.168.1.120    centos</code></p>
-<p><img src="https://gitee.com/langzihan/repo-of-images/raw/master/hexo_langzihan/%E5%9C%A8VMware+centos6.5%E7%9A%84%E5%9F%BA%E7%A1%80%E4%B8%8A%E5%AE%89%E8%A3%85Oracle%EF%BC%88%E4%B8%8B%EF%BC%89/8c18611f81d1b7bbf027230185af54e0.png" alt="img"></p>
+<p><img src="https://blog-src.oss-cn-beijing.aliyuncs.com/images/%E5%9C%A8VMware%2Bcentos6.5%E7%9A%84%E5%9F%BA%E7%A1%80%E4%B8%8A%E5%AE%89%E8%A3%85Oracle%EF%BC%88%E4%B8%8B%EF%BC%89/8c18611f81d1b7bbf027230185af54e0.png" alt="img"></p>
 <p>3.2.5 添加主机连接参数</p>
 <p>root终端输入以下命令</p>
 <p><code>vim /etc/sysctl.conf</code> </p>
 <p>在文件末尾添加</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">fs.aio-max-nr = 1048576</span><br><span class="line">fs.file-max = 6815744</span><br><span class="line">kernel.shmmni = 4096</span><br><span class="line">kernel.sem = 250 32000 100 128</span><br><span class="line">net.ipv4.ip_local_port_range = 9000 65500</span><br><span class="line">net.core.rmem_default = 262144</span><br><span class="line">net.core.rmem_max = 4194304</span><br><span class="line">net.core.wmem_default = 262144</span><br><span class="line">net.core.wmem_max = 1048576</span><br></pre></td></tr></table></figure>
-<p><img src="https://gitee.com/langzihan/repo-of-images/raw/master/hexo_langzihan/%E5%9C%A8VMware+centos6.5%E7%9A%84%E5%9F%BA%E7%A1%80%E4%B8%8A%E5%AE%89%E8%A3%85Oracle%EF%BC%88%E4%B8%8B%EF%BC%89/0824b236175d92e46f652a4633f178b3.png" alt="img"></p>
+<p><img src="https://blog-src.oss-cn-beijing.aliyuncs.com/images/%E5%9C%A8VMware%2Bcentos6.5%E7%9A%84%E5%9F%BA%E7%A1%80%E4%B8%8A%E5%AE%89%E8%A3%85Oracle%EF%BC%88%E4%B8%8B%EF%BC%89/0824b236175d92e46f652a4633f178b3.png" alt="img"></p>
 <p>保存退出后，使用命令<code>sysctl -p</code>完成加载配置，到这里网络配置就算结束了</p>
 <h3 id="4-解压安装包，运行安装程序"><a href="#4-解压安装包，运行安装程序" class="headerlink" title="4.解压安装包，运行安装程序"></a>4.解压安装包，运行安装程序</h3><h4 id="4-1-解压安装包"><a href="#4-1-解压安装包" class="headerlink" title="4.1 解压安装包"></a>4.1 解压安装包</h4><p>注销当前root账户，切换到oracle账户进行登录</p>
 <p>通过拖拽，将windows中下载的linux版的两个oracle数据库压缩包传输到<code>/home/oracle/soft</code>目录下（soft当然是自己建的文件夹啊），使用unzip命令进行解压</p>
@@ -225,23 +225,23 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> database</span><br><span class="line"><span class="built_in">export</span> LANG=en_us</span><br><span class="line">./runInstaller</span><br></pre></td></tr></table></figure>
 <p>如果之前的分区按照我的推荐来的话，不会因为内存问题卡在这里，就会显示<code>Please wait</code></p>
 <p>然后就是常规的安装数据库了，指定数据库安装路径时如下图即可</p>
-<p><img src="https://gitee.com/langzihan/repo-of-images/raw/master/hexo_langzihan/%E5%9C%A8VMware+centos6.5%E7%9A%84%E5%9F%BA%E7%A1%80%E4%B8%8A%E5%AE%89%E8%A3%85Oracle%EF%BC%88%E4%B8%8B%EF%BC%89/07767a10763ba242baab43d2acc7250f.png" alt="img"></p>
+<p><img src="https://blog-src.oss-cn-beijing.aliyuncs.com/images/%E5%9C%A8VMware%2Bcentos6.5%E7%9A%84%E5%9F%BA%E7%A1%80%E4%B8%8A%E5%AE%89%E8%A3%85Oracle%EF%BC%88%E4%B8%8B%EF%BC%89/07767a10763ba242baab43d2acc7250f.png" alt="img"></p>
 <p>接着就是一路根据需要选择，一路next了，遇到第18步时勾上<code>Ignore All</code>即可，因为我们安装的包版本是新的，而第18步只认版本不认包，所以忽略就行</p>
-<p><img src="https://gitee.com/langzihan/repo-of-images/raw/master/hexo_langzihan/%E5%9C%A8VMware+centos6.5%E7%9A%84%E5%9F%BA%E7%A1%80%E4%B8%8A%E5%AE%89%E8%A3%85Oracle%EF%BC%88%E4%B8%8B%EF%BC%89/bd35c44d55c333c891ef41fb562a77f6.png" alt="img"></p>
+<p><img src="https://blog-src.oss-cn-beijing.aliyuncs.com/images/%E5%9C%A8VMware%2Bcentos6.5%E7%9A%84%E5%9F%BA%E7%A1%80%E4%B8%8A%E5%AE%89%E8%A3%85Oracle%EF%BC%88%E4%B8%8B%EF%BC%89/bd35c44d55c333c891ef41fb562a77f6.png" alt="img"></p>
 <p>当然了安装到最后时需要在终端执行两行命令，就是遇到下图的弹窗时：</p>
-<p><img src="https://gitee.com/langzihan/repo-of-images/raw/master/hexo_langzihan/%E5%9C%A8VMware+centos6.5%E7%9A%84%E5%9F%BA%E7%A1%80%E4%B8%8A%E5%AE%89%E8%A3%85Oracle%EF%BC%88%E4%B8%8B%EF%BC%89/e22c7988da4e2f4564b25716cf476874.png" alt="img"></p>
+<p><img src="https://blog-src.oss-cn-beijing.aliyuncs.com/images/%E5%9C%A8VMware%2Bcentos6.5%E7%9A%84%E5%9F%BA%E7%A1%80%E4%B8%8A%E5%AE%89%E8%A3%85Oracle%EF%BC%88%E4%B8%8B%EF%BC%89/e22c7988da4e2f4564b25716cf476874.png" alt="img"></p>
 <p>而执行的命令就是弹窗中显示的那两行</p>
 <p>打开终端切换到root终端，输入以下命令</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/data/app/oraInventory/orainstRoot.sh</span><br><span class="line">/data/app/oracle/product/11.2.0.1/root.sh</span><br></pre></td></tr></table></figure>
 <p>到这里安装就完成了</p>
 <p>接下来配置监听器，终端输入以下命令</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> LANG=en_us</span><br><span class="line">netca</span><br></pre></td></tr></table></figure>
-<p><img src="https://gitee.com/langzihan/repo-of-images/raw/master/hexo_langzihan/%E5%9C%A8VMware+centos6.5%E7%9A%84%E5%9F%BA%E7%A1%80%E4%B8%8A%E5%AE%89%E8%A3%85Oracle%EF%BC%88%E4%B8%8B%EF%BC%89/bc55177cb24b0ca7baae9c2323cbcb55.png" alt="img"></p>
-<p><img src="https://gitee.com/langzihan/repo-of-images/raw/master/hexo_langzihan/%E5%9C%A8VMware+centos6.5%E7%9A%84%E5%9F%BA%E7%A1%80%E4%B8%8A%E5%AE%89%E8%A3%85Oracle%EF%BC%88%E4%B8%8B%EF%BC%89/4cdf48a2b0cc3066d70c79ba8420bf0d.png" alt="img"></p>
-<p><img src="https://gitee.com/langzihan/repo-of-images/raw/master/hexo_langzihan/%E5%9C%A8VMware+centos6.5%E7%9A%84%E5%9F%BA%E7%A1%80%E4%B8%8A%E5%AE%89%E8%A3%85Oracle%EF%BC%88%E4%B8%8B%EF%BC%89/10c82c302e44ecbbc2bf124e03f53a82.png" alt="img"></p>
-<p><img src="https://gitee.com/langzihan/repo-of-images/raw/master/hexo_langzihan/%E5%9C%A8VMware+centos6.5%E7%9A%84%E5%9F%BA%E7%A1%80%E4%B8%8A%E5%AE%89%E8%A3%85Oracle%EF%BC%88%E4%B8%8B%EF%BC%89/81bc07a81f635b59430c027ce1783a8b.png" alt="img"></p>
-<p><img src="https://gitee.com/langzihan/repo-of-images/raw/master/hexo_langzihan/%E5%9C%A8VMware+centos6.5%E7%9A%84%E5%9F%BA%E7%A1%80%E4%B8%8A%E5%AE%89%E8%A3%85Oracle%EF%BC%88%E4%B8%8B%EF%BC%89/87b1bda642e312c1ab8d555f3f28f02e.png" alt="img"></p>
-<p><img src="https://gitee.com/langzihan/repo-of-images/raw/master/hexo_langzihan/%E5%9C%A8VMware+centos6.5%E7%9A%84%E5%9F%BA%E7%A1%80%E4%B8%8A%E5%AE%89%E8%A3%85Oracle%EF%BC%88%E4%B8%8B%EF%BC%89/537715a194a03620e34ce98f18a6edab.png" alt="img"></p>
+<p><img src="https://blog-src.oss-cn-beijing.aliyuncs.com/images/%E5%9C%A8VMware%2Bcentos6.5%E7%9A%84%E5%9F%BA%E7%A1%80%E4%B8%8A%E5%AE%89%E8%A3%85Oracle%EF%BC%88%E4%B8%8B%EF%BC%89/bc55177cb24b0ca7baae9c2323cbcb55.png" alt="img"></p>
+<p><img src="https://blog-src.oss-cn-beijing.aliyuncs.com/images/%E5%9C%A8VMware%2Bcentos6.5%E7%9A%84%E5%9F%BA%E7%A1%80%E4%B8%8A%E5%AE%89%E8%A3%85Oracle%EF%BC%88%E4%B8%8B%EF%BC%89/4cdf48a2b0cc3066d70c79ba8420bf0d.png" alt="img"></p>
+<p><img src="https://blog-src.oss-cn-beijing.aliyuncs.com/images/%E5%9C%A8VMware%2Bcentos6.5%E7%9A%84%E5%9F%BA%E7%A1%80%E4%B8%8A%E5%AE%89%E8%A3%85Oracle%EF%BC%88%E4%B8%8B%EF%BC%89/10c82c302e44ecbbc2bf124e03f53a82.png" alt="img"></p>
+<p><img src="https://blog-src.oss-cn-beijing.aliyuncs.com/images/%E5%9C%A8VMware%2Bcentos6.5%E7%9A%84%E5%9F%BA%E7%A1%80%E4%B8%8A%E5%AE%89%E8%A3%85Oracle%EF%BC%88%E4%B8%8B%EF%BC%89/81bc07a81f635b59430c027ce1783a8b.png" alt="img"></p>
+<p><img src="https://blog-src.oss-cn-beijing.aliyuncs.com/images/%E5%9C%A8VMware%2Bcentos6.5%E7%9A%84%E5%9F%BA%E7%A1%80%E4%B8%8A%E5%AE%89%E8%A3%85Oracle%EF%BC%88%E4%B8%8B%EF%BC%89/87b1bda642e312c1ab8d555f3f28f02e.png" alt="img"></p>
+<p><img src="https://blog-src.oss-cn-beijing.aliyuncs.com/images/%E5%9C%A8VMware%2Bcentos6.5%E7%9A%84%E5%9F%BA%E7%A1%80%E4%B8%8A%E5%AE%89%E8%A3%85Oracle%EF%BC%88%E4%B8%8B%EF%BC%89/537715a194a03620e34ce98f18a6edab.png" alt="img"></p>
 <p>然后点击<code>next</code>，最后点击finish退出配置监听器界面，完成配置</p>
 <p>测试监听器：</p>
 <p>打开监听器：<code>lsnrctl start</code>   （默认启动监器LISTENER，如果启动非LISTENER则使用lsnrctl start  XXXX命令，XXXX是监听器名字）</p>
