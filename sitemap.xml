@@ -83,6 +83,15 @@
   </url>
   
   <url>
+    <loc>https://blog.langzihan.top/2022/09/23/%E5%88%A9%E7%94%A8Github%20Action%E5%AE%9E%E7%8E%B0Hexo%E5%8D%9A%E5%AE%A2%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2/</loc>
+    
+    <lastmod>2022-09-23</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.langzihan.top/about/index.html</loc>
     
     <lastmod>2022-09-20</lastmod>
@@ -818,6 +827,20 @@
   
   <url>
     <loc>https://blog.langzihan.top/tags/matplotlib/</loc>
+    <lastmod>2022-09-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.langzihan.top/tags/hexo/</loc>
+    <lastmod>2022-09-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.langzihan.top/tags/git-action/</loc>
     <lastmod>2022-09-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

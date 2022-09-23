@@ -7,6 +7,7 @@ https://blog.langzihan.top/categories/index.html
 https://blog.langzihan.top/diary/index.html
 https://blog.langzihan.top/gallery/index.html
 https://blog.langzihan.top/gallery/wallpaper/index.html
+https://blog.langzihan.top/2022/09/23/%E5%88%A9%E7%94%A8Github%20Action%E5%AE%9E%E7%8E%B0Hexo%E5%8D%9A%E5%AE%A2%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2/
 https://blog.langzihan.top/about/index.html
 https://blog.langzihan.top/2022/09/15/Hugging%20face%20%E6%A8%A1%E5%9E%8B%E5%BE%AE%E8%B0%83%20-%20%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E4%BB%BB%E5%8A%A1/
 https://blog.langzihan.top/2022/05/07/%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%B8%8Bubuntu%20server%E6%89%A9%E5%AE%B9%E6%96%B9%E6%A1%88/
@@ -100,6 +101,8 @@ https://blog.langzihan.top/tags/cmd/
 https://blog.langzihan.top/tags/%E7%AB%AF%E5%8F%A3%E5%8D%A0%E7%94%A8/
 https://blog.langzihan.top/tags/%E7%BB%88%E7%BB%93%E8%BF%9B%E7%A8%8B/
 https://blog.langzihan.top/tags/matplotlib/
+https://blog.langzihan.top/tags/hexo/
+https://blog.langzihan.top/tags/git-action/
 https://blog.langzihan.top/tags/VMware/
 https://blog.langzihan.top/tags/Oracle/
 https://blog.langzihan.top/tags/%E6%A1%A5%E6%8E%A5%E6%A8%A1%E5%BC%8F/
