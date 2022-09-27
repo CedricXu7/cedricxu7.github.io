@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>PyQT5环境配置与基本使用</title>
+      <link href="/2022/09/27/PyQT5%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/"/>
+      <url>/2022/09/27/PyQT5%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/</url>
+      
+        <content type="html"><![CDATA[<h1 id="pyqt5-安装"><a href="#pyqt5-安装" class="headerlink" title="pyqt5 安装"></a>pyqt5 安装</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install PyQt5</span><br><span class="line">pip install PyQt5-tools</span><br></pre></td></tr></table></figure><p>在site-packages中的qt\bin的路径配置到环境变量中，我的路径如下:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Program Files\Python36\Lib\site-packages\qt5_applications\Qt\bin</span><br></pre></td></tr></table></figure><br>使用cmd启动designer，成功启动即完成配置</p><h1 id="pycharm-编译工具配置"><a href="#pycharm-编译工具配置" class="headerlink" title="pycharm 编译工具配置"></a>pycharm 编译工具配置</h1><p>为了使qt desginer生成的ui文件、资源qrc转化成py文件，在pycharm开发环境下需要配置一个能够快速打开qt desginer界面以及将.ui、.qrc转.py的工具</p><p>pycharm  ⏩ file ⏩ setting ⏩ Tools ⏩ External Tools<br>在External Tool中新建三个工具</p><p><img src="https://blog-src.oss-cn-beijing.aliyuncs.com/images/PyQT5%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/bc4ccc2d977c15ca3dd62a0a0d77d254.jpg" alt="external tool"></p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Name: Qt Designer</span><br><span class="line">Description: PyQt5相关工具</span><br><span class="line">Program: designer的安装地址</span><br><span class="line">Working directory: $ProjectFileDir$</span><br><span class="line"></span><br><span class="line">Name: QRC2PY</span><br><span class="line">Description: 将Qt设计的资源文件qrc转换成py文件</span><br><span class="line">Program: pyrcc5的地址 例：C:\Program Files\Python36\Scripts\pyrcc5.exe</span><br><span class="line">Arguments: $FileName$ -o ..\$FileNameWithoutExtension$_rc.py</span><br><span class="line">Working directory: $FileDir$</span><br><span class="line"></span><br><span class="line">Name: UI2PY</span><br><span class="line">Description: 将Qt设计的资源文件qrc转换成py文件</span><br><span class="line">Program: python的地址 例：C:\Program Files\Python36\python.exe</span><br><span class="line">Arguments: -m PyQt5.uic.pyuic $FileName$ -o $FileNameWithoutExtension$.py</span><br><span class="line">Working directory: $FileDir$</span><br></pre></td></tr></table></figure><p>配置完成后就可以在文件栏的右键菜单使用了</p><p><img src="https://blog-src.oss-cn-beijing.aliyuncs.com/images/PyQT5%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/9f7a65f754c5fc4266939ec9c9b9f8a8.jpg" alt="菜单"></p><p>之后就是用Designer可视化编辑窗口生成ui文件</p><p>右键ui文件使用UI2PY生成对应窗体的py脚本</p><p>若编辑窗体时导入过外部资源则会生成qrc文件，执行QRC2PY同样生成对应的py脚本</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 安装笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 配置 </tag>
+            
+            <tag> pycharm </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>利用Github Action实现Hexo博客自动化部署</title>
       <link href="/2022/09/23/%E5%88%A9%E7%94%A8Github%20Action%E5%AE%9E%E7%8E%B0Hexo%E5%8D%9A%E5%AE%A2%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2/"/>
       <url>/2022/09/23/%E5%88%A9%E7%94%A8Github%20Action%E5%AE%9E%E7%8E%B0Hexo%E5%8D%9A%E5%AE%A2%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2/</url>
