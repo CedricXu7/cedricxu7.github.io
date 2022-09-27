@@ -38,24 +38,6 @@
   </url>
   
   <url>
-    <loc>https://blog.langzihan.top/categories/index.html</loc>
-    
-    <lastmod>2022-09-27</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.langzihan.top/diary/index.html</loc>
-    
-    <lastmod>2022-09-27</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.langzihan.top/gallery/index.html</loc>
     
     <lastmod>2022-09-27</lastmod>
@@ -66,6 +48,24 @@
   
   <url>
     <loc>https://blog.langzihan.top/gallery/wallpaper/index.html</loc>
+    
+    <lastmod>2022-09-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.langzihan.top/categories/index.html</loc>
+    
+    <lastmod>2022-09-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.langzihan.top/diary/index.html</loc>
     
     <lastmod>2022-09-27</lastmod>
     
