@@ -568,7 +568,7 @@ audio {
 @font-face {
   font-family: BodyFont;
   /* src: url(https://cdn.jsdelivr.net/npm/kang-static/Hexo/font/woff2/JetBrainsMono-Medium.woff2) */
-  src: url(/extend/LXGWWenKaiLite-Regular.ttf)
+  src: url(https://cdn.jsdelivr.net/gh/xuxingchen1996/blog/source/extend/LXGWWenKaiLite-Regular.ttf)
 }
 
 #article-container code,
