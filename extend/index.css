@@ -568,8 +568,8 @@ audio {
 @font-face {
   font-family: BodyFont;
   /* src: url(https://cdn.jsdelivr.net/npm/kang-static/Hexo/font/woff2/JetBrainsMono-Medium.woff2) */
-  /* src: url(/extend/font/LXGWWenKaiLite-Regular.subset.woff2) */
-  src: url(https://blog-src.oss-cn-beijing.aliyuncs.com/images/font/LXGWWenKaiLite-Regular.subset.woff2)
+  /* src: url(/extend/fonts/LXGWWenKaiLite-Regular.subset.woff2) */
+  src: url(https://blog-src.oss-cn-beijing.aliyuncs.com/images/fonts/LXGWWenKaiLite-Regular.subset.woff2)
 }
 
 #article-container code,
