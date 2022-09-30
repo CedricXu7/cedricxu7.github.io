@@ -569,7 +569,7 @@ audio {
   font-family: BodyFont;
   /* src: url(https://cdn.jsdelivr.net/npm/kang-static/Hexo/font/woff2/JetBrainsMono-Medium.woff2) */
   /* src: url(/extend/fonts/LXGWWenKaiLite-Regular.subset.woff2) */
-  src: url(http://qiniu.blog.oss.langzihan.top/images/fonts/LXGWWenKaiLite-Regular.subset.woff2)
+  src: url(https://cdn.jsdelivr.net/gh/xuxingchen1996/files/fonts/LXGWWenKaiLite-Regular.subset.woff2)
 }
 
 #article-container code,
