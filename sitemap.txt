@@ -2,10 +2,11 @@ https://blog.langzihan.top/links/index.html
 https://blog.langzihan.top/movies/index.html
 https://blog.langzihan.top/photo/index.html
 https://blog.langzihan.top/tags/index.html
-https://blog.langzihan.top/gallery/wallpaper/index.html
 https://blog.langzihan.top/categories/index.html
 https://blog.langzihan.top/diary/index.html
 https://blog.langzihan.top/gallery/live/index.html
+https://blog.langzihan.top/gallery/wallpaper/index.html
+https://blog.langzihan.top/2021/03/21/2021-03-Redis%E5%AE%89%E8%A3%85%E8%B8%A9%E5%9D%91/
 https://blog.langzihan.top/2022/09/23/2022-09-%E5%88%A9%E7%94%A8Github%20Action%E5%AE%9E%E7%8E%B0Hexo%E5%8D%9A%E5%AE%A2%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2/
 https://blog.langzihan.top/2022/09/29/2022-09-Hugging%20face%20%E6%A8%A1%E5%9E%8B%E5%BE%AE%E8%B0%83%20-%20%E5%91%BD%E5%90%8D%E5%AE%9E%E4%BD%93%E8%AF%86%E5%88%AB/
 https://blog.langzihan.top/about/index.html
@@ -37,7 +38,6 @@ https://blog.langzihan.top/2021/06/11/2021-06-Cannot%20convert%20a%20symbolic%20
 https://blog.langzihan.top/2021/06/10/2021-06-%E5%B1%8F%E8%94%BDtensorflow%E7%9A%84%E6%97%A5%E5%BF%97%E6%89%93%E5%8D%B0/
 https://blog.langzihan.top/2021/06/01/2021-06-%E7%AE%80%E5%8D%95%E7%9A%84KNN%E5%AE%9E%E7%8E%B0/
 https://blog.langzihan.top/2021/04/28/2021-04-windows%E7%8E%AF%E5%A2%83%E4%B8%8Bmatplotlib%E5%9B%BE%E7%89%87%E4%B8%AD%E4%B8%AD%E6%96%87%E6%98%BE%E7%A4%BA%E5%BC%82%E5%B8%B8/
-https://blog.langzihan.top/2021/03/21/2021-03-Redis%E5%AE%89%E8%A3%85%E8%B8%A9%E5%9D%91/
 https://blog.langzihan.top/2020/12/27/2020-12-ubuntu%E6%8D%A2%E6%BA%90%E7%AC%94%E8%AE%B0/
 https://blog.langzihan.top/2020/09/24/2020-09-Leetcode-2.%20%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0/
 https://blog.langzihan.top/2020/08/08/2020-08-%E6%8B%89%E5%8F%96github%E9%A1%B9%E7%9B%AE%E5%90%8EVisual%20Studio%202017%20%E6%8A%A5%E9%94%99system%E6%9C%AA%E5%AE%9A%E4%B9%89%E8%AF%86%E5%88%AB%E7%AC%A6/
