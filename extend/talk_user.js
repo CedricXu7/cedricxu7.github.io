@@ -50,7 +50,7 @@ document.getElementById(id).innerHTML=`<div class="hpp_talk_loading"><div class=
 
     return jsonLength;
 }
-console.log(id);
+// console.log(id);
 
 
   back='https://'+domain+'/hpp/api/gethpptalk'

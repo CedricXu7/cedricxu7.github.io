@@ -1,11 +1,11 @@
-https://blog.langzihan.top/links/index.html
-https://blog.langzihan.top/movies/index.html
 https://blog.langzihan.top/photo/index.html
 https://blog.langzihan.top/tags/index.html
+https://blog.langzihan.top/links/index.html
+https://blog.langzihan.top/movies/index.html
+https://blog.langzihan.top/gallery/live/index.html
 https://blog.langzihan.top/gallery/wallpaper/index.html
 https://blog.langzihan.top/categories/index.html
 https://blog.langzihan.top/diary/index.html
-https://blog.langzihan.top/gallery/live/index.html
 https://blog.langzihan.top/2022/10/14/2022-10-git%E5%92%8Cnpm%E4%BB%A3%E7%90%86%E8%AE%BE%E7%BD%AE/
 https://blog.langzihan.top/2022/10/14/2022-10-windows%E6%B7%BB%E5%8A%A0%E5%8F%B3%E9%94%AE%E6%89%93%E5%BC%80cmd%E5%91%BD%E4%BB%A4%E7%AA%97%E5%8F%A3/
 https://blog.langzihan.top/2021/03/21/2021-03-Redis%E5%AE%89%E8%A3%85%E8%B8%A9%E5%9D%91/
