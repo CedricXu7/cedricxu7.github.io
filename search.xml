@@ -4,6 +4,60 @@
   
     
     <entry>
+      <title>git和npm代理设置</title>
+      <link href="/2022/10/14/2022-10-git%E5%92%8Cnpm%E4%BB%A3%E7%90%86%E8%AE%BE%E7%BD%AE/"/>
+      <url>/2022/10/14/2022-10-git%E5%92%8Cnpm%E4%BB%A3%E7%90%86%E8%AE%BE%E7%BD%AE/</url>
+      
+        <content type="html"><![CDATA[<h1 id="git设置代理"><a href="#git设置代理" class="headerlink" title="git设置代理"></a>git设置代理</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global http.proxy &#x27;socks5://127.0.0.1:7890&#x27;</span><br><span class="line">git config --global https.proxy &#x27;socks5://127.0.0.1:7890&#x27;</span><br></pre></td></tr></table></figure><p>查看配置效果 <code>git config --global --list</code></p><h1 id="npm设置代理"><a href="#npm设置代理" class="headerlink" title="npm设置代理"></a>npm设置代理</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm config set proxy socks5://127.0.0.1:7890</span><br><span class="line">npm config set https-proxy socks5://127.0.0.1:7890</span><br></pre></td></tr></table></figure><p>查看配置效果打开文件<code>C:\Users\xxxx\.npmrc</code></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 小技巧 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 配置 </tag>
+            
+            <tag> 代理 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>windows添加右键打开cmd命令窗口</title>
+      <link href="/2022/10/14/2022-10-windows%E6%B7%BB%E5%8A%A0%E5%8F%B3%E9%94%AE%E6%89%93%E5%BC%80cmd%E5%91%BD%E4%BB%A4%E7%AA%97%E5%8F%A3/"/>
+      <url>/2022/10/14/2022-10-windows%E6%B7%BB%E5%8A%A0%E5%8F%B3%E9%94%AE%E6%89%93%E5%BC%80cmd%E5%91%BD%E4%BB%A4%E7%AA%97%E5%8F%A3/</url>
+      
+        <content type="html"><![CDATA[<p><strong>目标</strong><br>在新安装的windows系统中添加文件夹空白处“在此处打开命令窗口”的功能，如下图</p><p><img src="https://blog.oss.langzihan.top/images/windows%E6%B7%BB%E5%8A%A0%E5%8F%B3%E9%94%AE%E6%89%93%E5%BC%80cmd%E5%91%BD%E4%BB%A4%E7%AA%97%E5%8F%A3/bdfa7771fba8a19c3d3c813e220d3842.jpg" alt=""></p><p>具体步骤如下：</p><ol><li><p><code>win+r</code>输入<code>regedit</code>打开注册表</p></li><li><p>打开到<code>计算机\HKEY_CLASSES_ROOT\Directory\Background\shell</code></p></li><li><p>右键<code>新建-&gt;项</code>，如果需要管理员模式的命令行就新建俩，分别命名为<code>OpenCMD</code>与<code>ShieldCMD</code>按个人喜好命名即可</p></li><li><p><code>OpenCMD</code>用于<code>在此处打开命令窗口</code>，<code>ShieldCMD</code>用于“以管理员身份打开命令窗口”，分别在<code>OpenCMD</code>、<code>ShieldCMD</code>下再新建一个名为<code>command</code>的项</p></li><li><p>选中<code>OpenCMD</code>修改默认数值数据为“在此打开命令行”，选中<code>ShieldCMD</code>修改默认数据为“以管理员身份打开命令窗口”</p><p><img src="https://blog.oss.langzihan.top/images/windows%E6%B7%BB%E5%8A%A0%E5%8F%B3%E9%94%AE%E6%89%93%E5%BC%80cmd%E5%91%BD%E4%BB%A4%E7%AA%97%E5%8F%A3/00bf5c2c5c79bdddebb3da7b9d96fbe1.png" alt="image-20221017094042296"></p></li><li><p>右键<code>OpenCMD</code>新建一个<code>字符串值</code>，名称为<code>Icon</code>，数值数据为<code>cmd.exe</code>，右键<code>ShieldCMD</code>新建一个<code>字符串值</code>，名称为<code>HasLUAShield</code>，数值数据不填</p></li><li>分别修改二者下级的<code>command</code>中的默认数值数据为<code>cmd.exe /s /k pushd &quot;%V&quot;</code></li></ol><p><img src="https://blog.oss.langzihan.top/images/windows%E6%B7%BB%E5%8A%A0%E5%8F%B3%E9%94%AE%E6%89%93%E5%BC%80cmd%E5%91%BD%E4%BB%A4%E7%AA%97%E5%8F%A3/b1235ccf4bee55be8bc47f920f2daeef.png" alt="image-20221017094556600"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 小技巧 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> cmd </tag>
+            
+            <tag> 注册表 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Hugging face 模型微调 - 命名实体识别</title>
       <link href="/2022/09/29/2022-09-Hugging%20face%20%E6%A8%A1%E5%9E%8B%E5%BE%AE%E8%B0%83%20-%20%E5%91%BD%E5%90%8D%E5%AE%9E%E4%BD%93%E8%AF%86%E5%88%AB/"/>
       <url>/2022/09/29/2022-09-Hugging%20face%20%E6%A8%A1%E5%9E%8B%E5%BE%AE%E8%B0%83%20-%20%E5%91%BD%E5%90%8D%E5%AE%9E%E4%BD%93%E8%AF%86%E5%88%AB/</url>
