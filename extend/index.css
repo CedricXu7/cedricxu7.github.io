@@ -1720,3 +1720,39 @@ div.gallery.stretch>p img {
   padding-bottom: .4rem;
   padding-top: .4rem
 }
+
+/* 自定义主题格式 */
+root{
+  --transparent: rgba(0,0,0,0);/* 透明色 */
+  --top-text-color: #818181;/* top字体颜色 */
+}
+#page-header {/* top-img背景无色 */
+  background-color: var(--transparent);
+}
+
+#page-header:not(.not-top-img):before {/* top-img蒙版透明 */
+  background-color: var(--transparent);
+}
+
+/* 页面的top部分颜色设置 */
+#nav a {
+  color: var(--top-text-color);
+}
+#page-header #site-subtitle {
+  color: var(--top-text-color);
+}
+#page-header #site-title {
+  color: var(--top-text-color);
+}
+#page-header #scroll-down .scroll-down-effects {
+  color: var(--top-text-color);
+}
+
+/* 调整分类页 */
+.category-lists ul li:before {
+  top: 1.0em;
+}
+
+.category-lists .category-list a {
+  font-size: 18px;
+}
