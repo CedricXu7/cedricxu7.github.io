@@ -207,7 +207,7 @@ document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/j
 })()</script><script>function addGitalkSource () {
   const ele = document.createElement('link')
   ele.rel = 'stylesheet'
-  ele.href= 'https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css'
+  ele.href= 'https://cdn.jsdelivr.net/gh/xuxingchen1996/CDN/gitalk/gitalk.min.css'
   document.getElementsByTagName('head')[0].appendChild(ele)
 }
 
@@ -229,7 +229,7 @@ function loadGitalk () {
   if (typeof Gitalk === 'function') initGitalk()
   else {
     addGitalkSource()
-    getScript('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js').then(initGitalk)
+    getScript('https://cdn.jsdelivr.net/gh/xuxingchen1996/CDN/gitalk/gitalk.min.js').then(initGitalk)
   }
 }
 
