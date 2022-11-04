@@ -680,11 +680,11 @@
       
         <tags>
             
+            <tag> 配置 </tag>
+            
             <tag> kafka </tag>
             
             <tag> zookeeper </tag>
-            
-            <tag> 配置 </tag>
             
         </tags>
       
@@ -709,9 +709,9 @@
       
         <tags>
             
-            <tag> 配置 </tag>
-            
             <tag> hadoop </tag>
+            
+            <tag> 配置 </tag>
             
         </tags>
       
