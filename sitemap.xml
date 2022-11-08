@@ -38,6 +38,15 @@
   </url>
   
   <url>
+    <loc>https://blog.langzihan.top/categories/index.html</loc>
+    
+    <lastmod>2022-11-08</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.langzihan.top/gallery/live/index.html</loc>
     
     <lastmod>2022-11-08</lastmod>
@@ -56,16 +65,7 @@
   </url>
   
   <url>
-    <loc>https://blog.langzihan.top/categories/index.html</loc>
-    
-    <lastmod>2022-11-08</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.langzihan.top/2022/11/08/%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/SteamCMD%E5%88%9B%E5%BB%BA%E4%B8%8B%E8%BD%BD%E9%A5%A5%E8%8D%92%E4%B8%93%E7%94%A8%E6%9C%8D%E5%8A%A1%E5%99%A8/</loc>
+    <loc>https://blog.langzihan.top/2022/11/08/%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/11.SteamCMD%E5%88%9B%E5%BB%BA%E4%B8%8B%E8%BD%BD%E9%A5%A5%E8%8D%92%E4%B8%93%E7%94%A8%E6%9C%8D%E5%8A%A1%E5%99%A8/</loc>
     
     <lastmod>2022-11-08</lastmod>
     
