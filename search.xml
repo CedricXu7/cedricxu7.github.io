@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>Matplotlib is currently using agg</title>
+      <link href="/2022/12/01/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/22.Matplotlib%20is%20currently%20using%20agg/"/>
+      <url>/2022/12/01/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/22.Matplotlib%20is%20currently%20using%20agg/</url>
+      
+        <content type="html"><![CDATA[<h1 id="问题报错"><a href="#问题报错" class="headerlink" title="问题报错"></a>问题报错</h1><p>pyplot存在大量绘图时报以下错误：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Matplotlib is currently using agg, which is a non-GUI backend, so cannot show the figure</span><br></pre></td></tr></table></figure><h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><p>在报出异常的py文件中导包末尾部分追加<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib</span><br><span class="line">matplotlib.use(<span class="string">&#x27;TkAgg&#x27;</span>)</span><br></pre></td></tr></table></figure></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 解决方案 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Matplotlib </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>SteamCMD创建下载饥荒专用服务器</title>
       <link href="/2022/11/08/%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/11.SteamCMD%E5%88%9B%E5%BB%BA%E4%B8%8B%E8%BD%BD%E9%A5%A5%E8%8D%92%E4%B8%93%E7%94%A8%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
       <url>/2022/11/08/%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/11.SteamCMD%E5%88%9B%E5%BB%BA%E4%B8%8B%E8%BD%BD%E9%A5%A5%E8%8D%92%E4%B8%93%E7%94%A8%E6%9C%8D%E5%8A%A1%E5%99%A8/</url>
