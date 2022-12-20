@@ -4,7 +4,7 @@
   <url>
     <loc>https://blog.langzihan.top/links/index.html</loc>
     
-    <lastmod>2022-12-01</lastmod>
+    <lastmod>2022-12-20</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -13,7 +13,7 @@
   <url>
     <loc>https://blog.langzihan.top/movies/index.html</loc>
     
-    <lastmod>2022-12-01</lastmod>
+    <lastmod>2022-12-20</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -22,7 +22,7 @@
   <url>
     <loc>https://blog.langzihan.top/photo/index.html</loc>
     
-    <lastmod>2022-12-01</lastmod>
+    <lastmod>2022-12-20</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -31,7 +31,7 @@
   <url>
     <loc>https://blog.langzihan.top/tags/index.html</loc>
     
-    <lastmod>2022-12-01</lastmod>
+    <lastmod>2022-12-20</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -40,7 +40,7 @@
   <url>
     <loc>https://blog.langzihan.top/categories/index.html</loc>
     
-    <lastmod>2022-12-01</lastmod>
+    <lastmod>2022-12-20</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -49,7 +49,7 @@
   <url>
     <loc>https://blog.langzihan.top/gallery/live/index.html</loc>
     
-    <lastmod>2022-12-01</lastmod>
+    <lastmod>2022-12-20</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -58,7 +58,16 @@
   <url>
     <loc>https://blog.langzihan.top/gallery/wallpaper/index.html</loc>
     
-    <lastmod>2022-12-01</lastmod>
+    <lastmod>2022-12-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.langzihan.top/2022/12/20/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/23.%E8%A7%A3%E5%86%B3Sub-process%20usrbindpkg%20returned%20an%20error%20code%20(1)/</loc>
+    
+    <lastmod>2022-12-20</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -589,7 +598,7 @@
 
   <url>
     <loc>https://blog.langzihan.top/</loc>
-    <lastmod>2022-12-01</lastmod>
+    <lastmod>2022-12-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
