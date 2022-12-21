@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>linux实用小命令</title>
+      <link href="/2022/12/21/%E5%AE%9E%E7%94%A8%E9%85%8D%E7%BD%AE/13.linux%E5%AE%9E%E7%94%A8%E5%B0%8F%E5%91%BD%E4%BB%A4/"/>
+      <url>/2022/12/21/%E5%AE%9E%E7%94%A8%E9%85%8D%E7%BD%AE/13.linux%E5%AE%9E%E7%94%A8%E5%B0%8F%E5%91%BD%E4%BB%A4/</url>
+      
+        <content type="html"><![CDATA[<h1 id="安装类命令"><a href="#安装类命令" class="headerlink" title="安装类命令"></a>安装类命令</h1><ul><li><p>删除没有用的依赖包，不会非apt-get安装的依赖包</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get autoremove</span><br></pre></td></tr></table></figure></li><li><p>删除手动安装的依赖包</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">apt-get install deborphan</span><br><span class="line">deborphan # 列出来</span><br><span class="line">deborphan | xargs sudo apt-get purge -y # 删除</span><br></pre></td></tr></table></figure></li><li><p>删除某个软件包的配置文件</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dpkg --purge &lt;package-name&gt;</span><br></pre></td></tr></table></figure></li><li><p>删除卸载后的遗留配置文件</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dpkg --list | grep &quot;^rc&quot; | cut -d &quot; &quot; -f 3 # 列出来</span><br><span class="line">dpkg --list | grep &quot;^rc&quot; | cut -d &quot; &quot; -f 3 | xargs sudo dpkg --purge</span><br></pre></td></tr></table></figure></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 实用配置 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> linux </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>解决Sub-process usrbindpkg returned an error code (1)</title>
       <link href="/2022/12/20/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/23.%E8%A7%A3%E5%86%B3Sub-process%20usrbindpkg%20returned%20an%20error%20code%20(1)/"/>
       <url>/2022/12/20/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/23.%E8%A7%A3%E5%86%B3Sub-process%20usrbindpkg%20returned%20an%20error%20code%20(1)/</url>
