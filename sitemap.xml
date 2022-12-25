@@ -2,6 +2,87 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blog.langzihan.top/photo/index.html</loc>
+    
+    <lastmod>2022-12-25</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.langzihan.top/tags/index.html</loc>
+    
+    <lastmod>2022-12-25</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.langzihan.top/links/index.html</loc>
+    
+    <lastmod>2022-12-25</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.langzihan.top/movies/index.html</loc>
+    
+    <lastmod>2022-12-25</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.langzihan.top/categories/index.html</loc>
+    
+    <lastmod>2022-12-25</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.langzihan.top/gallery/live/index.html</loc>
+    
+    <lastmod>2022-12-25</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.langzihan.top/gallery/wallpaper/index.html</loc>
+    
+    <lastmod>2022-12-25</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.langzihan.top/2022/12/25/%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/14.debian%E4%B8%8B%E7%9A%84seafile%E9%83%A8%E7%BD%B2/</loc>
+    
+    <lastmod>2022-12-25</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.langzihan.top/2022/12/25/%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/13.%E5%9F%BA%E4%BA%8Esakura-frp%E7%9A%84%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/</loc>
+    
+    <lastmod>2022-12-25</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.langzihan.top/2022/12/21/%E5%AE%9E%E7%94%A8%E9%85%8D%E7%BD%AE/13.linux%E5%AE%9E%E7%94%A8%E5%B0%8F%E5%91%BD%E4%BB%A4/</loc>
     
     <lastmod>2022-12-22</lastmod>
@@ -11,70 +92,7 @@
   </url>
   
   <url>
-    <loc>https://blog.langzihan.top/links/index.html</loc>
-    
-    <lastmod>2022-12-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.langzihan.top/movies/index.html</loc>
-    
-    <lastmod>2022-12-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.langzihan.top/photo/index.html</loc>
-    
-    <lastmod>2022-12-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.langzihan.top/tags/index.html</loc>
-    
-    <lastmod>2022-12-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.langzihan.top/gallery/live/index.html</loc>
-    
-    <lastmod>2022-12-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.langzihan.top/gallery/wallpaper/index.html</loc>
-    
-    <lastmod>2022-12-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.langzihan.top/categories/index.html</loc>
-    
-    <lastmod>2022-12-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.langzihan.top/2022/12/22/%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/12.debian%E4%B8%8B%E7%9A%84nextcloud%E9%83%A8%E7%BD%B2/</loc>
+    <loc>https://blog.langzihan.top/2022/12/22/%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/12.debian%E4%B8%8B%E7%9A%84nextcloud%E9%83%A8%E7%BD%B2%20-%20%E5%89%AF%E6%9C%AC/</loc>
     
     <lastmod>2022-12-22</lastmod>
     
@@ -616,7 +634,7 @@
 
   <url>
     <loc>https://blog.langzihan.top/</loc>
-    <lastmod>2022-12-22</lastmod>
+    <lastmod>2022-12-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>

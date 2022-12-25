@@ -1,0 +1,293 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>debian下的seafile部署 | Lang's Blog</title><meta name="keywords" content="debian,nginx,seafile"><meta name="author" content="浪子寒"><meta name="copyright" content="浪子寒"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="在debian11下部署nginx+seafile">
+<meta property="og:type" content="article">
+<meta property="og:title" content="debian下的seafile部署">
+<meta property="og:url" content="https://blog.langzihan.top/2022/12/25/%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/14.debian%E4%B8%8B%E7%9A%84seafile%E9%83%A8%E7%BD%B2/index.html">
+<meta property="og:site_name" content="Lang&#39;s Blog">
+<meta property="og:description" content="在debian11下部署nginx+seafile">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blog.langzihan.top/img/white.jpg">
+<meta property="article:published_time" content="2022-12-25T05:58:41.000Z">
+<meta property="article:modified_time" content="2022-12-25T05:58:43.000Z">
+<meta property="article:author" content="浪子寒">
+<meta property="article:tag" content="debian">
+<meta property="article:tag" content="nginx">
+<meta property="article:tag" content="seafile">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blog.langzihan.top/img/white.jpg"><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://blog.langzihan.top/2022/12/25/%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/14.debian%E4%B8%8B%E7%9A%84seafile%E9%83%A8%E7%BD%B2/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="google-site-verification" content="gl40djzSrzcQr_-uLbv5Ycn68oWNwPL-ZjyCdu9UeTs"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?900f8b5e3941a999744fd2e48d3c6828";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-BP1BKS3M17"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-BP1BKS3M17');
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: 浪子寒","link":"链接: ","source":"来源: Lang's Blog","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"rgba(27, 31, 35, .5)","bgDark":"#1f1f1f","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'debian下的seafile部署',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-12-25 13:58:43'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/extend/index.css"><meta name="msvalidate.01" content="5E3F791123194E638BCC2C947975BC6F" /><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/%E5%A4%B4%E5%83%8F.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">62</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">83</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/%E7%99%BE%E5%91%B3%E6%9D%82%E8%B4%A7/"><i class="fa-fw fa-solid fa-pen-nib"></i><span> 随笔</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-compass"></i><span> 目录</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa-solid fa-folder-tree"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa-solid fa-timeline"></i><span> 时间轴</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/photo/"><i class="fa-fw fas fa-image"></i><span> 相册</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 影视</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fas fa-link"></i><span> 资源分享</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa-solid fa-mug-hot"></i><span> 絮絮叨叨</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Lang's Blog</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/%E7%99%BE%E5%91%B3%E6%9D%82%E8%B4%A7/"><i class="fa-fw fa-solid fa-pen-nib"></i><span> 随笔</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-compass"></i><span> 目录</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa-solid fa-folder-tree"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa-solid fa-timeline"></i><span> 时间轴</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/photo/"><i class="fa-fw fas fa-image"></i><span> 相册</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 影视</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/links/"><i class="fa-fw fas fa-link"></i><span> 资源分享</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa-solid fa-mug-hot"></i><span> 絮絮叨叨</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">debian下的seafile部署</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-12-25T05:58:41.000Z" title="发表于 2022-12-25 13:58:41">2022-12-25</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-12-25T05:58:43.000Z" title="更新于 2022-12-25 13:58:43">2022-12-25</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/">安装笔记</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>4分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="debian下的seafile部署"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><h1 id="seafile简介"><a href="#seafile简介" class="headerlink" title="seafile简介"></a>seafile简介</h1><figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Seafile 是一款开源的企业云盘，注重可靠性和性能。支持 Windows, Mac, Linux, iOS, Android 平台。支持文件同步或者直接挂载到本地访问。</span><br></pre></td></tr></table></figure>
+<p>安装包下载地址：<a target="_blank" rel="noopener" href="https://github.com/haiwen/seafile-rpi/releases/">社区版下载传送门</a>，<a target="_blank" rel="noopener" href="https://download.seafile.com/d/6e5297246c/?p=/pro">专业版下载传送门</a></p>
+<p>社区版使用按官网来就行，专业版不付费的话限制使用三个账号，本文使用的是(9.0.2版本)[]<br><strong>注意</strong>：seafile 9.0.x 版本不支持在 Centos 系统 tar 包部署，支持 Docker 方式部署 </p>
+<h1 id="软件安装"><a href="#软件安装" class="headerlink" title="软件安装"></a>软件安装</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get update &amp;&amp; apt-get upgrade</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>软件依赖包</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">apt-get install python3 python3-setuptools python3-pip python3-ldap  libmysqlclient-dev  -y</span><br><span class="line">pip3 install --timeout=3600 django==3.2.* future mysqlclient pymysql Pillow pylibmc captcha jinja2 sqlalchemy==1.4.3 psd-tools django-pylibmc django-simple-captcha pycryptodome==3.12.0 lxml</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>nginx安装</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install -y nginx</span><br></pre></td></tr></table></figure></li>
+<li><p>memcached安装</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">apt-get install memcached libmemcached-dev -y</span><br><span class="line">pip3 install --timeout=3600 pylibmc django-pylibmc</span><br><span class="line">systemctl enable --now memcached</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>mariadb安装</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">apt-get install mariadb-server</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">创建root账户</span></span><br><span class="line">mysqladmin -uroot password &#x27;123456&#x27;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>seafile解压</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">到指定目录创建seafile文件夹</span></span><br><span class="line">mkdir -p seafile/installed</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">将下载的seafile-server-xxx.tar.gz复制到installed文件夹中进行解压</span></span><br><span class="line">tar -zxf seafile-server-9.0.2-bullseye-arm32v7l.tar.gz -C ../</span><br><span class="line">chmod -R 755 seafile-server-9.0.2/</span><br></pre></td></tr></table></figure>
+<p>seafile目录结构如下：<br>seafile<br>├── installed<br>│   └── seafile-server-9.0.2-bullseye-arm32v7l.tar.gz<br>└── seafile-server-9.0.2<br>  ├── setup-seafile-mysql.sh<br>  ├── ……<br>然后执行安装脚本</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd seafile/seafile-server-9.0.2</span><br><span class="line">./setup-seafile-mysql.sh</span><br></pre></td></tr></table></figure>
+<p>初始化安装步骤：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">-------------------------------------------------------</span><br><span class="line">Please choose a way to initialize seafile databases:</span><br><span class="line">-------------------------------------------------------</span><br><span class="line"></span><br><span class="line">[1] Create new ccnet/seafile/seahub databases</span><br><span class="line">[2] Use existing ccnet/seafile/seahub databases</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">输入 1，然后根据提示依次提供相关信息即可</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="相关配置"><a href="#相关配置" class="headerlink" title="相关配置"></a>相关配置</h1><ul>
+<li><p>修改监听地址<br><code>vim ../conf/gunicorn.conf.py</code><br>将其中<code>bind</code>地址修改成<code>0.0.0.0:8000</code></p>
+</li>
+<li><p>配置nginx<br>移除nginx的默认配置<code>rm /etc/nginx/sites-enabled/default</code><br><code>vim /etc/nginx/sites-available/seafile.conf</code>填入以下配置，通过反代理实现80端口访问seafile，同时开启webdav功能</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    server_name default_server;</span><br><span class="line">    proxy_set_header X-Forwarded-For $remote_addr;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">        proxy_pass         http://127.0.0.1:8000;</span><br><span class="line">        proxy_set_header   Host $host;</span><br><span class="line">        proxy_set_header   X-Real-IP $remote_addr;</span><br><span class="line">        proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">        proxy_set_header   X-Forwarded-Host $server_name;</span><br><span class="line">        proxy_read_timeout  1200s;</span><br><span class="line">        client_max_body_size 0;</span><br><span class="line">        access_log      /var/log/nginx/seahub.access.log;</span><br><span class="line">        error_log       /var/log/nginx/seahub.error.log;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    location /seafhttp &#123;</span><br><span class="line">        rewrite ^/seafhttp(.*)$ $1 break;</span><br><span class="line">        proxy_pass http://127.0.0.1:8082;</span><br><span class="line">        client_max_body_size 0;</span><br><span class="line">        proxy_request_buffering off;</span><br><span class="line">        proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">        proxy_connect_timeout  36000s;</span><br><span class="line">        proxy_read_timeout  36000s;</span><br><span class="line">        proxy_send_timeout  36000s;</span><br><span class="line">        send_timeout  36000s;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    location /media &#123;</span><br><span class="line">        root /media/sda1/seafile/seafile-server-latest/seahub;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    location /seafdav &#123;</span><br><span class="line">        proxy_pass         http://127.0.0.1:8080/seafdav;</span><br><span class="line">        proxy_set_header   Host $host;</span><br><span class="line">        proxy_set_header   X-Real-IP $remote_addr;</span><br><span class="line">        proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">        proxy_set_header   X-Forwarded-Host $server_name;</span><br><span class="line">        proxy_set_header   X-Forwarded-Proto $scheme;</span><br><span class="line">        proxy_read_timeout  1200s;</span><br><span class="line">        client_max_body_size 0;</span><br><span class="line">        access_log      /var/log/nginx/seafdav.access.log seafileformat;</span><br><span class="line">        error_log       /var/log/nginx/seafdav.error.log;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    location /:dir_browser &#123;</span><br><span class="line">        proxy_pass  http://127.0.0.1:8080/:dir_browser;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>若要开启webdav还得修改conf/seafdav.conf如下</strong></p>
+</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[WEBDAV]</span><br><span class="line">enabled = true</span><br><span class="line">port = 8080</span><br><span class="line">share_name = /seafdav</span><br></pre></td></tr></table></figure>
+<p>创建符号链接: <code>ln -s /etc/nginx/sites-available/seafile.conf /etc/nginx/sites-enabled/seafile.conf</code></p>
+<ul>
+<li><p>配置memcached优化性能<br>在<code>conf/seahub_settings.py</code>中追加以下配置</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">CACHES = &#123;</span><br><span class="line">    <span class="string">&#x27;default&#x27;</span>: &#123;</span><br><span class="line">        <span class="string">&#x27;BACKEND&#x27;</span>: <span class="string">&#x27;django_pylibmc.memcached.PyLibMCCache&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;LOCATION&#x27;</span>: <span class="string">&#x27;127.0.0.1:11211&#x27;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">&#x27;locmem&#x27;</span>: &#123;</span><br><span class="line">        <span class="string">&#x27;BACKEND&#x27;</span>: <span class="string">&#x27;django.core.cache.backends.locmem.LocMemCache&#x27;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br><span class="line">COMPRESS_CACHE_BACKEND = <span class="string">&#x27;locmem&#x27;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>seafile注册为系统服务，开启开机自启<br><code>vim /etc/systemd/system/seafile.service</code>seafile的开机自启</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description=Seafile</span><br><span class="line">After=network.target mariadb.service</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">Type=oneshot</span><br><span class="line">ExecStart=/media/sda1/seafile/seafile-server-latest/seafile.sh start</span><br><span class="line">ExecStop=/media/sda1/seafile/seafile-server-latest/seafile.sh stop</span><br><span class="line">ExecReload=/media/sda1/seafile/seafile-server-latest/seafile.sh restart</span><br><span class="line">RemainAfterExit=yes</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure>
+<p><code>vim /etc/systemd/system/seahub.service</code>seahub的开机自启</p>
+</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description=Seafile hub</span><br><span class="line">After=network.target seafile.service</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">ExecStart=/media/sda1/seafile/seafile-server-latest/seahub.sh start</span><br><span class="line">ExecStop=/media/sda1/seafile/seafile-server-latest/seahub.sh stop</span><br><span class="line">ExecReload=/media/sda1/seafile/seafile-server-latest/seahub.sh restart</span><br><span class="line">Type=oneshot</span><br><span class="line">RemainAfterExit=yes</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure>
+<p>保存配置后设置开机自启<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">systemctl daemon-reload</span><br><span class="line">systemctl enable seafile.service	</span><br><span class="line">systemctl enable seahub.service	</span><br></pre></td></tr></table></figure></p>
+<h1 id="启动服务"><a href="#启动服务" class="headerlink" title="启动服务"></a>启动服务</h1><p>启动服务有两种方式，一般情况下先启动seafile，再启动seahub，关闭的话则反着来<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">seafile/seafile-server-latest/seafile.sh start # stop,restart</span><br><span class="line">seafile/seafile-server-latest/seahub.sh start # stop,restart</span><br></pre></td></tr></table></figure><br>或者使用系统服务命令<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl start seafile nginx</span><br><span class="line">systemctl start seahub</span><br></pre></td></tr></table></figure><br><strong>注：</strong>如果一切配置不出错，在初次启动seahub后将会有一段配置管理员登陆信息的交互<br>直接访问主机地址 <a target="_blank" rel="noopener" href="http://192.168.2.15">http://192.168.2.15</a> 即可访问seafile，若配置有域名映射去管理面板中更改seafile、seahub服务器地址信息即可</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://blog.langzihan.top">浪子寒</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://blog.langzihan.top/2022/12/25/%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/14.debian%E4%B8%8B%E7%9A%84seafile%E9%83%A8%E7%BD%B2/">https://blog.langzihan.top/2022/12/25/安装笔记/14.debian下的seafile部署/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://blog.langzihan.top" target="_blank">Lang's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/debian/">debian</a><a class="post-meta__tags" href="/tags/nginx/">nginx</a><a class="post-meta__tags" href="/tags/seafile/">seafile</a></div><div class="post_share"><div class="social-share" data-image="/img/white.jpg" data-sites="wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2022/12/25/%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/13.%E5%9F%BA%E4%BA%8Esakura-frp%E7%9A%84%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/"><img class="next-cover" src="/img/white.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">基于sakura-frp的内网穿透安装部署</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/12/22/%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/12.debian%E4%B8%8B%E7%9A%84nextcloud%E9%83%A8%E7%BD%B2%20-%20%E5%89%AF%E6%9C%AC/" title="debian下的nextcloud部署"><img class="cover" src="/img/white.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-12-22</div><div class="title">debian下的nextcloud部署</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/%E5%A4%B4%E5%83%8F.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">浪子寒</div><div class="author-info__description">子非鱼，焉知鱼之乐</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">62</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">83</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xuxingchen1996"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://gitee.com/langzihan" target="_blank" title="gitee"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:langziyishuihan@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://blog.csdn.net/qq_26095375" target="_blank" title="CSDN"><i class="fa-solid fa-blog"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">生而为人，我很无奈👶</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#seafile%E7%AE%80%E4%BB%8B"><span class="toc-number">1.</span> <span class="toc-text">seafile简介</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85"><span class="toc-number">2.</span> <span class="toc-text">软件安装</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE"><span class="toc-number">3.</span> <span class="toc-text">相关配置</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8%E6%9C%8D%E5%8A%A1"><span class="toc-number">4.</span> <span class="toc-text">启动服务</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/12/25/%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/14.debian%E4%B8%8B%E7%9A%84seafile%E9%83%A8%E7%BD%B2/" title="debian下的seafile部署">debian下的seafile部署</a><time datetime="2022-12-25T05:58:41.000Z" title="发表于 2022-12-25 13:58:41">2022-12-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/12/25/%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/13.%E5%9F%BA%E4%BA%8Esakura-frp%E7%9A%84%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/" title="基于sakura-frp的内网穿透安装部署">基于sakura-frp的内网穿透安装部署</a><time datetime="2022-12-25T05:35:55.000Z" title="发表于 2022-12-25 13:35:55">2022-12-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/12/22/%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/12.debian%E4%B8%8B%E7%9A%84nextcloud%E9%83%A8%E7%BD%B2%20-%20%E5%89%AF%E6%9C%AC/" title="debian下的nextcloud部署">debian下的nextcloud部署</a><time datetime="2022-12-22T00:38:16.000Z" title="发表于 2022-12-22 08:38:16">2022-12-22</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2018 - 2022 By 浪子寒</div><div class="footer_custom_text">天下熙熙皆为利来，天下攘攘皆为利往<br><p style="height:20px;line-height:20px; color:#939393;display:inline-flex;"><a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11011202003938" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;display:inline-flex;"><img src="/img/gongan.png" alt>京公网安备 11011202003938号</a> &nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">京ICP备2022028153号</a></p></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script><script>function addGitalkSource () {
+  const ele = document.createElement('link')
+  ele.rel = 'stylesheet'
+  ele.href= 'https://cdn.jsdelivr.net/gh/xuxingchen1996/CDN/gitalk/gitalk.min.css'
+  document.getElementsByTagName('head')[0].appendChild(ele)
+}
+
+function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk(Object.assign({
+      clientID: '67faaa46340365015d78',
+      clientSecret: 'a506955fab243d7a1a24bc9289e2f9c9e11a75f5',
+      repo: 'CDN',
+      owner: 'xuxingchen1996',
+      admin: ['xuxingchen1996'],
+      id: '808700bb17554de24ae96a28c1e3e6d6',
+      updateCountCallback: commentCount
+    },null))
+
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    addGitalkSource()
+    getScript('https://cdn.jsdelivr.net/gh/xuxingchen1996/CDN/gitalk/gitalk.min.js').then(initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.innerHTML= n
+  }
+}
+
+if ('Gitalk' === 'Gitalk' || !false) {
+  if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script></div><script defer type="text/javascript" src="/extend/console_custom.js"></script><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-show-text.min.js" data-mobile="false" data-text="上善若水,厚德载物,海纳百川,有容乃大" data-fontsize="15px" data-random="true" async="async"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
