@@ -2,27 +2,9 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://blog.langzihan.top/photo/index.html</loc>
-    
-    <lastmod>2022-12-25</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.langzihan.top/tags/index.html</loc>
-    
-    <lastmod>2022-12-25</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.langzihan.top/links/index.html</loc>
     
-    <lastmod>2022-12-25</lastmod>
+    <lastmod>2023-01-09</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -31,7 +13,25 @@
   <url>
     <loc>https://blog.langzihan.top/movies/index.html</loc>
     
-    <lastmod>2022-12-25</lastmod>
+    <lastmod>2023-01-09</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.langzihan.top/photo/index.html</loc>
+    
+    <lastmod>2023-01-09</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.langzihan.top/tags/index.html</loc>
+    
+    <lastmod>2023-01-09</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -40,7 +40,7 @@
   <url>
     <loc>https://blog.langzihan.top/categories/index.html</loc>
     
-    <lastmod>2022-12-25</lastmod>
+    <lastmod>2023-01-09</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -49,7 +49,7 @@
   <url>
     <loc>https://blog.langzihan.top/gallery/live/index.html</loc>
     
-    <lastmod>2022-12-25</lastmod>
+    <lastmod>2023-01-09</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -58,7 +58,25 @@
   <url>
     <loc>https://blog.langzihan.top/gallery/wallpaper/index.html</loc>
     
-    <lastmod>2022-12-25</lastmod>
+    <lastmod>2023-01-09</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.langzihan.top/2023/01/06/%E5%AE%9E%E7%94%A8%E9%85%8D%E7%BD%AE/15.pip%E6%8D%A2%E6%BA%90%E7%AC%94%E8%AE%B0/</loc>
+    
+    <lastmod>2023-01-06</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.langzihan.top/2023/01/05/%E5%AE%9E%E7%94%A8%E9%85%8D%E7%BD%AE/14.python%E9%85%8D%E5%90%88%E9%98%BF%E9%87%8C%E4%BA%91%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90%E5%AE%9E%E7%8E%B0DDNS%E5%8A%9F%E8%83%BD/</loc>
+    
+    <lastmod>2023-01-05</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -634,7 +652,7 @@
 
   <url>
     <loc>https://blog.langzihan.top/</loc>
-    <lastmod>2022-12-25</lastmod>
+    <lastmod>2023-01-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
