@@ -1,3 +1,5 @@
+https://blog.langzihan.top/2023/01/18/%E5%AE%9E%E7%94%A8%E9%85%8D%E7%BD%AE/16.debian%E6%8D%A2%E6%BA%90%E7%AC%94%E8%AE%B0/
+https://blog.langzihan.top/2023/01/18/%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/15.docker%E4%B8%8B%E7%9A%84%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2%E5%90%88%E9%9B%86/
 https://blog.langzihan.top/2023/01/06/%E5%AE%9E%E7%94%A8%E9%85%8D%E7%BD%AE/15.pip%E6%8D%A2%E6%BA%90%E7%AC%94%E8%AE%B0/
 https://blog.langzihan.top/2023/01/05/%E5%AE%9E%E7%94%A8%E9%85%8D%E7%BD%AE/14.python%E9%85%8D%E5%90%88%E9%98%BF%E9%87%8C%E4%BA%91%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90%E5%AE%9E%E7%8E%B0DDNS%E5%8A%9F%E8%83%BD/
 https://blog.langzihan.top/2022/12/25/%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/14.debian%E4%B8%8B%E7%9A%84seafile%E9%83%A8%E7%BD%B2/
@@ -46,5 +48,3 @@ https://blog.langzihan.top/2021/06/10/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/08.%E
 https://blog.langzihan.top/2021/06/10/%E5%AE%9E%E7%94%A8%E9%85%8D%E7%BD%AE/02.tensorflow-gpu%E3%80%81CUDA%E3%80%81cuDNN%E7%89%88%E6%9C%AC%E5%AF%B9%E5%BA%94/
 https://blog.langzihan.top/2021/06/01/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/01.%E7%AE%80%E5%8D%95%E7%9A%84KNN%E5%AE%9E%E7%8E%B0/
 https://blog.langzihan.top/2021/04/28/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/07.windows%E7%8E%AF%E5%A2%83%E4%B8%8Bmatplotlib%E5%9B%BE%E7%89%87%E4%B8%AD%E4%B8%AD%E6%96%87%E6%98%BE%E7%A4%BA%E5%BC%82%E5%B8%B8/
-https://blog.langzihan.top/2021/03/21/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/06.Redis%E5%AE%89%E8%A3%85%E8%B8%A9%E5%9D%91/
-https://blog.langzihan.top/2020/12/27/%E5%AE%9E%E7%94%A8%E9%85%8D%E7%BD%AE/01.ubuntu%E6%8D%A2%E6%BA%90%E7%AC%94%E8%AE%B0/

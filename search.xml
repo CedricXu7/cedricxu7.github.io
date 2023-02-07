@@ -4,6 +4,62 @@
   
     
     <entry>
+      <title>debian换源笔记</title>
+      <link href="/2023/01/18/%E5%AE%9E%E7%94%A8%E9%85%8D%E7%BD%AE/16.debian%E6%8D%A2%E6%BA%90%E7%AC%94%E8%AE%B0/"/>
+      <url>/2023/01/18/%E5%AE%9E%E7%94%A8%E9%85%8D%E7%BD%AE/16.debian%E6%8D%A2%E6%BA%90%E7%AC%94%E8%AE%B0/</url>
+      
+        <content type="html"><![CDATA[<h1 id="1-备份源"><a href="#1-备份源" class="headerlink" title="1.备份源"></a>1.备份源</h1><p>ctrl+alt+t打开终端</p><p><code>sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak</code></p><h1 id="2-打开源文件"><a href="#2-打开源文件" class="headerlink" title="2.打开源文件"></a>2.打开源文件</h1><p>用gedit打开源文件，ctrl+a全选删除，并粘贴更换源（任选一个）</p><p> <code>sudo vim /etc/apt/sources.list</code></p><h1 id="阿里源"><a href="#阿里源" class="headerlink" title="阿里源"></a>阿里源</h1><p><code>bullseye</code> 换源</p><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">deb https://mirrors.aliyun.com/debian/ bullseye main non-free contrib</span><br><span class="line"><span class="comment">#deb-src https://mirrors.aliyun.com/debian/ bullseye main non-free contrib</span></span><br><span class="line">deb https://mirrors.aliyun.com/debian-security/ bullseye-security main</span><br><span class="line"><span class="comment">#deb-src https://mirrors.aliyun.com/debian-security/ bullseye-security main</span></span><br><span class="line">deb https://mirrors.aliyun.com/debian/ bullseye-updates main non-free contrib</span><br><span class="line"><span class="comment">#deb-src https://mirrors.aliyun.com/debian/ bullseye-updates main non-free contrib</span></span><br><span class="line">deb https://mirrors.aliyun.com/debian/ bullseye-backports main non-free contrib</span><br><span class="line"><span class="comment">#deb-src https://mirrors.aliyun.com/debian/ bullseye-backports main non-free contrib</span></span><br></pre></td></tr></table></figure><h4 id="3-更新源"><a href="#3-更新源" class="headerlink" title="3.更新源"></a>3.更新源</h4><p><code>sudo apt-get update</code></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 实用配置 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 换源 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>docker下的环境部署合集</title>
+      <link href="/2023/01/18/%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/15.docker%E4%B8%8B%E7%9A%84%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2%E5%90%88%E9%9B%86/"/>
+      <url>/2023/01/18/%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/15.docker%E4%B8%8B%E7%9A%84%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2%E5%90%88%E9%9B%86/</url>
+      
+        <content type="html"><![CDATA[<h1 id="docker安装"><a href="#docker安装" class="headerlink" title="docker安装"></a>docker安装</h1><p>一键安装脚本命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -sSL https://get.daocloud.io/docker | sh</span><br></pre></td></tr></table></figure></p><h1 id="可视化面板安装"><a href="#可视化面板安装" class="headerlink" title="可视化面板安装"></a>可视化面板安装</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --restart always --name fast -p 8081:8081 -d -v /var/run/docker.sock:/var/run/docker.sock wangbinxingkong/fast</span><br></pre></td></tr></table></figure><h1 id="nginx"><a href="#nginx" class="headerlink" title="nginx"></a>nginx</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">docker pull nginx:latest</span><br><span class="line"></span><br><span class="line"><span class="comment"># 拷贝配置文件到宿主机</span></span><br><span class="line">docker run --name tmp-nginx-container -d nginx</span><br><span class="line"><span class="built_in">mkdir</span> -p /root/nginx/</span><br><span class="line">docker <span class="built_in">cp</span> tmp-nginx-container:/etc/nginx/nginx.conf /root/nginx/nginx.conf</span><br><span class="line">docker <span class="built_in">cp</span> -a tmp-nginx-container:/usr/share/nginx/html /root/nginx</span><br><span class="line">docker <span class="built_in">cp</span> -a tmp-nginx-container:/etc/nginx/conf.d /root/nginx/conf.d</span><br><span class="line"><span class="comment"># 删除临时容器</span></span><br><span class="line">docker <span class="built_in">rm</span> -f tmp-nginx-container</span><br><span class="line"></span><br><span class="line"><span class="comment"># 映射目录运行容器</span></span><br><span class="line">docker run --name nignx -e TZ=<span class="string">&quot;Asia/Shanghai&quot;</span> -d -p 80:80 -v /root/nginx/html:/usr/share/nginx/html -v /root/nginx/nginx.conf:/etc/nginx/nginx.conf -v /root/nginx/conf.d:/etc/nginx/conf.d -v /root/nginx/logs:/var/log/nginx nginx</span><br></pre></td></tr></table></figure><h1 id="memcached安装"><a href="#memcached安装" class="headerlink" title="memcached安装"></a>memcached安装</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">apt-get install memcached libmemcached-dev -y</span><br><span class="line">pip3 install --timeout=3600 pylibmc django-pylibmc</span><br><span class="line">systemctl enable --now memcached</span><br></pre></td></tr></table></figure><h1 id="mariadb安装"><a href="#mariadb安装" class="headerlink" title="mariadb安装"></a>mariadb安装</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">apt-get install mariadb-server</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">创建root账户</span></span><br><span class="line">mysqladmin -uroot password &#x27;123456&#x27;</span><br></pre></td></tr></table></figure><ul><li>seafile解压<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">到指定目录创建seafile文件夹</span></span><br><span class="line">mkdir -p seafile/installed</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">将下载的seafile-server-xxx.tar.gz复制到installed文件夹中进行解压</span></span><br><span class="line">tar -zxf seafile-server-9.0.2-bullseye-arm32v7l.tar.gz -C ../</span><br><span class="line">chmod -R 755 seafile-server-9.0.2/</span><br></pre></td></tr></table></figure>seafile目录结构如下：<br>seafile<br>├── installed<br>│   └── seafile-server-9.0.2-bullseye-arm32v7l.tar.gz<br>└── seafile-server-9.0.2<br>  ├── setup-seafile-mysql.sh<br>  ├── ……<br>然后执行安装脚本<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd seafile/seafile-server-9.0.2</span><br><span class="line">./setup-seafile-mysql.sh</span><br></pre></td></tr></table></figure>初始化安装步骤：<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">-------------------------------------------------------</span><br><span class="line">Please choose a way to initialize seafile databases:</span><br><span class="line">-------------------------------------------------------</span><br><span class="line"></span><br><span class="line">[1] Create new ccnet/seafile/seahub databases</span><br><span class="line">[2] Use existing ccnet/seafile/seahub databases</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">输入 1，然后根据提示依次提供相关信息即可</span></span><br></pre></td></tr></table></figure></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 安装笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> mysql </tag>
+            
+            <tag> docker </tag>
+            
+            <tag> php </tag>
+            
+            <tag> nginx </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>pip换源笔记</title>
       <link href="/2023/01/06/%E5%AE%9E%E7%94%A8%E9%85%8D%E7%BD%AE/15.pip%E6%8D%A2%E6%BA%90%E7%AC%94%E8%AE%B0/"/>
       <url>/2023/01/06/%E5%AE%9E%E7%94%A8%E9%85%8D%E7%BD%AE/15.pip%E6%8D%A2%E6%BA%90%E7%AC%94%E8%AE%B0/</url>
