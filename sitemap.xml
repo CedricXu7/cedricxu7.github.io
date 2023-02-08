@@ -4,7 +4,7 @@
   <url>
     <loc>https://blog.langzihan.top/links/index.html</loc>
     
-    <lastmod>2023-02-07</lastmod>
+    <lastmod>2023-02-08</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -13,7 +13,7 @@
   <url>
     <loc>https://blog.langzihan.top/movies/index.html</loc>
     
-    <lastmod>2023-02-07</lastmod>
+    <lastmod>2023-02-08</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -22,7 +22,7 @@
   <url>
     <loc>https://blog.langzihan.top/photo/index.html</loc>
     
-    <lastmod>2023-02-07</lastmod>
+    <lastmod>2023-02-08</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -31,7 +31,7 @@
   <url>
     <loc>https://blog.langzihan.top/tags/index.html</loc>
     
-    <lastmod>2023-02-07</lastmod>
+    <lastmod>2023-02-08</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -40,7 +40,7 @@
   <url>
     <loc>https://blog.langzihan.top/categories/index.html</loc>
     
-    <lastmod>2023-02-07</lastmod>
+    <lastmod>2023-02-08</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -49,7 +49,7 @@
   <url>
     <loc>https://blog.langzihan.top/gallery/live/index.html</loc>
     
-    <lastmod>2023-02-07</lastmod>
+    <lastmod>2023-02-08</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -58,7 +58,16 @@
   <url>
     <loc>https://blog.langzihan.top/gallery/wallpaper/index.html</loc>
     
-    <lastmod>2023-02-07</lastmod>
+    <lastmod>2023-02-08</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.langzihan.top/2022/12/21/%E5%AE%9E%E7%94%A8%E9%85%8D%E7%BD%AE/13.linux%E5%AE%9E%E7%94%A8%E5%B0%8F%E5%91%BD%E4%BB%A4/</loc>
+    
+    <lastmod>2023-02-08</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -122,15 +131,6 @@
     <loc>https://blog.langzihan.top/2022/12/25/%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/13.%E5%9F%BA%E4%BA%8Esakura-frp%E7%9A%84%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/</loc>
     
     <lastmod>2022-12-25</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.langzihan.top/2022/12/21/%E5%AE%9E%E7%94%A8%E9%85%8D%E7%BD%AE/13.linux%E5%AE%9E%E7%94%A8%E5%B0%8F%E5%91%BD%E4%BB%A4/</loc>
-    
-    <lastmod>2022-12-22</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -670,7 +670,7 @@
 
   <url>
     <loc>https://blog.langzihan.top/</loc>
-    <lastmod>2023-02-07</lastmod>
+    <lastmod>2023-02-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
