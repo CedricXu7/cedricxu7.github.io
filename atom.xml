@@ -941,11 +941,11 @@
     <category term="安装笔记" scheme="https://www.langzihan.top/categories/%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/"/>
     
     
-    <category term="配置" scheme="https://www.langzihan.top/tags/%E9%85%8D%E7%BD%AE/"/>
-    
     <category term="kafka" scheme="https://www.langzihan.top/tags/kafka/"/>
     
     <category term="zookeeper" scheme="https://www.langzihan.top/tags/zookeeper/"/>
+    
+    <category term="配置" scheme="https://www.langzihan.top/tags/%E9%85%8D%E7%BD%AE/"/>
     
   </entry>
   
@@ -966,9 +966,9 @@
     <category term="安装笔记" scheme="https://www.langzihan.top/categories/%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/"/>
     
     
-    <category term="hadoop" scheme="https://www.langzihan.top/tags/hadoop/"/>
-    
     <category term="配置" scheme="https://www.langzihan.top/tags/%E9%85%8D%E7%BD%AE/"/>
+    
+    <category term="hadoop" scheme="https://www.langzihan.top/tags/hadoop/"/>
     
   </entry>
   
