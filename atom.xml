@@ -6,7 +6,7 @@
   <link href="https://www.langzihan.top/atom.xml" rel="self"/>
   
   <link href="https://www.langzihan.top/"/>
-  <updated>2023-02-10T05:51:15.000Z</updated>
+  <updated>2023-03-13T07:03:59.000Z</updated>
   <id>https://www.langzihan.top/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>paddlelite模型部署</title>
+    <link href="https://www.langzihan.top/2023/03/14/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/01.paddlelite%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2/"/>
+    <id>https://www.langzihan.top/2023/03/14/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/01.paddlelite%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2/</id>
+    <published>2023-03-14T00:44:10.000Z</published>
+    <updated>2023-03-13T07:03:59.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>对完成训练的paddlehub的可用模型(人脸检测)进行转换，使其能够部署在paddlelite环境下，已完成x86架构linux(ubuntu)中的模型部署</p><h2 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h2><ul><li>linux下配置个新的conda环境用来测试，需要添加opencv模块和paddlelite模块<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">conda create --name <span class="built_in">test</span> python=3.7</span><br><span class="line">conda activate <span class="built_in">test</span></span><br><span class="line">pip install paddlelite</span><br><span class="line">pip install opencv-python==4.5.1.48</span><br></pre></td></tr></table></figure></li></ul><h2 id="模型转换"><a href="#模型转换" class="headerlink" title="模型转换"></a>模型转换</h2><p>有python脚本和shell脚本两种方式，分别用于windows环境和linux环境</p><ul><li><p>python脚本</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> paddlelite.lite <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="comment"># 1. 创建opt实例</span></span><br><span class="line">opt = Opt()</span><br><span class="line"><span class="comment"># 2. 指定输入模型地址</span></span><br><span class="line">opt.set_model_dir(<span class="string">r&quot;models\mobilenet_v1&quot;</span>)</span><br><span class="line"><span class="comment"># 3. 指定转化类型： arm、x86、opencl、xpu、npu</span></span><br><span class="line">opt.set_valid_places(<span class="string">&quot;x86&quot;</span>)</span><br><span class="line"><span class="comment"># 4. 指定模型转化类型： naive_buffer、protobuf</span></span><br><span class="line">opt.set_model_type(<span class="string">&quot;naive_buffer&quot;</span>)</span><br><span class="line"><span class="comment"># 4. 输出模型地址</span></span><br><span class="line">opt.set_optimize_out(<span class="string">r&quot;models\new_models\mobilenet_v1&quot;</span>)</span><br><span class="line"><span class="comment"># 5. 执行模型优化</span></span><br><span class="line">opt.run()</span><br></pre></td></tr></table></figure></li><li><p>bash命令，需要先切换到安装paddlelite的环境</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">paddle_lite_opt --model_dir=./ultra_light_fast_generic_face_detector_1mb_640/ultra_light_fast_generic_face_detector_1mb_640 --optimize_out=./new_models/ultra_light_fast_generic_face_detector_1mb_640 --optimize_out_type=naive_buffer --valid_targets=x86</span><br></pre></td></tr></table></figure><p><img src="https://blog.oss.langzihan.top/images/model-deploy-base-of-paddlelite/00e9caa951d7b7d468eecc43028668e0.jpg" alt="模型转换"></p></li></ul><p>通过模型转换获得一个以nb为后缀的模型文件</p><h2 id="模型的加载与使用"><a href="#模型的加载与使用" class="headerlink" title="模型的加载与使用"></a>模型的加载与使用</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> paddlelite.lite <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">config = MobileConfig()</span><br><span class="line">config.set_model_from_file(<span class="string">&#x27;ultra_light_fast_generic_face_detector_1mb_640.nb&#x27;</span>)</span><br><span class="line">predictor = create_paddle_predictor(config)</span><br><span class="line"></span><br><span class="line">input_tensor = predictor.get_input(<span class="number">0</span>)</span><br><span class="line">input_tensor.from_numpy(image_data)</span><br><span class="line">predictor.run()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 有几个输出接几个</span></span><br><span class="line">output_tensor_0 = predictor.get_output(<span class="number">0</span>)</span><br><span class="line">output_tensor_1 = predictor.get_output(<span class="number">1</span>)</span><br><span class="line">output_data_0 = output_tensor_0.numpy()[<span class="number">0</span>]</span><br><span class="line">output_data_1 = output_tensor_1.numpy()[<span class="number">0</span>]</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+    <summary type="html">x86架构linux(ubuntu)中的paddlelite模型部署</summary>
+    
+    
+    
+    <category term="计算机视觉" scheme="https://www.langzihan.top/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
+    
+    
+    <category term="paddle" scheme="https://www.langzihan.top/tags/paddle/"/>
+    
+    <category term="paddle-lite" scheme="https://www.langzihan.top/tags/paddle-lite/"/>
+    
+  </entry>
   
   <entry>
     <title>基于HomeAssistant搭建自家智能家居中枢（一）</title>
@@ -491,8 +514,8 @@
   
   <entry>
     <title>Hugging face 模型微调 - 命名实体识别</title>
-    <link href="https://www.langzihan.top/2022/09/29/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80/01.Hugging%20face%20%E6%A8%A1%E5%9E%8B%E5%BE%AE%E8%B0%83%20-%20%E5%91%BD%E5%90%8D%E5%AE%9E%E4%BD%93%E8%AF%86%E5%88%AB/"/>
-    <id>https://www.langzihan.top/2022/09/29/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80/01.Hugging%20face%20%E6%A8%A1%E5%9E%8B%E5%BE%AE%E8%B0%83%20-%20%E5%91%BD%E5%90%8D%E5%AE%9E%E4%BD%93%E8%AF%86%E5%88%AB/</id>
+    <link href="https://www.langzihan.top/2022/09/29/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/01.Hugging%20face%20%E6%A8%A1%E5%9E%8B%E5%BE%AE%E8%B0%83%20-%20%E5%91%BD%E5%90%8D%E5%AE%9E%E4%BD%93%E8%AF%86%E5%88%AB/"/>
+    <id>https://www.langzihan.top/2022/09/29/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/01.Hugging%20face%20%E6%A8%A1%E5%9E%8B%E5%BE%AE%E8%B0%83%20-%20%E5%91%BD%E5%90%8D%E5%AE%9E%E4%BD%93%E8%AF%86%E5%88%AB/</id>
     <published>2022-09-29T05:39:14.000Z</published>
     <updated>2022-09-29T05:39:14.000Z</updated>
     
@@ -503,7 +526,7 @@
     
     
     
-    <category term="自然语言" scheme="https://www.langzihan.top/categories/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80/"/>
+    <category term="自然语言处理" scheme="https://www.langzihan.top/categories/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/"/>
     
     
     <category term="NLP" scheme="https://www.langzihan.top/tags/NLP/"/>
@@ -562,8 +585,8 @@
   
   <entry>
     <title>Hugging face 模型微调 - 文本分类任务</title>
-    <link href="https://www.langzihan.top/2022/09/15/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80/00.Hugging%20face%20%E6%A8%A1%E5%9E%8B%E5%BE%AE%E8%B0%83%20-%20%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E4%BB%BB%E5%8A%A1/"/>
-    <id>https://www.langzihan.top/2022/09/15/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80/00.Hugging%20face%20%E6%A8%A1%E5%9E%8B%E5%BE%AE%E8%B0%83%20-%20%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E4%BB%BB%E5%8A%A1/</id>
+    <link href="https://www.langzihan.top/2022/09/15/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/00.Hugging%20face%20%E6%A8%A1%E5%9E%8B%E5%BE%AE%E8%B0%83%20-%20%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E4%BB%BB%E5%8A%A1/"/>
+    <id>https://www.langzihan.top/2022/09/15/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/00.Hugging%20face%20%E6%A8%A1%E5%9E%8B%E5%BE%AE%E8%B0%83%20-%20%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E4%BB%BB%E5%8A%A1/</id>
     <published>2022-09-15T07:01:33.000Z</published>
     <updated>2022-09-15T07:01:33.000Z</updated>
     
@@ -578,7 +601,7 @@
     
     
     
-    <category term="自然语言" scheme="https://www.langzihan.top/categories/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80/"/>
+    <category term="自然语言处理" scheme="https://www.langzihan.top/categories/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/"/>
     
     
     <category term="NLP" scheme="https://www.langzihan.top/tags/NLP/"/>
@@ -941,11 +964,11 @@
     <category term="安装笔记" scheme="https://www.langzihan.top/categories/%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/"/>
     
     
+    <category term="配置" scheme="https://www.langzihan.top/tags/%E9%85%8D%E7%BD%AE/"/>
+    
     <category term="kafka" scheme="https://www.langzihan.top/tags/kafka/"/>
     
     <category term="zookeeper" scheme="https://www.langzihan.top/tags/zookeeper/"/>
-    
-    <category term="配置" scheme="https://www.langzihan.top/tags/%E9%85%8D%E7%BD%AE/"/>
     
   </entry>
   
@@ -966,9 +989,9 @@
     <category term="安装笔记" scheme="https://www.langzihan.top/categories/%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/"/>
     
     
-    <category term="配置" scheme="https://www.langzihan.top/tags/%E9%85%8D%E7%BD%AE/"/>
-    
     <category term="hadoop" scheme="https://www.langzihan.top/tags/hadoop/"/>
+    
+    <category term="配置" scheme="https://www.langzihan.top/tags/%E9%85%8D%E7%BD%AE/"/>
     
   </entry>
   
@@ -1077,8 +1100,8 @@
   
   <entry>
     <title>pytorch实现LeNet模型MNIST手写识别</title>
-    <link href="https://www.langzihan.top/2021/08/09/%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB/00.pytorch%E5%AE%9E%E7%8E%B0LeNet%E6%A8%A1%E5%9E%8BMNIST%E6%89%8B%E5%86%99%E8%AF%86%E5%88%AB/"/>
-    <id>https://www.langzihan.top/2021/08/09/%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB/00.pytorch%E5%AE%9E%E7%8E%B0LeNet%E6%A8%A1%E5%9E%8BMNIST%E6%89%8B%E5%86%99%E8%AF%86%E5%88%AB/</id>
+    <link href="https://www.langzihan.top/2021/08/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/00.pytorch%E5%AE%9E%E7%8E%B0LeNet%E6%A8%A1%E5%9E%8BMNIST%E6%89%8B%E5%86%99%E8%AF%86%E5%88%AB/"/>
+    <id>https://www.langzihan.top/2021/08/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/00.pytorch%E5%AE%9E%E7%8E%B0LeNet%E6%A8%A1%E5%9E%8BMNIST%E6%89%8B%E5%86%99%E8%AF%86%E5%88%AB/</id>
     <published>2021-08-09T01:15:51.000Z</published>
     <updated>2021-08-09T01:15:51.000Z</updated>
     
@@ -1092,7 +1115,7 @@
     
     
     
-    <category term="图像识别" scheme="https://www.langzihan.top/categories/%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB/"/>
+    <category term="计算机视觉" scheme="https://www.langzihan.top/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
     
     
     <category term="pytorch" scheme="https://www.langzihan.top/tags/pytorch/"/>
@@ -1379,8 +1402,8 @@
   
   <entry>
     <title>用keras搭建一个简单的一维卷积神经网络</title>
-    <link href="https://www.langzihan.top/2019/12/16/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/00.%E7%94%A8keras%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E4%B8%80%E7%BB%B4%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
-    <id>https://www.langzihan.top/2019/12/16/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/00.%E7%94%A8keras%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E4%B8%80%E7%BB%B4%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/</id>
+    <link href="https://www.langzihan.top/2019/12/16/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/02.%E7%94%A8keras%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E4%B8%80%E7%BB%B4%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
+    <id>https://www.langzihan.top/2019/12/16/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/02.%E7%94%A8keras%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E4%B8%80%E7%BB%B4%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/</id>
     <published>2019-12-16T14:43:38.000Z</published>
     <updated>2019-12-16T14:43:38.000Z</updated>
     
@@ -1395,7 +1418,7 @@
     
     
     
-    <category term="深度学习" scheme="https://www.langzihan.top/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    <category term="机器学习" scheme="https://www.langzihan.top/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
     
     <category term="卷积神经网络" scheme="https://www.langzihan.top/tags/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
