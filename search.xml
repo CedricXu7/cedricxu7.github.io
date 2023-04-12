@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>linux开机自启服务简单配置</title>
+      <link href="/2023/04/12/%E5%AE%9E%E7%94%A8%E9%85%8D%E7%BD%AE/17.linux%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%E6%9C%8D%E5%8A%A1%E7%AE%80%E5%8D%95%E9%85%8D%E7%BD%AE/"/>
+      <url>/2023/04/12/%E5%AE%9E%E7%94%A8%E9%85%8D%E7%BD%AE/17.linux%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%E6%9C%8D%E5%8A%A1%E7%AE%80%E5%8D%95%E9%85%8D%E7%BD%AE/</url>
+      
+        <content type="html"><![CDATA[<p>使用任意方式在  <code>/usr/lib/systemd/system</code> 路径下新建一个 <code>demo.service</code> 文件并在其中以如下模板编写内容</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description=demo <span class="comment"># 任务描述</span></span><br><span class="line">After=network.target  <span class="comment"># 在什么启动项之后执行</span></span><br><span class="line"> </span><br><span class="line">[Service]</span><br><span class="line">Type=simple</span><br><span class="line">WorkingDirectory=/usr/local/bin  <span class="comment"># 执行程序的上级文件夹路径 </span></span><br><span class="line">ExecStart=/usr/local/bin/alist command1 command2  <span class="comment"># 需要开机自启的命令</span></span><br><span class="line">Restart=on-failure</span><br><span class="line"> </span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure><p>执行 <code>systemctl daemon-reload</code> 重载配置<br>使用以下命令管理程序：</p><ul><li>启动: <code>systemctl start demo</code></li><li>关闭: <code>systemctl stop demo</code></li><li>配置开机自启: <code>systemctl enable demo</code></li><li>取消开机自启: <code>systemctl disable demo</code></li><li>状态: <code>systemctl status demo</code></li><li>重启: <code>systemctl restart demo</code></li></ul><p><strong>注：</strong><br>1.系统配置中也可以添加开机任务，路径为<code>/etc/systemd/system</code><br>2.可以将命令设置成 <code>@</code> 结尾来传入执行参数实现复用，如 <code>demo@.service</code> ,使用示例如 <code>systemctl start demo@8080</code> ，在 <code>ExecStart</code> 中使用 <code>%i</code> （数值）之类的形式获取@后的参数信息，如 <code>/usr/local/bin/demo -p %i</code></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 实用配置 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 开机自启 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>手动安装btop</title>
       <link href="/2023/03/30/%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/16.%E6%89%8B%E5%8A%A8%E5%AE%89%E8%A3%85btop/"/>
       <url>/2023/03/30/%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/16.%E6%89%8B%E5%8A%A8%E5%AE%89%E8%A3%85btop/</url>
