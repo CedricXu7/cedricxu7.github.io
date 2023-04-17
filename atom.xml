@@ -6,7 +6,7 @@
   <link href="https://www.langzihan.top/atom.xml" rel="self"/>
   
   <link href="https://www.langzihan.top/"/>
-  <updated>2023-04-12T01:09:55.000Z</updated>
+  <updated>2023-04-17T08:49:24.000Z</updated>
   <id>https://www.langzihan.top/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>git取消超过范围大文件并重新提交</title>
+    <link href="https://www.langzihan.top/2023/04/17/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/24.git%E5%8F%96%E6%B6%88%E8%B6%85%E8%BF%87%E8%8C%83%E5%9B%B4%E5%A4%A7%E6%96%87%E4%BB%B6%E5%B9%B6%E9%87%8D%E6%96%B0%E6%8F%90%E4%BA%A4/"/>
+    <id>https://www.langzihan.top/2023/04/17/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/24.git%E5%8F%96%E6%B6%88%E8%B6%85%E8%BF%87%E8%8C%83%E5%9B%B4%E5%A4%A7%E6%96%87%E4%BB%B6%E5%B9%B6%E9%87%8D%E6%96%B0%E6%8F%90%E4%BA%A4/</id>
+    <published>2023-04-17T08:49:20.000Z</published>
+    <updated>2023-04-17T08:49:24.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="问题报错"><a href="#问题报错" class="headerlink" title="问题报错"></a>问题报错</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">remote: error: File: db383b59a623629b36cc62dd3917db21c1375cf0 690.93 MB, exceeds 100.00 MB.</span><br></pre></td></tr></table></figure><h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><ol><li>定位大文件位置 <code>git rev-list --objects --all | grep db383b59a623629b36cc62dd3917db21c1375cf0</code></li><li>查看push失败的commit版本号 <code>git log</code></li><li>回滚到无误的commit版本 <code>git reset 699db94c8edea41205b34923ae2cefb9b7dcc1d3</code></li><li>定义大文件规则纳入<code>gitignore</code></li><li>重新 <code>add</code> <code>commit</code> <code>push</code>三连</li></ol>]]></content>
+    
+    
+    <summary type="html">git提交了超过仓库限制的大文件，需处理报错并重新提交</summary>
+    
+    
+    
+    <category term="解决方案" scheme="https://www.langzihan.top/categories/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
+    
+    
+    <category term="git" scheme="https://www.langzihan.top/tags/git/"/>
+    
+  </entry>
   
   <entry>
     <title>linux开机自启服务简单配置</title>
