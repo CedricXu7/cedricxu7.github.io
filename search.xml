@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>golang交叉编译</title>
+      <link href="/2023/10/17/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/25.golang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91/"/>
+      <url>/2023/10/17/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/25.golang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91/</url>
+      
+        <content type="html"><![CDATA[<p>记一次window平台下的golang交叉编译命令</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">编译linux平台</span></span><br><span class="line">go env -w  CGO_ENABLED=0  GOOS=linux  GOARCH=amd64 ; go build</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">编译macos平台</span></span><br><span class="line">go env -w  CGO_ENABLED=0  GOOS=darwin  GOARCH=amd64 ; go build</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 解决方案 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> golang </tag>
+            
+            <tag> 交叉编译 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Docker一键安装和基本配置</title>
       <link href="/2023/09/19/%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/17.Docker%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85%E5%92%8C%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/"/>
       <url>/2023/09/19/%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/17.Docker%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85%E5%92%8C%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/</url>

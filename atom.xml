@@ -6,7 +6,7 @@
   <link href="https://www.langzihan.top/atom.xml" rel="self"/>
   
   <link href="https://www.langzihan.top/"/>
-  <updated>2023-09-19T07:10:38.000Z</updated>
+  <updated>2023-10-17T08:40:00.000Z</updated>
   <id>https://www.langzihan.top/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>golang交叉编译</title>
+    <link href="https://www.langzihan.top/2023/10/17/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/25.golang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91/"/>
+    <id>https://www.langzihan.top/2023/10/17/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/25.golang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91/</id>
+    <published>2023-10-17T08:40:00.000Z</published>
+    <updated>2023-10-17T08:40:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>记一次window平台下的golang交叉编译命令</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">编译linux平台</span></span><br><span class="line">go env -w  CGO_ENABLED=0  GOOS=linux  GOARCH=amd64 ; go build</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">编译macos平台</span></span><br><span class="line">go env -w  CGO_ENABLED=0  GOOS=darwin  GOARCH=amd64 ; go build</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+    <summary type="html">window平台下的golang交叉编译命令</summary>
+    
+    
+    
+    <category term="解决方案" scheme="https://www.langzihan.top/categories/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
+    
+    
+    <category term="golang" scheme="https://www.langzihan.top/tags/golang/"/>
+    
+    <category term="交叉编译" scheme="https://www.langzihan.top/tags/%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91/"/>
+    
+  </entry>
   
   <entry>
     <title>Docker一键安装和基本配置</title>
