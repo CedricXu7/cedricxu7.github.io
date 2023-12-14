@@ -743,627 +743,6 @@ seafile目录结构如下：<br>seafile<br>├── installed<br>│   └─�
       </tags>
   </entry>
   <entry>
-    <title>输入字体之间的间隔突然变大了</title>
-    <url>/2019/01/05/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/01.%E8%BE%93%E5%85%A5%E5%AD%97%E4%BD%93%E4%B9%8B%E9%97%B4%E7%9A%84%E9%97%B4%E9%9A%94%E7%AA%81%E7%84%B6%E5%8F%98%E5%A4%A7%E4%BA%86/</url>
-    <content><![CDATA[<p>额，这个问题之前也遇到几次，后来莫名其妙变好了</p>
-<p>我就没深究</p>
-<hr>
-<p>最近写代码又出现了这种情况</p>
-<p>就是敲了个快捷键，就变成</p>
-<p><img data-src="https://blog.oss.langzihan.top/images/%E8%BE%93%E5%85%A5%E5%AD%97%E4%BD%93%E4%B9%8B%E9%97%B4%E7%9A%84%E9%97%B4%E9%9A%94%E7%AA%81%E7%84%B6%E5%8F%98%E5%A4%A7%E4%BA%86/edb59183fa22484ad86737c995ec703a.png" alt="img"></p>
-<p>后来发现是IDE的快捷键和输入法快捷键冲突了</p>
-<hr>
-<p>解决方法：</p>
-<p>按一下 <strong>shift+空格键</strong> 就好啦~</p>
-]]></content>
-      <categories>
-        <category>解决方案</category>
-      </categories>
-      <tags>
-        <tag>字体变大</tag>
-        <tag>输入法</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>python3使用scapy.rdpcap的解码问题</title>
-    <url>/2019/03/14/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/02.python3%E4%BD%BF%E7%94%A8scapy.rdpcap%E7%9A%84%E8%A7%A3%E7%A0%81%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<p>为了实现流量的特征提取</p>
-<p>我使用scapy实现抓包数据的读取</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> scapy.<span class="built_in">all</span> <span class="keyword">import</span> rdpcap</span><br><span class="line"> </span><br><span class="line">a = rdpcap(<span class="string">&#x27;target.pcap&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(a[<span class="number">3</span>])</span><br></pre></td></tr></table></figure>
-
-<p>但是print的数据却很不人性化如下：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">b&#x27;\x00\x0c)\n\xf1\r\x00PV\xc0\x00\x08\x08\x00E\x00\x00\xa2Z\t@\x00@\x06\xb8z\xc0\xa8S\x01\xc0\xa8S\x80,]#\x8cH_\xc5\xa4L\xed0=P\x18\x01\x00\xff\x8b\x00\x00POST /getname HTTP/1.1\r\nHOST: 192.168.83.128:9100\r\ncontent-type: application/json\r\ncontent-length: 17\r\n\r\n&#123;&quot;name&quot;:&quot;kslaaa&quot;&#125;&#x27;</span><br></pre></td></tr></table></figure>
-
-<p>这哪是人看的</p>
-<p>所以需要加上一个参数</p>
-<p><code>mysummary</code>，如下</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> scapy.<span class="built_in">all</span> <span class="keyword">import</span> rdpcap</span><br><span class="line"> </span><br><span class="line">a = rdpcap(<span class="string">&#x27;target.pcap&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(a[<span class="number">3</span>].mysummary)</span><br></pre></td></tr></table></figure>
-
-<p>print出来如下，咳咳，稍微有点人性化，至少可以处理了</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">&lt;bound method Ether.mysummary of &lt;Ether  dst=00:0c:29:0a:f1:0d src=00:50:56:c0:00:08 type=0x800 |&lt;IP  version=4 ihl=5 tos=0x0 len=162 id=23049 flags=DF frag=0 ttl=64 proto=tcp chksum=0xb87a src=192.168.83.1 dst=192.168.83.128 |&lt;TCP  sport=11357 dport=9100 seq=1214236068 ack=1290612797 dataofs=5 reserved=0 flags=PA window=256 chksum=0xff8b urgptr=0 |&lt;Raw  load=&#x27;POST /getname HTTP/1.1\r\nHOST: 192.168.83.128:9100\r\ncontent-type: application/json\r\ncontent-length: 17\r\n\r\n&#123;&quot;name&quot;:&quot;kslaaa&quot;&#125;&#x27; |&gt;&gt;&gt;&gt;&gt;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>解决方案</category>
-      </categories>
-      <tags>
-        <tag>流量解包</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>基于HTTP网络代理的校园网（局域网）网络共享</title>
-    <url>/2019/04/01/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/03.%E5%9F%BA%E4%BA%8EHTTP%E7%BD%91%E7%BB%9C%E4%BB%A3%E7%90%86%E7%9A%84%E6%A0%A1%E5%9B%AD%E7%BD%91%EF%BC%88%E5%B1%80%E5%9F%9F%E7%BD%91%EF%BC%89%E7%BD%91%E7%BB%9C%E5%85%B1%E4%BA%AB/</url>
-    <content><![CDATA[<h4 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h4><p>嗯，校园网欠费了，但是宿舍这里无法登陆，显示欠费，实验室的电脑使用的网关是可以登陆正常上网的！不显示欠费！内网远程实验室桌面，没问题，是不是有点麻烦？既然能远程，那说明可以通过代理实现网络数据的转发！网络共享，自己动手丰衣足食！</p>
-<h4 id="问题抽象"><a href="#问题抽象" class="headerlink" title="问题抽象"></a>问题抽象</h4><p>同一局域网内，有一台电脑可以上网，想要通过这台电脑，使得其他电脑或者移动设备可以上网</p>
-<h4 id="适用环境"><a href="#适用环境" class="headerlink" title="适用环境"></a>适用环境</h4><p>可以上网的电脑：Windows7及以上系统，或者能够部署HTTP代理服务器的皆可</p>
-<p>其他电脑或移动设备：安装有支持全局HTTP网络代理功能的软件，系统自带支持全局亦可</p>
-<h4 id="我的实际环境"><a href="#我的实际环境" class="headerlink" title="我的实际环境"></a>我的实际环境</h4><p>可以上网的电脑：<code>Windows 10 1703 专业版</code></p>
-<p>其他电脑或移动设备：<code>Android</code> &amp; <code>Windows 10</code> 1703 专业版 &amp; <code>iPhone</code></p>
-<p>支持全局HTTP的软件：</p>
-<p>  <code>Android</code> : 系统自带的WLAN中的HTTP代理 或 Adguard(或使用手机版SSR、v2ray等可以实现全局代理流量、支持转发sock或http的app）</p>
-<p>  <code>iPhone</code> : 系统自带的WLAN中的HTTP代理 或 支持HTTP全局代理即可（小飞机）</p>
-<p>  <code>Windows</code> : SStap | Adguard</p>
-<p>代理服务器部署：<code>CCproxy</code></p>
-<h4 id="实现步骤"><a href="#实现步骤" class="headerlink" title="实现步骤"></a>实现步骤</h4><p>① 完成相关软件的安装</p>
-<p>② 配置CCproxy</p>
-<p><img data-src="https://blog.oss.langzihan.top/images/%E5%9F%BA%E4%BA%8EHTTP%E7%BD%91%E7%BB%9C%E4%BB%A3%E7%90%86%E7%9A%84%E6%A0%A1%E5%9B%AD%E7%BD%91%EF%BC%88%E5%B1%80%E5%9F%9F%E7%BD%91%EF%BC%89%E7%BD%91%E7%BB%9C%E5%85%B1%E4%BA%AB/63bfe808300973c1c9e51edc06b8f894.png" alt="img"></p>
-<p><img data-src="https://blog.oss.langzihan.top/images/%E5%9F%BA%E4%BA%8EHTTP%E7%BD%91%E7%BB%9C%E4%BB%A3%E7%90%86%E7%9A%84%E6%A0%A1%E5%9B%AD%E7%BD%91%EF%BC%88%E5%B1%80%E5%9F%9F%E7%BD%91%EF%BC%89%E7%BD%91%E7%BB%9C%E5%85%B1%E4%BA%AB/45f1a15bd9a443b225c7946b950b38e2.png" alt="img"></p>
-<p><img data-src="https://blog.oss.langzihan.top/images/%E5%9F%BA%E4%BA%8EHTTP%E7%BD%91%E7%BB%9C%E4%BB%A3%E7%90%86%E7%9A%84%E6%A0%A1%E5%9B%AD%E7%BD%91%EF%BC%88%E5%B1%80%E5%9F%9F%E7%BD%91%EF%BC%89%E7%BD%91%E7%BB%9C%E5%85%B1%E4%BA%AB/d8534dff83bc79004557c6e93ef7e49c.png" alt="img"></p>
-<p><img data-src="https://blog.oss.langzihan.top/images/%E5%9F%BA%E4%BA%8EHTTP%E7%BD%91%E7%BB%9C%E4%BB%A3%E7%90%86%E7%9A%84%E6%A0%A1%E5%9B%AD%E7%BD%91%EF%BC%88%E5%B1%80%E5%9F%9F%E7%BD%91%EF%BC%89%E7%BD%91%E7%BB%9C%E5%85%B1%E4%BA%AB/70f5df78eccfe8beddea6a51308689ac.png" alt="img"></p>
-<p>③ 配置需要网络的电脑或移动设备的HTTP代理</p>
-<p>服务器地址就是可上网电脑CCproxy中绑定的内网地址</p>
-<p>端口是CCproxy中配置HTTP的端口号</p>
-<p>用户密码若有则是CCproxy新建的用户名与密码</p>
-<p>若无置空即可</p>
-<p>④ 可以上网了</p>
-<h4 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h4><p>当然以上通过CCproxy的HTTP代理实现的网络共享，同样也可在可上网的电脑上安装node.js搭建SSR服务器，通过SStap可实现SSR的连接，但某些情况下由于有UDP的转发，性能可能不太稳定</p>
-]]></content>
-      <categories>
-        <category>解决方案</category>
-      </categories>
-      <tags>
-        <tag>HTTP代理</tag>
-        <tag>网络共享</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>tensorboard使用时scalars没有任何内容</title>
-    <url>/2019/04/20/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/04.tensorboard%E4%BD%BF%E7%94%A8%E6%97%B6scalars%E6%B2%A1%E6%9C%89%E4%BB%BB%E4%BD%95%E5%86%85%E5%AE%B9/</url>
-    <content><![CDATA[<h4 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h4><p>使用windows上的tensorboard时，明明正确生成了graph，但是在logdir参数中赋上绝对路径后进入web板中没有任何数据显示</p>
-<h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><p>1.打开命令行，cd到生成graph的目录 &#x3D;&#x3D;OR&#x3D;&#x3D; 到目录下shift+右键菜单“在此处打开Powershell窗口”</p>
-<p>2.命令框中直接输入<br> <code>tensorboard --logdir=&quot;./&quot;</code></p>
-<p>简单暴力！</p>
-]]></content>
-      <categories>
-        <category>解决方案</category>
-      </categories>
-      <tags>
-        <tag>tensorboard</tag>
-        <tag>scalars</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>拉取github项目后Visual Studio 2017 报错system未定义识别符</title>
-    <url>/2020/08/08/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/05.%E6%8B%89%E5%8F%96github%E9%A1%B9%E7%9B%AE%E5%90%8EVisual%20Studio%202017%20%E6%8A%A5%E9%94%99system%E6%9C%AA%E5%AE%9A%E4%B9%89%E8%AF%86%E5%88%AB%E7%AC%A6/</url>
-    <content><![CDATA[<h4 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h4><p>我在实验室的电脑上的<strong>VS2017</strong>上编写好了相关代码，为了能够在自己电脑上也能同步编写，我配置好了github进行版本控制，采用推送和拉取进行项目同步，<strong>但是</strong>在我笔记本上拉取后程序却报出了<strong>未定义识别符</strong>的错误。</p>
-<p><img data-src="https://blog.oss.langzihan.top/images/%E6%8B%89%E5%8F%96github%E9%A1%B9%E7%9B%AE%E5%90%8EVisual%20Studio%202017%20%E6%8A%A5%E9%94%99system%E6%9C%AA%E5%AE%9A%E4%B9%89%E8%AF%86%E5%88%AB%E7%AC%A6/371fa24a1f3f76c146b4df9370c93560.png" alt="img"></p>
-<h4 id="问题抽象"><a href="#问题抽象" class="headerlink" title="问题抽象"></a>问题抽象</h4><p>1.VS的集成编程环境</p>
-<p>2.非本机构建的C++项目</p>
-<p>3.程序本身没有问题，但拉取克隆到本机后出现了“未定义识别符”错误</p>
-<h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><p>其实通过上面的问题抽象我已经能够推断问题原因了，出在了非本机项目的问题上，说明是环境不同所致，所以解决方案如下：</p>
-<p><code>右键解决方案</code> &gt;&gt; <code>属性</code> &gt;&gt; <code>常规</code> &gt;&gt; <code>Windows SDK 版本</code></p>
-<p>换到本机安装的对应版本即可！</p>
-<p><img data-src="https://blog.oss.langzihan.top/images/%E6%8B%89%E5%8F%96github%E9%A1%B9%E7%9B%AE%E5%90%8EVisual%20Studio%202017%20%E6%8A%A5%E9%94%99system%E6%9C%AA%E5%AE%9A%E4%B9%89%E8%AF%86%E5%88%AB%E7%AC%A6/a968f6580e926a253130e19aa945ad6e.png" alt="img"></p>
-<p><img data-src="https://blog.oss.langzihan.top/images/%E6%8B%89%E5%8F%96github%E9%A1%B9%E7%9B%AE%E5%90%8EVisual%20Studio%202017%20%E6%8A%A5%E9%94%99system%E6%9C%AA%E5%AE%9A%E4%B9%89%E8%AF%86%E5%88%AB%E7%AC%A6/ff94d5799aa6ae857274a73bfe5118dc.png" alt="img"></p>
-<p>收工！</p>
-]]></content>
-      <categories>
-        <category>解决方案</category>
-      </categories>
-      <tags>
-        <tag>未识别标识符</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Redis安装踩坑</title>
-    <url>/2021/03/21/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/06.Redis%E5%AE%89%E8%A3%85%E8%B8%A9%E5%9D%91/</url>
-    <content><![CDATA[<p>本章记录：Redis6.0.6安装于Ubuntu中遇到的坑</p>
-<p>注：使用前记得<code>apt-get update</code>一下</p>
-<p><strong>报错1：</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">python@python:/usr/local/redis$ sudo make</span><br><span class="line">sudo: make: <span class="built_in">command</span> not found</span><br></pre></td></tr></table></figure>
-
-<p>&#x3D;&#x3D;解决方案：&#x3D;&#x3D;</p>
-<p><code>sudo apt-get install make</code></p>
-<p><strong>报错2：</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">make[3]: cc: Command not found</span><br><span class="line">make[3]: *** [Makefile:201: net.o] Error 127</span><br><span class="line">make[3]: Leaving directory <span class="string">&#x27;/usr/local/redis/deps/hiredis&#x27;</span></span><br><span class="line">make[2]: *** [Makefile:50: hiredis] Error 2</span><br><span class="line">make[2]: Leaving directory <span class="string">&#x27;/usr/local/redis/deps&#x27;</span></span><br><span class="line">make[1]: [Makefile:264: persist-settings] Error 2 (ignored)</span><br><span class="line">    CC adlist.o</span><br><span class="line">/bin/sh: 1: cc: not found</span><br><span class="line">make[1]: *** [Makefile:315: adlist.o] Error 127</span><br><span class="line">make[1]: Leaving directory <span class="string">&#x27;/usr/local/redis/src&#x27;</span></span><br><span class="line">make: *** [Makefile:6: all] Error 2</span><br></pre></td></tr></table></figure>
-<p>解决方案：</p>
-<p><code>sudo apt-get install gcc</code></p>
-<p><strong>报错3：</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">cc: error: ../deps/hiredis/libhiredis.a: No such file or directory</span><br><span class="line">cc: error: ../deps/lua/src/liblua.a: No such file or directory</span><br><span class="line">make[1]: *** [Makefile:283: redis-server] Error 1</span><br><span class="line">make[1]: Leaving directory <span class="string">&#x27;/usr/local/redis/src&#x27;</span></span><br><span class="line">make: *** [Makefile:6: all] Error 2</span><br></pre></td></tr></table></figure>
-<p>解决方案：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> deps/</span><br><span class="line">make lua hiredis linenoise</span><br><span class="line"><span class="built_in">cd</span> ..</span><br><span class="line">sudo make</span><br></pre></td></tr></table></figure>
-
-<p><strong>报错4：</strong></p>
-<p><code>You need tcl 8.5 or newer in order to run the Redis test</code></p>
-<p>解决方案：</p>
-<p><a href="https://langzihan.lanzouy.com/iHzaHn5obfi">tcl8.6.1-src.tar.gz</a></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tar zxvf tcl8.6.1-src.tar.gz</span><br><span class="line"><span class="built_in">cd</span> tcl8.6.1/unix/</span><br><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">sudo make install</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>解决方案</category>
-      </categories>
-      <tags>
-        <tag>redis</tag>
-        <tag>ubuntu</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>windows环境下matplotlib图片中中文显示异常</title>
-    <url>/2021/04/28/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/07.windows%E7%8E%AF%E5%A2%83%E4%B8%8Bmatplotlib%E5%9B%BE%E7%89%87%E4%B8%AD%E4%B8%AD%E6%96%87%E6%98%BE%E7%A4%BA%E5%BC%82%E5%B8%B8/</url>
-    <content><![CDATA[<h1 id="问题描述："><a href="#问题描述：" class="headerlink" title="问题描述："></a>问题描述：</h1><p>windows环境，python3，正确使用matplotlib绘图后存在的中文显示异常问题</p>
-<h1 id="解决方案："><a href="#解决方案：" class="headerlink" title="解决方案："></a>解决方案：</h1><p>1.找到当前python环境下如下文件</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">lib\\site-packages\\matplotlib\\mpl-data\\matplotlibrc</span><br></pre></td></tr></table></figure>
-
-<p>2.采用notepad++（文本编辑器）打开matplotlibrc</p>
-<p>ctrl+f 搜索 font.family</p>
-<p>根据定位寻找到”font.family“和”font.sans-serif“字段</p>
-<p>取消注释或直接改成如下形式：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">font.family: sans-serif</span><br><span class="line">font.sans-serif: SimHei,Bitstream Vera Sans, Lucida Grande, Verdana, Geneva, Lucid, Arial, Helvetica, Avant Garde, sans-serif</span><br></pre></td></tr></table></figure>
-<p>如果存在负号显示异常则可以在添加一行<br><code>axes.unicode_minus:False</code><br>保存文件，重新加载python环境</p>
-<p><img data-src="https://blog.oss.langzihan.top/images/windows%E7%8E%AF%E5%A2%83%E4%B8%8Bmatplotlib%E5%9B%BE%E7%89%87%E4%B8%AD%E4%B8%AD%E6%96%87%E6%98%BE%E7%A4%BA%E5%BC%82%E5%B8%B8/4105835f08e5ea4f73a5cd1c726fe47f.png" alt="img"></p>
-]]></content>
-      <categories>
-        <category>解决方案</category>
-      </categories>
-      <tags>
-        <tag>matplotlib</tag>
-        <tag>中文</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>屏蔽tensorflow的日志打印</title>
-    <url>/2021/06/10/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/08.%E5%B1%8F%E8%94%BDtensorflow%E7%9A%84%E6%97%A5%E5%BF%97%E6%89%93%E5%8D%B0/</url>
-    <content><![CDATA[<p>tensorflow运行时会输出一大串的日志信息<br>眼花缭乱，用以下方法可以去除错误之外的日志信息（屏蔽通知信息和警告信息）</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line">os.environ[<span class="string">&#x27;TF_CPP_MIN_LOG_LEVEL&#x27;</span>] = <span class="string">&#x27;2&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br></pre></td></tr></table></figure>
-<p><strong>切记：日志等级设置代码要放在导入tensorflow之前！</strong></p>
-]]></content>
-      <categories>
-        <category>解决方案</category>
-      </categories>
-      <tags>
-        <tag>tensorflow</tag>
-        <tag>日志</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Cannot convert a symbolic Keras inputoutput to a numpy array</title>
-    <url>/2021/06/11/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/09.Cannot%20convert%20a%20symbolic%20Keras%20inputoutput%20to%20a%20numpy%20array/</url>
-    <content><![CDATA[<p><strong>环境：</strong> Tensorflow2.4.1<br><strong>报错：</strong> <code>Cannot convert a symbolic Keras input/output to a numpy array. This error may indicate that you&#39;re trying to pass a symbolic value to a NumPy call, which is not supported. Or, you may be trying to pass Keras symbolic inputs/outputs to a TF API that does not register dispatching, preventing Keras from automatically converting the API call to a lambda layer in the Functional Model.</code><br><strong>产生原因：</strong> 采用了tf下的Keras 自定义损函数<br><strong>分析：</strong><br>损失函数部分代码：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">vae_loss</span>(<span class="params">x, x_decoded_mean</span>):</span><br><span class="line">    xent_loss = original_dim * losses.binary_crossentropy(x, x_decoded_mean)</span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">type</span>(xent_loss))</span><br><span class="line">    kl_loss = -<span class="number">0.5</span> * K.<span class="built_in">sum</span>(<span class="number">1</span> + z_log_var - K.square(z_mean) - K.exp(z_log_var), axis=-<span class="number">1</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">type</span>(kl_loss))</span><br><span class="line">    <span class="keyword">return</span> xent_loss + kl_loss</span><br></pre></td></tr></table></figure>
-<p>这是变分自编码的自定义损失函数，从中可以发现分别得到两种张量：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">xent_loss --&gt; tensorflow.python.framework.ops.Tensor</span><br><span class="line">kl_loss --&gt; tensorflow.python.keras.engine.keras_tensor.KerasTensor</span><br></pre></td></tr></table></figure>
-<p>自定义函数的输入是KerasTensor，但是默认的loss函数输出的是Tensor，KerasTensor和Tensor是完全不同的类，kera_tensor源码中可以发现Keras可以将Tensor转成KerasTensor，但是没发现将KerasTensor转成Tensor的部分。。。<br>所以。。。我们可以说：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">Tensor+KerasTensor = KerasTensor</span><br></pre></td></tr></table></figure>
-<p>但是keras自定义损失函数输入的是KerasTensor，默认输出的是Tensor，而这里会导致输出KerasTensor，所以就报错了。</p>
-<p><strong>解决方案：</strong> 我采用的解决方案如下：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 一般情况下采用该代码能够解决问题，可以发现函数返回结果已经转化成tensorflow.python.framework.ops.Tensor类了</span></span><br><span class="line"><span class="keyword">from</span> tensorflow.python.framework.ops <span class="keyword">import</span> disable_eager_execution</span><br><span class="line">disable_eager_execution()</span><br></pre></td></tr></table></figure>
-<p>所以keras还是避免使用吧，还是用的不太灵活的亚子，我还是老老实实学明白tensorflow怎么用吧~</p>
-]]></content>
-      <categories>
-        <category>解决方案</category>
-      </categories>
-      <tags>
-        <tag>tensorflow</tag>
-        <tag>keras</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>python中base64模块解码报错“Incorrect padding”</title>
-    <url>/2021/08/10/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/10.python%E4%B8%ADbase64%E6%A8%A1%E5%9D%97%E8%A7%A3%E7%A0%81%E6%8A%A5%E9%94%99%E2%80%9CIncorrect%20padding%E2%80%9D/</url>
-    <content><![CDATA[<h4 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a><strong>问题描述</strong></h4><p>解码被base64编码过的字段信息，在base64编码解码工具中正常解码，但在python下的模块base64、binascii中的b64decode、a2b_base64等方法中出现解码报错<br><strong>报错信息如下</strong></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">---------------------------------------------------------------------------</span><br><span class="line">Error                                     Traceback (most recent call last)</span><br><span class="line">&lt;ipython-<span class="built_in">input</span>-<span class="number">11</span>-787bc11958b4&gt; <span class="keyword">in</span> get_proxies(urls)</span><br><span class="line">     <span class="number">14</span>         <span class="keyword">try</span>:</span><br><span class="line">---&gt; <span class="number">15</span>             raw = base64.b64decode(response)</span><br><span class="line">     <span class="number">16</span>         <span class="keyword">except</span> Exception <span class="keyword">as</span> r:</span><br><span class="line"></span><br><span class="line">c:\program files\python3\lib\base64.py <span class="keyword">in</span> b64decode(s, altchars, validate)</span><br><span class="line">     <span class="number">86</span>         <span class="keyword">raise</span> binascii.Error(<span class="string">&#x27;Non-base64 digit found&#x27;</span>)</span><br><span class="line">---&gt; <span class="number">87</span>     <span class="keyword">return</span> binascii.a2b_base64(s)</span><br><span class="line">     <span class="number">88</span> </span><br><span class="line"></span><br><span class="line">Error: Incorrect padding</span><br></pre></td></tr></table></figure>
-
-<h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><p>python中的base64是4个4个的读取的，所以待解码的字段应当为4的倍数，不足添‘&#x3D;’</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 对待解码的字段a进行判断，若为4的倍数则不变，反之缺多少补多少</span></span><br><span class="line">a = a + <span class="string">&#x27;=&#x27;</span> * (<span class="number">4</span> - <span class="built_in">len</span>(a) % <span class="number">4</span>) <span class="keyword">if</span> <span class="built_in">len</span>(a) % <span class="number">4</span> != <span class="number">0</span> <span class="keyword">else</span> a</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>解决方案</category>
-      </categories>
-      <tags>
-        <tag>base64</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>hadoop集群搭建踩坑</title>
-    <url>/2021/08/20/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/11.hadoop%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA%E8%B8%A9%E5%9D%91/</url>
-    <content><![CDATA[<blockquote>
-<p><strong>问题1：</strong><br>第一次启动集群前需要将master进行hdfs格式化</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hdfs namenode -format</span><br></pre></td></tr></table></figure>
-<p>注：若以后想要再次格式化需关闭所有namenode、datanode，并删除hadoop目录下data、logs文件夹</p>
-<blockquote>
-<p><strong>问题2：</strong><br>启动报错“Attempting to operate on hdfs namenode as root”</p>
-</blockquote>
-<p>可在&#x2F;etc&#x2F;profile.d中添加一个sh脚本注入环境变量，脚本内容如下</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> HDFS_NAMENODE_USER=root</span><br><span class="line"><span class="built_in">export</span> HDFS_DATANODE_USER=root</span><br><span class="line"><span class="built_in">export</span> HDFS_SECONDARYNAMENODE_USER=root</span><br><span class="line"><span class="built_in">export</span> YARN_RESOURCEMANAGER_USER=root</span><br><span class="line"><span class="built_in">export</span> YARN_NODEMANAGER_USER=root</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p><strong>问题3：</strong><br>jps命令查询后发现datanode、namenode、nodemanager都正常启动了，唯独不见resourcemanager</p>
-</blockquote>
-<p>启动集群时，不应直接调用.&#x2F;start-all.sh，应当在master上调用.&#x2F;start-dfs.sh，在<strong>准备部署resourcemanager的服务器</strong>上调用.&#x2F;start-yarn.sh</p>
-<blockquote>
-<p><strong>问题4：</strong><br>localhost: mv: 无法获取“XXX”状态信息</p>
-</blockquote>
-<p>要么是xml文件配置存在错误，要么是防火墙存在问题<br>centos7关闭开启防火墙命令如下：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#关闭防火墙：</span></span><br><span class="line">systemctl stop firewalld.service</span><br><span class="line"><span class="comment">#开启防火墙：</span></span><br><span class="line">systemctl start firewalld.service</span><br><span class="line"><span class="comment">#关闭开机启动：</span></span><br><span class="line">systemctl <span class="built_in">disable</span> firewalld.service</span><br><span class="line"><span class="comment">#开启开机启动：</span></span><br><span class="line">systemctl <span class="built_in">enable</span> firewalld.service</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p><strong>问题5：</strong><br>secondnamenode可视化查看网页打不开</p>
-</blockquote>
-<p>同上</p>
-<blockquote>
-<p><strong>问题6：</strong><br>启动nodemanagers时报出警告“localhost: Warning: Permanently added ‘localhost’ (ECDSA) to the list of known hosts.”</p>
-</blockquote>
-<p>删除hadoop&#x2F;etc&#x2F;hadoop&#x2F;workers文件中的localhost一行即可</p>
-]]></content>
-      <categories>
-        <category>解决方案</category>
-      </categories>
-      <tags>
-        <tag>集群搭建</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>解决ubuntu使用Dash to dock后休眠出现重影两个dock</title>
-    <url>/2021/08/31/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/12.%E8%A7%A3%E5%86%B3ubuntu%E4%BD%BF%E7%94%A8Dash%20to%20dock%E5%90%8E%E4%BC%91%E7%9C%A0%E5%87%BA%E7%8E%B0%E9%87%8D%E5%BD%B1%E4%B8%A4%E4%B8%AAdock/</url>
-    <content><![CDATA[<h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><p>卸载系统自带的Dock，命令如下：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt remove gnome-shell-extension-ubuntu-dock</span><br></pre></td></tr></table></figure>
-
-<p>如果以后需要重新使用原生dock，安装命令如下：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">udo apt install gnome-shell-extension-ubuntu-dock</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>解决方案</category>
-      </categories>
-      <tags>
-        <tag>ubuntu</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>tensorflow报错显存不够的应对措施</title>
-    <url>/2021/09/13/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/13.tensorflow%E6%8A%A5%E9%94%99%E6%98%BE%E5%AD%98%E4%B8%8D%E5%A4%9F%E7%9A%84%E5%BA%94%E5%AF%B9%E6%8E%AA%E6%96%BD/</url>
-    <content><![CDATA[<p>简单粗暴</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># tensorflow 内存不够的情况 适用于tensorflow 2.x</span></span><br><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"></span><br><span class="line">os.environ[<span class="string">&quot;CUDA_VISIBLE_DEVICES&quot;</span>] = <span class="string">&quot;0&quot;</span>  <span class="comment"># 指定显卡</span></span><br><span class="line">config = tf.compat.v1.ConfigProto(allow_soft_placement=<span class="literal">True</span>)  <span class="comment"># 开启软放置，OP放到CPU上了，为啥源码默认值是7？</span></span><br><span class="line">config.gpu_options.per_process_gpu_memory_fraction = <span class="number">0.3</span>  <span class="comment"># 进程最多采用30%显存，默认是1，完整使用</span></span><br><span class="line">tf.compat.v1.keras.backend.set_session(tf.compat.v1.Session(config=config))</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>解决方案</category>
-      </categories>
-      <tags>
-        <tag>tensorflow</tag>
-        <tag>OOM</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>java中的编码转换</title>
-    <url>/2021/10/20/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/14.java%E4%B8%AD%E7%9A%84%E7%BC%96%E7%A0%81%E8%BD%AC%E6%8D%A2/</url>
-    <content><![CDATA[<p>在正常javaweb开发中经常会发现字符转换的需求，会存在中文字符转换乱码的现象，如何解决以及其转换原理我至今懵懵懂懂，于是专门写了个测试代码进行尝试，总算理清了编码，先上结论，总结如下：</p>
-<blockquote>
-<p>utf8中存放有各种语言编码，当前主流开发中会使用utf8进行编码解码，该方式不会产生乱码，产生乱码有以下几种情况<br>1、gbk（中文）、iso-8859-1（无中文）等其他方式进行编码，则只能用其对应方式进行解码，否则为乱码<br>2、使用utf8进行编码用其他方式解码则会导致乱码，需进行一次转换<br>3、使用无对应字符（中文）的字符集（iso-8859-1）编码会导致乱码，且无法还原解码</p>
-</blockquote>
-<p>以下是针对以上情况的代码测试<br>1.如何编码就如何解码</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 测试编码转换 中文 =&gt; utf-8 编码 - 解码</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test0</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">String</span> <span class="variable">test</span> <span class="operator">=</span> <span class="string">&quot;测试&quot;</span>;</span><br><span class="line">    System.out.println(Arrays.toString(test.getBytes(StandardCharsets.UTF_8)));<span class="comment">//[-26, -75, -117, -24, -81, -107]</span></span><br><span class="line">    System.out.println(<span class="keyword">new</span> <span class="title class_">String</span>(test.getBytes(StandardCharsets.UTF_8), StandardCharsets.UTF_8));<span class="comment">//测试</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 测试编码转换 中文 =&gt; gbk 编码 - 解码</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test1</span><span class="params">()</span> <span class="keyword">throws</span> UnsupportedEncodingException &#123;</span><br><span class="line">    <span class="type">String</span> <span class="variable">test</span> <span class="operator">=</span> <span class="string">&quot;测试&quot;</span>;</span><br><span class="line">    System.out.println(Arrays.toString(test.getBytes(<span class="string">&quot;gbk&quot;</span>)));<span class="comment">//[-78, -30, -54, -44]</span></span><br><span class="line">    System.out.println(<span class="keyword">new</span> <span class="title class_">String</span>(test.getBytes(<span class="string">&quot;gbk&quot;</span>), <span class="string">&quot;GBK&quot;</span>));<span class="comment">//测试</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>utf8编码 - 错误形式解码</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 测试编码转换 中文 =&gt; utf-8 编码- gbk解码</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test2</span><span class="params">()</span> <span class="keyword">throws</span> UnsupportedEncodingException &#123;</span><br><span class="line">    <span class="type">String</span> <span class="variable">test</span> <span class="operator">=</span> <span class="string">&quot;测试&quot;</span>;</span><br><span class="line">    System.out.println(Arrays.toString(test.getBytes(StandardCharsets.UTF_8)));<span class="comment">//[-26, -75, -117, -24, -81, -107]</span></span><br><span class="line">    System.out.println(<span class="keyword">new</span> <span class="title class_">String</span>(test.getBytes(StandardCharsets.UTF_8), <span class="string">&quot;gbk&quot;</span>));<span class="comment">//娴嬭瘯</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>正确做法，按错误的解码形式（gbk）作为<strong>中转</strong>，将其按错误形式（gbk）重新<strong>还原编码</strong>（utf8-encode），再使用utf8进行一次<strong>正确解码</strong>（utf8-decode）即可得到原来的字符</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 测试编码转换 中文 =&gt; utf-8 编码 - gbk 解码 ===&gt; gbk 编码 - utf-8解码</span></span><br><span class="line"><span class="comment"> * &quot;测试&quot; =&gt; (utf8-encode)[-26, -75, -117, -24, -81, -107] =&gt; (gbk-decode)娴嬭瘯</span></span><br><span class="line"><span class="comment"> * &quot;娴嬭瘯&quot; =&gt; (utf8-encode)[-26, -75, -117, -24, -81, -107] =&gt; (utf8-decode)&quot;测试&quot;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test3</span><span class="params">()</span> <span class="keyword">throws</span> UnsupportedEncodingException &#123;</span><br><span class="line">    <span class="type">String</span> <span class="variable">test</span> <span class="operator">=</span> <span class="string">&quot;测试&quot;</span>;</span><br><span class="line">    <span class="type">String</span> <span class="variable">test_gbk_utf8</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">String</span>(test.getBytes(StandardCharsets.UTF_8), <span class="string">&quot;gbk&quot;</span>);</span><br><span class="line">    System.out.println(test_gbk_utf8);<span class="comment">//娴嬭瘯</span></span><br><span class="line">    <span class="type">String</span> <span class="variable">test_utf8_gbk</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">String</span>(test_gbk_utf8.getBytes(<span class="string">&quot;gbk&quot;</span>), StandardCharsets.UTF_8);</span><br><span class="line">    System.out.println(test_utf8_gbk);<span class="comment">//测试</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>3.无对应字符编码</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test4</span><span class="params">()</span> <span class="keyword">throws</span> UnsupportedEncodingException &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">test</span> <span class="operator">=</span> <span class="string">&quot;测试&quot;</span>;</span><br><span class="line">        System.out.println(Arrays.toString(test.getBytes(StandardCharsets.ISO_8859_1)));<span class="comment">//[63, 63]</span></span><br><span class="line">        System.out.println(<span class="keyword">new</span> <span class="title class_">String</span>(test.getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.ISO_8859_1));<span class="comment">//??</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<p>该情况下即使使用原先的编码方式进行解码也无法还原字符了，属于不可逆的状态</p>
-]]></content>
-      <categories>
-        <category>解决方案</category>
-      </categories>
-      <tags>
-        <tag>编码转换</tag>
-        <tag>utf-8</tag>
-        <tag>gbk</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>IDEA热部署无效</title>
-    <url>/2021/10/20/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/15.IDEA%E7%83%AD%E9%83%A8%E7%BD%B2%E6%97%A0%E6%95%88/</url>
-    <content><![CDATA[<p>遇到这样的问题，我觉既不是没有设置“更新类和资源”，也不是啥插件问题，更和自动编译没啥关系<br>而是没有以<strong>debug</strong>模式运行！！<br>以run模式运行的话热部署是不起作用的。</p>
-]]></content>
-      <categories>
-        <category>解决方案</category>
-      </categories>
-      <tags>
-        <tag>热部署</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Failed to locate the winutils binary in the hadoop binary path</title>
-    <url>/2021/10/28/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/16.Failed%20to%20locate%20the%20winutils%20binary%20in%20the%20hadoop%20binary%20path/</url>
-    <content><![CDATA[<h4 id="一、问题描述"><a href="#一、问题描述" class="headerlink" title="一、问题描述"></a>一、问题描述</h4><p>win10环境下，intellj初次运行spark程序报错<code>ERROR Shell Failed to locate the winutils binary in the hadoop binary path</code></p>
-<p><img data-src="https://blog.oss.langzihan.top/images/intellj%E8%BF%90%E8%A1%8Cspark%E7%A8%8B%E5%BA%8F%E6%8A%A5%E9%94%99%20ERROR%20Shell%20Failed%20to%20locate%20the%20winutils%20binary%20in%20the%20hadoop%20binary%20path/a8075b632eb099431b8fc17bb3ae60cb.png" alt="image-20211028091940008"></p>
-<h4 id="二、解决方案"><a href="#二、解决方案" class="headerlink" title="二、解决方案"></a>二、解决方案</h4><p>前提下载好对应版本的<a href="https://github.com/CedricXu7/winutils">winutils.exe</a>并复制到hadoop的bin目录中，然后有以下三种解决方案：</p>
-<p>① 系统设置环境变量HADOOP_HOME，并且重启intellj以应用</p>
-<p>② 代码块最前面设定hadoop目录，<code>System.setProperty(&quot;hadoop.home.dir&quot;,&quot;D:\\hadoop-3.2.0&quot;)</code></p>
-<p>③ 在intellj运行配置中添加环境变量</p>
-<p><img data-src="https://blog.oss.langzihan.top/images/intellj%E8%BF%90%E8%A1%8Cspark%E7%A8%8B%E5%BA%8F%E6%8A%A5%E9%94%99%20ERROR%20Shell%20Failed%20to%20locate%20the%20winutils%20binary%20in%20the%20hadoop%20binary%20path/56b80eca87ffbcd885a4b6700b80ba28.png" alt="image-20211028093018934"></p>
-<p><img data-src="https://blog.oss.langzihan.top/images/intellj%E8%BF%90%E8%A1%8Cspark%E7%A8%8B%E5%BA%8F%E6%8A%A5%E9%94%99%20ERROR%20Shell%20Failed%20to%20locate%20the%20winutils%20binary%20in%20the%20hadoop%20binary%20path/28b5965924fcf9fd069b423f6ef6b65e.png" alt="image-20211028093119415"></p>
-<p><img data-src="https://blog.oss.langzihan.top/images/intellj%E8%BF%90%E8%A1%8Cspark%E7%A8%8B%E5%BA%8F%E6%8A%A5%E9%94%99%20ERROR%20Shell%20Failed%20to%20locate%20the%20winutils%20binary%20in%20the%20hadoop%20binary%20path/dcfe010e4292845f12e21c63ce6e8d60.png" alt="image-20211028145647619"></p>
-<p>收工！</p>
-]]></content>
-      <categories>
-        <category>解决方案</category>
-      </categories>
-      <tags>
-        <tag>spark</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>DruidDataSource异常</title>
-    <url>/2021/11/18/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/17.DruidDataSource%E5%BC%82%E5%B8%B8/</url>
-    <content><![CDATA[<p>部署一个开源项目报错</p>
-<p><code>ERROR com.alibaba.druid.pool.DruidDataSource - init datasource error, url jdbcmysql://</code></p>
-<p>很明显是数据库连接错误</p>
-<p>但排除一下错误后，我才算找到真正的错误原因</p>
-<blockquote>
-<p>数据库连接地址错误</p>
-<p>网络问题</p>
-<p>用户名密码错误</p>
-</blockquote>
-<p>最后发现是开源项目自带的<code>mysql</code>驱动版本有问题，和我安装的<code>mysql</code>对不上</p>
-<p><strong>解决方法</strong>：</p>
-<p>去<code>pom.xml</code>中删除<code>mysql</code>的版本信息，默认即可，如下</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>mysql<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mysql-connector-java<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>解决方案</category>
-      </categories>
-      <tags>
-        <tag>DruidDataSource</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>lombok包的@Data注解报错找不到符号</title>
-    <url>/2021/11/24/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/18.IDEA%20lombok%E5%8C%85%E7%9A%84@Data%E6%B3%A8%E8%A7%A3%E6%8A%A5%E9%94%99%E6%89%BE%E4%B8%8D%E5%88%B0%E7%AC%A6%E5%8F%B7/</url>
-    <content><![CDATA[<h4 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h4><p>工程编译报错<br><code>java:找不到符号</code></p>
-<h4 id="问题抽象"><a href="#问题抽象" class="headerlink" title="问题抽象"></a>问题抽象</h4><p>定位错误可以发现是getter setter的问题<br>由于采用了@Data注解，所以优先考虑是lombok的问题</p>
-<h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><p>首先排除以下可能</p>
-<blockquote>
-<p>lombok插件未安装<br>设置中注解处理未打开</p>
-</blockquote>
-<p>那么剩下的问题就是pom.xml文件中的版本设置里，调整为以下</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.projectlombok<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>lombok<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">scope</span>&gt;</span>compile<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>完美解决！</p>
-]]></content>
-      <categories>
-        <category>解决方案</category>
-      </categories>
-      <tags>
-        <tag>maven</tag>
-        <tag>lombok</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>BindingResult中拦截不到错误</title>
-    <url>/2021/11/29/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/19.BindingResult%E4%B8%AD%E6%8B%A6%E6%88%AA%E4%B8%8D%E5%88%B0%E9%94%99%E8%AF%AF/</url>
-    <content><![CDATA[<h4 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h4><p>采用JSR303规范的validation库进行后端验证，但是使用BindingResult对象后却获取不到错误信息<br>局部代码如下：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@TableName(&quot;pms_brand&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">BrandEntity</span> <span class="keyword">implements</span> <span class="title class_">Serializable</span> &#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">long</span> <span class="variable">serialVersionUID</span> <span class="operator">=</span> <span class="number">1L</span>;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@TableId</span></span><br><span class="line">	<span class="keyword">private</span> Long brandId;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@NotEmpty</span></span><br><span class="line">	<span class="meta">@NotBlank(message = &quot;品牌名不能为空&quot;)</span></span><br><span class="line">	<span class="keyword">private</span> String name;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(&quot;/save&quot;)</span></span><br><span class="line"><span class="keyword">public</span> R <span class="title function_">save</span><span class="params">(<span class="meta">@Valid</span> <span class="meta">@RequestBody</span> BrandEntity brand, BindingResult result)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (result.hasErrors()) &#123;</span><br><span class="line">        Map&lt;String, String&gt; map = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">        result.getFieldErrors().forEach((item)-&gt;&#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">message</span> <span class="operator">=</span> item.getDefaultMessage();</span><br><span class="line">        <span class="type">String</span> <span class="variable">field</span> <span class="operator">=</span> item.getField();</span><br><span class="line">        map.put(field, message);</span><br><span class="line">    &#125;);</span><br><span class="line">        <span class="keyword">return</span> R.error(<span class="number">400</span>, <span class="string">&quot;提交数据不合法&quot;</span>).put(<span class="string">&quot;data&quot;</span>, map);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        brandService.save(brand);</span><br><span class="line">        <span class="keyword">return</span> R.ok();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><p>仔细排除后发现实际代码并没有什么问题，debug后也发现result对象中的errors字段中并没有获取到错误对象，最后通过修改pom文件中的依赖解决了这种问题，在pom中应包含有如下两个依赖，<strong>缺一不可</strong>，我就是漏了hibernate-validator导致的错误</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>javax.validation<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>validation-api<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.0.1.Final<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.hibernate.validator<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>hibernate-validator<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>7.0.0.Alpha3<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>解决方案</category>
-      </categories>
-      <tags>
-        <tag>jsr303</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>虚拟机下ubuntu server扩容方案</title>
-    <url>/2022/05/07/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/20.%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%B8%8Bubuntu%20server%E6%89%A9%E5%AE%B9%E6%96%B9%E6%A1%88/</url>
-    <content><![CDATA[<p>总的来说，虚拟机下的ubuntu扩容分为三步：</p>
-<p>1、虚拟机扩容</p>
-<p>2、进入系统对多出来的容量新建分区</p>
-<p>3、将新分区挂在到指定目录并完成固化</p>
-<h1 id="虚拟机扩容"><a href="#虚拟机扩容" class="headerlink" title="虚拟机扩容"></a>虚拟机扩容</h1><p>这点没什么好说，VMware的虚拟机扩容得先删掉所有快照，不然没法扩容只能加磁盘</p>
-<h1 id="新建分区"><a href="#新建分区" class="headerlink" title="新建分区"></a>新建分区</h1><p>1、将多出来的内存新建分区</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">新建目录用于挂载新分出来的分区</span></span><br><span class="line">mkdir /data</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">进如root模式，不进也行，每个命令前加上sudo就行</span></span><br><span class="line">su root</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">进入fdisk交互式命令行</span></span><br><span class="line">fdisk /dev/sda</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">输入 m 可以查看命令说明</span></span><br><span class="line">Command (m for help): m</span><br><span class="line"></span><br><span class="line">Help:</span><br><span class="line"></span><br><span class="line">  Generic</span><br><span class="line">   d   delete a partition</span><br><span class="line">   F   list free unpartitioned space</span><br><span class="line">   l   list known partition types</span><br><span class="line">   n   add a new partition</span><br><span class="line">   p   print the partition table</span><br><span class="line">   t   change a partition type</span><br><span class="line">   v   verify the partition table</span><br><span class="line">   i   print information about a partition</span><br><span class="line"></span><br><span class="line">  Misc</span><br><span class="line">   m   print this menu</span><br><span class="line">   x   extra functionality (experts only)</span><br><span class="line"></span><br><span class="line">  Script</span><br><span class="line">   I   load disk layout from sfdisk script file</span><br><span class="line">   O   dump disk layout to sfdisk script file</span><br><span class="line"></span><br><span class="line">  Save &amp; Exit</span><br><span class="line">   w   write table to disk and exit</span><br><span class="line">   q   quit without saving changes</span><br><span class="line"></span><br><span class="line">  Create a new label</span><br><span class="line">   g   create a new empty GPT partition table</span><br><span class="line">   G   create a new empty SGI (IRIX) partition table</span><br><span class="line">   o   create a new empty DOS partition table</span><br><span class="line">   s   create a new empty Sun partition table</span><br><span class="line">   </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">1、输入 n 新建分区，一切默认回车即可</span></span><br><span class="line">Command (m for help): n</span><br><span class="line">Partition number (6-128, default 6): </span><br><span class="line">First sector (41940992-104857566, default 41940992): </span><br><span class="line">Last sector, +sectors or +size&#123;K,M,G,T,P&#125; (41940992-104857566, default 104857566): </span><br><span class="line"></span><br><span class="line">Created a new partition 6 of type &#x27;Linux filesystem&#x27; and of size 30 GiB.</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">2、输入 p 查看新建分区情况，sda6就是新分区</span></span><br><span class="line">Command (m for help): p</span><br><span class="line">Disk /dev/sda: 50 GiB, 53687091200 bytes, 104857600 sectors</span><br><span class="line">Units: sectors of 1 * 512 = 512 bytes</span><br><span class="line">Sector size (logical/physical): 512 bytes / 512 bytes</span><br><span class="line">I/O size (minimum/optimal): 512 bytes / 512 bytes</span><br><span class="line">Disklabel type: gpt</span><br><span class="line">Disk identifier: D7617B57-3A11-4B5B-B28D-FE5A8EEAD05D</span><br><span class="line"></span><br><span class="line">Device        Start       End  Sectors Size Type</span><br><span class="line">/dev/sda1      2048      4095     2048   1M BIOS boot</span><br><span class="line">/dev/sda2      4096   2101247  2097152   1G Linux filesystem</span><br><span class="line">/dev/sda3   2101248   8392703  6291456   3G Linux swap</span><br><span class="line">/dev/sda4   8392704  29364223 20971520  10G Linux filesystem</span><br><span class="line">/dev/sda5  29364224  41940991 12576768   6G Linux filesystem</span><br><span class="line">/dev/sda6  41940992 104857566 62916575  30G Linux filesystem</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">3、输入 w 保存分区，此时<span class="built_in">df</span> -lh还看不到新建的分区</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">4、格式化sda6分区，至此分区新建完成</span></span><br><span class="line">mkfs -t /dev/sda6</span><br></pre></td></tr></table></figure>
-
-<h1 id="挂载分区"><a href="#挂载分区" class="headerlink" title="挂载分区"></a>挂载分区</h1><p>只有将分区挂载到指定目录上，这个空间才能投入使用</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mount /dev/sda6 /data</span><br></pre></td></tr></table></figure>
-
-<p>但是这样挂载的目录有一个缺陷，重启后就没了，还得重新挂载，所以需要执行固化</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">1、确定分区uuid</span></span><br><span class="line">blkid /dev/sda6</span><br></pre></td></tr></table></figure>
-
-<p><code>/dev/sda6: UUID=&quot;01c6810e-738f-47c2-882f-2451b93a163d&quot; TYPE=&quot;ext4&quot; PARTUUID=&quot;212a7071-d49e-0f41-95df-b7a35eef881b&quot;</code></p>
-<p>复制下UUID的值，后面需要使用</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">2、将分区信息固化到系统配置信息中</span></span><br><span class="line">vim /etc/fstab</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">参照原文件格式编写</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">/etc/fstab: static file system information.</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"></span></span><br><span class="line"><span class="language-bash"><span class="comment"># Use &#x27;blkid&#x27; to print the universally unique identifier for a</span></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">device; this may be used with UUID= as a more robust way to name devices</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">that works even <span class="keyword">if</span> disks are added and removed. See fstab(5).</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"></span></span><br><span class="line"><span class="language-bash"><span class="comment"># &lt;file system&gt; &lt;mount point&gt;   &lt;type&gt;  &lt;options&gt;       &lt;dump&gt;  &lt;pass&gt;</span></span></span><br><span class="line">/dev/disk/by-uuid/bfae9057-2637-4bdb-b355-395ab9ca30f1 none swap sw 0 0</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">/ was on /dev/sda4 during curtin installation</span></span><br><span class="line">/dev/disk/by-uuid/9bdde825-6d74-45e2-bbf5-0b497e0d0fcf / ext4 defaults 0 1</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">/home was on /dev/sda5 during curtin installation</span></span><br><span class="line">/dev/disk/by-uuid/40ca4129-cacf-4d8b-a213-fd3c654ca1ce /home ext4 defaults 0 1</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">/boot was on /dev/sda2 during curtin installation</span></span><br><span class="line">/dev/disk/by-uuid/1e0131bc-9662-41b6-81e7-9a5db92f3509 /boot ext4 defaults 0 1</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">参照/home的挂载配置，追加上相似的配置信息</span></span><br><span class="line">/dev/disk/by-uuid/01c6810e-738f-47c2-882f-2451b93a163d /data ext4 defaults 0 1</span><br><span class="line">/swap.img       none    swap    sw      0       0</span><br></pre></td></tr></table></figure>
-
-<p>保存文件，重启系统，至此完成扩容，重启后就可以在<code>df -lh</code>中看到相关容量信息了</p>
-]]></content>
-      <categories>
-        <category>解决方案</category>
-      </categories>
-      <tags>
-        <tag>VMware</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>anaconda安装虚拟环境后pip异常</title>
-    <url>/2022/10/19/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/21.anaconda%E5%AE%89%E8%A3%85%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E5%90%8Epip%E5%BC%82%E5%B8%B8/</url>
-    <content><![CDATA[<h1 id="问题前置"><a href="#问题前置" class="headerlink" title="问题前置"></a>问题前置</h1><p>anaconda安装虚拟环境，删了又装，装了又删几次往复，然后导致pip异常，报以下错误：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">Traceback (most recent call last):</span><br><span class="line">  File &quot;C:\Users\xuxingchen\.conda\envs\cv\Scripts\pip-script.py&quot;, line 6, in &lt;module&gt;</span><br><span class="line">    from pip._internal.cli.main import main</span><br><span class="line">  File &quot;C:\Users\xuxingchen\.conda\envs\cv\lib\site-packages\pip\__init__.py&quot;, line 1, in &lt;module&gt; </span><br><span class="line">    from pip._internal.utils.typing import MYPY_CHECK_RUNNING</span><br><span class="line">ModuleNotFoundError: No module named &#x27;pip._internal&#x27;</span><br></pre></td></tr></table></figure>
-<p>并且执行<code>python -m ensurepip</code>查看后发现pip版本为9.x，所以直接判定pip存在版本冲突所以异常了</p>
-<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><p>1.删除出现问题的虚拟环境下中的<code>\envs\cv\Lib\site-packages\pip</code>文件夹<br>2.将正常环境下的<code>\envs\cv\Lib\site-packages\pip</code>文件夹拷贝一份放进去<br>同理还要对其他冲突的模块也操作一番</p>
-<p>收工，最后遇到这种问题最简单的方式是换个虚拟环境名重新建一个~~</p>
-]]></content>
-  </entry>
-  <entry>
-    <title>Matplotlib is currently using agg</title>
-    <url>/2022/12/01/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/22.Matplotlib%20is%20currently%20using%20agg/</url>
-    <content><![CDATA[<h1 id="问题报错"><a href="#问题报错" class="headerlink" title="问题报错"></a>问题报错</h1><p>pyplot存在大量绘图时报以下错误：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">Matplotlib is currently using agg, which is a non-GUI backend, so cannot show the figure</span><br></pre></td></tr></table></figure>
-
-<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><p>在报出异常的py文件中导包末尾部分追加</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib</span><br><span class="line">matplotlib.use(<span class="string">&#x27;TkAgg&#x27;</span>)</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>解决方案</category>
-      </categories>
-      <tags>
-        <tag>Matplotlib</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>解决Sub-process usrbindpkg returned an error code (1)</title>
-    <url>/2022/12/20/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/23.%E8%A7%A3%E5%86%B3Sub-process%20usrbindpkg%20returned%20an%20error%20code%20(1)/</url>
-    <content><![CDATA[<p> 转载源：<a href="https://blog.csdn.net/qq_44060543/article/details/124101863">https://blog.csdn.net/qq_44060543/article/details/124101863</a></p>
-<h1 id="问题报错"><a href="#问题报错" class="headerlink" title="问题报错"></a>问题报错</h1><p>apt-get执行安装后报以下错误：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">apt-get 报错 Sub-process usrbindpkg returned an error code (1)</span><br></pre></td></tr></table></figure>
-
-<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">cd /var/lib/dpkg/</span><br><span class="line">sudo mv info/ info_bak          <span class="comment"># 现将info文件夹更名</span></span><br><span class="line">sudo mkdir info                 <span class="comment"># 再新建一个新的info文件夹</span></span><br><span class="line">sudo apt-get update             <span class="comment"># 更新</span></span><br><span class="line">sudo apt-get -f install         <span class="comment"># 修复</span></span><br><span class="line">sudo mv info/* info_bak/        <span class="comment"># 执行完上一步操作后会在新的info文件夹下生成一些文件，现将这些文件全部移到info_bak文件夹下</span></span><br><span class="line">sudo rm -rf info                <span class="comment"># 把自己新建的info文件夹删掉</span></span><br><span class="line">sudo mv info_bak info           <span class="comment"># 把以前的info文件夹重新改回名</span></span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>解决方案</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>git取消超过范围大文件并重新提交</title>
-    <url>/2023/04/17/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/24.git%E5%8F%96%E6%B6%88%E8%B6%85%E8%BF%87%E8%8C%83%E5%9B%B4%E5%A4%A7%E6%96%87%E4%BB%B6%E5%B9%B6%E9%87%8D%E6%96%B0%E6%8F%90%E4%BA%A4/</url>
-    <content><![CDATA[<h1 id="问题报错"><a href="#问题报错" class="headerlink" title="问题报错"></a>问题报错</h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">remote: error: File: db383b59a623629b36cc62dd3917db21c1375cf0 690.93 MB, exceeds 100.00 MB.</span><br></pre></td></tr></table></figure>
-
-<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><ol>
-<li>定位大文件位置 <code>git rev-list --objects --all | grep db383b59a623629b36cc62dd3917db21c1375cf0</code></li>
-<li>查看push失败的commit版本号 <code>git log</code></li>
-<li>回滚到无误的commit版本 <code>git reset 699db94c8edea41205b34923ae2cefb9b7dcc1d3</code></li>
-<li>定义大文件规则纳入<code>gitignore</code></li>
-<li>重新 <code>add</code> <code>commit</code> <code>push</code>三连</li>
-</ol>
-]]></content>
-      <categories>
-        <category>解决方案</category>
-      </categories>
-      <tags>
-        <tag>git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>golang交叉编译</title>
-    <url>/2023/10/17/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/25.golang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91/</url>
-    <content><![CDATA[<p>记一次window平台下的golang交叉编译命令</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">编译linux平台</span></span><br><span class="line">go env -w  CGO_ENABLED=0  GOOS=linux  GOARCH=amd64 ; go build</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">编译macos平台</span></span><br><span class="line">go env -w  CGO_ENABLED=0  GOOS=darwin  GOARCH=amd64 ; go build</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>解决方案</category>
-      </categories>
-      <tags>
-        <tag>golang</tag>
-        <tag>交叉编译</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>python310_d.lib导致无法解析的外部符号的异常</title>
-    <url>/2023/12/14/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/26.python310_d.lib%E5%AF%BC%E8%87%B4%E6%97%A0%E6%B3%95%E8%A7%A3%E6%9E%90%E7%9A%84%E5%A4%96%E9%83%A8%E7%AC%A6%E5%8F%B7%E7%9A%84%E5%BC%82%E5%B8%B8/</url>
-    <content><![CDATA[<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>在学习C++调用python的过程中发现，和python不一样要想实现debug必须调用debug的包，而默认python安装是release的包，经过安装编译等踩坑操作后发现以下操作可以直接使用</p>
-<blockquote>
-<p>直接将release的<code>python310.lib</code>复制下改个名字成<code>python310_d.lib</code>就能用</p>
-</blockquote>
-<p>但是会报以下错误</p>
-<blockquote>
-<p>无法解析的外部符号 __imp__Py_NegativeRefcount，函数 _Py_DECREF 中引用了该符号</p>
-</blockquote>
-<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><p>实际问题在于debug与release差异造成的，造成差异的函数来自于<code>pyconfig.h</code>、<code>object.h</code></p>
-<p>以下两种方法都能解决这种问题：</p>
-<ul>
-<li>debug模式下直接不用，在cpp代码中加入</li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">ifndef</span> _DEBUG</span></span><br><span class="line"><span class="function"><span class="type">size_t</span> <span class="title">init_numpy</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">import_array</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>修改源码</p>
-<ul>
-<li><strong>pyconfig.h</strong></li>
-</ul>
-  <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">ifdef</span> _DEBUG</span></span><br><span class="line"><span class="comment">//#       define Py_DEBUG</span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><strong>object.h</strong></li>
-</ul>
-  <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">if</span> defined(Py_DEBUG) &amp;&amp; !defined(Py_REF_DEBUG)</span></span><br><span class="line"><span class="comment">//#  define Py_REF_DEBUG</span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure></li>
-</ul>
-]]></content>
-      <categories>
-        <category>解决方案</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>pytorch实现LeNet模型MNIST手写识别</title>
-    <url>/2021/08/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/00.pytorch%E5%AE%9E%E7%8E%B0LeNet%E6%A8%A1%E5%9E%8BMNIST%E6%89%8B%E5%86%99%E8%AF%86%E5%88%AB/</url>
-    <content><![CDATA[<h1 id="模块导入，常量参数设定"><a href="#模块导入，常量参数设定" class="headerlink" title="模块导入，常量参数设定"></a>模块导入，常量参数设定</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="keyword">import</span> torch.nn.functional <span class="keyword">as</span> F</span><br><span class="line"><span class="keyword">import</span> torch.optim <span class="keyword">as</span> optim</span><br><span class="line"><span class="keyword">from</span> torchvision <span class="keyword">import</span> datasets, transforms</span><br><span class="line"><span class="keyword">from</span> torchsummary <span class="keyword">import</span> summary</span><br><span class="line"></span><br><span class="line">BATCH_SIZE = <span class="number">512</span></span><br><span class="line">EPOCH = <span class="number">20</span></span><br><span class="line">DEIVCE = torch.device(<span class="string">&#x27;cuda:0&#x27;</span> <span class="keyword">if</span> torch.cuda.is_available() <span class="keyword">else</span> <span class="string">&#x27;cpu&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<h1 id="数据加载"><a href="#数据加载" class="headerlink" title="数据加载"></a>数据加载</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">train_loader = torch.utils.data.DataLoader(</span><br><span class="line">    datasets.MNIST(</span><br><span class="line">        <span class="string">&#x27;data&#x27;</span>, </span><br><span class="line">        train=<span class="literal">True</span>, </span><br><span class="line">        download=<span class="literal">False</span>,</span><br><span class="line">        transform=transforms.Compose([</span><br><span class="line">            transforms.ToTensor(),</span><br><span class="line">            transforms.Normalize((<span class="number">0.1307</span>,), (<span class="number">0.3081</span>,))</span><br><span class="line">        ])),</span><br><span class="line">    batch_size=BATCH_SIZE, shuffle=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">test_loader = torch.utils.data.DataLoader(</span><br><span class="line">    datasets.MNIST(</span><br><span class="line">        <span class="string">&#x27;data&#x27;</span>, </span><br><span class="line">        train=<span class="literal">False</span>, </span><br><span class="line">        transform=transforms.Compose([</span><br><span class="line">            transforms.ToTensor(),</span><br><span class="line">            transforms.Normalize((<span class="number">0.1307</span>,), (<span class="number">0.3081</span>,))</span><br><span class="line">        ])),</span><br><span class="line">    batch_size=BATCH_SIZE, shuffle=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
-<h1 id="LeNet模型搭建"><a href="#LeNet模型搭建" class="headerlink" title="LeNet模型搭建"></a>LeNet模型搭建</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">LeNet</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">super</span>(LeNet, self).__init__()</span><br><span class="line">        <span class="comment"># nn.Conv2d(in_channels, out_channels, kernel_size, stride=1, padding=0,dilation=1,groups=1, bias=True）</span></span><br><span class="line">        self.conv1 = nn.Conv2d(<span class="number">1</span>, <span class="number">6</span>, <span class="number">5</span>)  </span><br><span class="line">        self.pool1 = nn.MaxPool2d(<span class="number">2</span>)</span><br><span class="line">        self.conv2 = nn.Conv2d(<span class="number">6</span>, <span class="number">16</span>, <span class="number">3</span>)</span><br><span class="line">        self.pool2 = nn.MaxPool2d(<span class="number">2</span>)</span><br><span class="line">        <span class="comment"># nn.Linear(in_features, out_features, bias=True)</span></span><br><span class="line">        self.fc1   = nn.Linear(<span class="number">16</span>*<span class="number">5</span>*<span class="number">5</span>, <span class="number">120</span>)</span><br><span class="line">        self.fc2   = nn.Linear(<span class="number">120</span>, <span class="number">84</span>)</span><br><span class="line">        self.fc3   = nn.Linear(<span class="number">84</span>, <span class="number">10</span>)</span><br><span class="line">        </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line">        out = F.relu(self.conv1(x))  <span class="comment"># 24</span></span><br><span class="line">        <span class="comment"># nn.MaxPool2d(kernel_size, stride=None, padding=0, dilation=1,return_indices=False,ceil_mode=False)</span></span><br><span class="line">        <span class="comment"># max_pool2d(*args, **kwargs)</span></span><br><span class="line">        out = self.pool1(out)  <span class="comment"># 12</span></span><br><span class="line">        out = F.relu(self.conv2(out))  <span class="comment"># 10</span></span><br><span class="line">        out = self.pool2(out)  <span class="comment"># 5</span></span><br><span class="line">        out = out.view(out.size(<span class="number">0</span>), -<span class="number">1</span>)  <span class="comment"># flatten</span></span><br><span class="line">        out = F.relu(self.fc1(out))</span><br><span class="line">        out = F.relu(self.fc2(out))</span><br><span class="line">        out = self.fc3(out)</span><br><span class="line">        out = F.log_softmax(out,dim=<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> out</span><br></pre></td></tr></table></figure>
-<h1 id="查看模型结构"><a href="#查看模型结构" class="headerlink" title="查看模型结构"></a>查看模型结构</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">model = LeNet()</span><br><span class="line">summary(model, (<span class="number">1</span>,<span class="number">28</span>,<span class="number">28</span>))  </span><br></pre></td></tr></table></figure>
-<h1 id="模型训练测试函数"><a href="#模型训练测试函数" class="headerlink" title="模型训练测试函数"></a>模型训练测试函数</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">model = LeNet().to(device)</span><br><span class="line">optimizer = optim.Adam(model.parameters())</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">train</span>(<span class="params">device, model, train_loader, optimizer, epoch</span>):</span><br><span class="line">    model.train()</span><br><span class="line">    <span class="keyword">for</span> batch_idx, (data, target) <span class="keyword">in</span> <span class="built_in">enumerate</span>(train_loader):</span><br><span class="line">        data, target = data.to(device), target.to(device)</span><br><span class="line">        optimizer.zero_grad()  <span class="comment"># zero all gradients</span></span><br><span class="line">        output = model(data)</span><br><span class="line">        loss = F.nll_loss(output, target)  <span class="comment"># calculate loss</span></span><br><span class="line">        loss.backward()</span><br><span class="line">        optimizer.step()  <span class="comment"># update all parameters</span></span><br><span class="line">        <span class="keyword">if</span> (batch_idx + <span class="number">1</span>) % <span class="number">30</span> == <span class="number">0</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&quot;Train Epoch <span class="subst">&#123;epoch&#125;</span> [<span class="subst">&#123;batch_idx * <span class="built_in">len</span>(data)&#125;</span>/<span class="subst">&#123;<span class="built_in">len</span>(train_loader.dataset)&#125;</span> Loss: <span class="subst">&#123;loss.item():<span class="number">.6</span>f&#125;</span>]&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">test</span>(<span class="params">device, model, test_loader</span>):</span><br><span class="line">    model.<span class="built_in">eval</span>()</span><br><span class="line">    test_loss = <span class="number">0</span></span><br><span class="line">    correct = <span class="number">0</span></span><br><span class="line">    <span class="keyword">with</span> torch.no_grad():</span><br><span class="line">        <span class="keyword">for</span> data, target <span class="keyword">in</span> test_loader:</span><br><span class="line">            data, target = data.to(device), target.to(device)</span><br><span class="line">            output = model(data)  <span class="comment"># predict class probability</span></span><br><span class="line">            test_loss += F.nll_loss(output, target, reduction=<span class="string">&#x27;sum&#x27;</span>).item()  <span class="comment"># superposition whole batch loss</span></span><br><span class="line">            pred = output.<span class="built_in">max</span>(<span class="number">1</span>, keepdim=<span class="literal">True</span>)[<span class="number">1</span>]  <span class="comment"># return max probability index</span></span><br><span class="line">            correct += pred.eq(target.view_as(pred)).<span class="built_in">sum</span>().item()</span><br><span class="line"></span><br><span class="line">    test_loss /= <span class="built_in">len</span>(test_loader.dataset)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&#x27;\nTest Epoch: Average loss: <span class="subst">&#123;test_loss:<span class="number">.4</span>f&#125;</span>, Accuracy: <span class="subst">&#123;correct&#125;</span>/<span class="subst">&#123;<span class="built_in">len</span>(test_loader.dataset)&#125;</span> (<span class="subst">&#123;<span class="number">100.</span> * correct / <span class="built_in">len</span>(test_loader.dataset):<span class="number">.2</span>f&#125;</span>%)\n&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<h1 id="模型训练，测试"><a href="#模型训练，测试" class="headerlink" title="模型训练，测试"></a>模型训练，测试</h1><pre><code class="python">for epoch in range(1, EPOCH + 1):
-    train(DEIVCE, model, train_loader, optimizer, epoch)
-    test(DEIVCE, model, train_loader)
-</code></pre>
-]]></content>
-      <categories>
-        <category>计算机视觉</category>
-      </categories>
-      <tags>
-        <tag>pytorch</tag>
-        <tag>LeNet</tag>
-        <tag>mnist</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>paddlelite模型部署</title>
-    <url>/2023/03/14/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/01.paddlelite%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2/</url>
-    <content><![CDATA[<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>对完成训练的paddlehub的可用模型(人脸检测)进行转换，使其能够部署在paddlelite环境下，已完成x86架构linux(ubuntu)中的模型部署</p>
-<h2 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h2><p>linux下配置个新的conda环境用来测试，需要添加opencv模块和paddlelite模块</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda create --name <span class="built_in">test</span> python=3.7</span><br><span class="line">conda activate <span class="built_in">test</span></span><br><span class="line">pip install paddlelite</span><br><span class="line">pip install opencv-python==4.5.1.48</span><br></pre></td></tr></table></figure>
-
-<h2 id="模型转换"><a href="#模型转换" class="headerlink" title="模型转换"></a>模型转换</h2><p>有python脚本和shell脚本两种方式，分别用于windows环境和linux环境</p>
-<ul>
-<li>python脚本</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> paddlelite.lite <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="comment"># 1. 创建opt实例</span></span><br><span class="line">opt = Opt()</span><br><span class="line"><span class="comment"># 2. 指定输入模型地址</span></span><br><span class="line">opt.set_model_dir(<span class="string">r&quot;models\ultra_light_fast_generic_face_detector_1mb_640\ultra_light_fast_generic_face_detector_1mb_640&quot;</span>)</span><br><span class="line"><span class="comment"># 3. 指定转化类型： arm、x86、opencl、xpu、npu</span></span><br><span class="line">opt.set_valid_places(<span class="string">&quot;x86&quot;</span>)</span><br><span class="line"><span class="comment"># 4. 指定模型转化类型： naive_buffer、protobuf</span></span><br><span class="line">opt.set_model_type(<span class="string">&quot;naive_buffer&quot;</span>)</span><br><span class="line"><span class="comment"># 4. 输出模型地址</span></span><br><span class="line">opt.set_optimize_out(<span class="string">r&quot;models\new_models\ultra_light_fast_generic_face_detector_1mb_640&quot;</span>)</span><br><span class="line"><span class="comment"># 5. 执行模型优化</span></span><br><span class="line">opt.run()</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>bash命令，需要先切换到安装paddlelite的环境</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">paddle_lite_opt --model_dir=./ultra_light_fast_generic_face_detector_1mb_640/ultra_light_fast_generic_face_detector_1mb_640 --optimize_out=./new_models/ultra_light_fast_generic_face_detector_1mb_640 --optimize_out_type=naive_buffer --valid_targets=x86</span><br></pre></td></tr></table></figure>
-<p><img data-src="https://blog.oss.langzihan.top/images/model-deploy-base-of-paddlelite/00e9caa951d7b7d468eecc43028668e0.jpg" alt="模型转换"></p>
-<p>通过模型转换获得一个以nb为后缀的模型文件</p>
-<h2 id="模型的加载与使用"><a href="#模型的加载与使用" class="headerlink" title="模型的加载与使用"></a>模型的加载与使用</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> paddlelite.lite <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">image_path = <span class="string">&quot;./faces/0.jpg&quot;</span></span><br><span class="line">image_orig = cv2.imread(image_path)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 人脸模型输入要求 640*480</span></span><br><span class="line">c, h, w = <span class="number">3</span>, <span class="number">480</span>, <span class="number">640</span></span><br><span class="line"><span class="comment"># 归一化</span></span><br><span class="line">image_data = cv2.cvtColor(image_orig, cv2.COLOR_BGR2RGB)</span><br><span class="line">image_data = cv2.resize(image_data, (w, h))</span><br><span class="line">image_mean = np.array([<span class="number">127</span>, <span class="number">127</span>, <span class="number">127</span>])</span><br><span class="line">image_data = (image_data - image_mean) / <span class="number">128.0</span></span><br><span class="line">image_data = np.transpose(image_data, [<span class="number">2</span>, <span class="number">0</span>, <span class="number">1</span>])</span><br><span class="line">image_data = image_data.reshape([<span class="number">1</span>, c, h, w]).astype(<span class="string">&#x27;float32&#x27;</span>)</span><br><span class="line"></span><br><span class="line">config = MobileConfig()</span><br><span class="line">config.set_model_from_file(<span class="string">&#x27;ultra_light_fast_generic_face_detector_1mb_640.nb&#x27;</span>)</span><br><span class="line">predictor = create_paddle_predictor(config)</span><br><span class="line"></span><br><span class="line">input_tensor = predictor.get_input(<span class="number">0</span>)</span><br><span class="line">input_tensor.from_numpy(image_data)</span><br><span class="line">predictor.run()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 有几个输出接几个，人脸检测模型有两路输出</span></span><br><span class="line">output_tensor_0 = predictor.get_output(<span class="number">0</span>)</span><br><span class="line">output_tensor_1 = predictor.get_output(<span class="number">1</span>)</span><br><span class="line">output_data_0 = output_tensor_0.numpy()[<span class="number">0</span>]</span><br><span class="line">output_data_1 = output_tensor_1.numpy()[<span class="number">0</span>]</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>计算机视觉</category>
-      </categories>
-      <tags>
-        <tag>paddle</tag>
-        <tag>paddle-lite</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Docker一键安装和基本配置</title>
     <url>/2023/09/19/%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/17.Docker%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85%E5%92%8C%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE/</url>
     <content><![CDATA[<h1 id="一键安装脚本"><a href="#一键安装脚本" class="headerlink" title="一键安装脚本"></a>一键安装脚本</h1><ul>
@@ -2455,6 +1834,627 @@ for i in range(100):
       <tags>
         <tag>Pycharm</tag>
         <tag>insert编辑模式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>输入字体之间的间隔突然变大了</title>
+    <url>/2019/01/05/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/01.%E8%BE%93%E5%85%A5%E5%AD%97%E4%BD%93%E4%B9%8B%E9%97%B4%E7%9A%84%E9%97%B4%E9%9A%94%E7%AA%81%E7%84%B6%E5%8F%98%E5%A4%A7%E4%BA%86/</url>
+    <content><![CDATA[<p>额，这个问题之前也遇到几次，后来莫名其妙变好了</p>
+<p>我就没深究</p>
+<hr>
+<p>最近写代码又出现了这种情况</p>
+<p>就是敲了个快捷键，就变成</p>
+<p><img data-src="https://blog.oss.langzihan.top/images/%E8%BE%93%E5%85%A5%E5%AD%97%E4%BD%93%E4%B9%8B%E9%97%B4%E7%9A%84%E9%97%B4%E9%9A%94%E7%AA%81%E7%84%B6%E5%8F%98%E5%A4%A7%E4%BA%86/edb59183fa22484ad86737c995ec703a.png" alt="img"></p>
+<p>后来发现是IDE的快捷键和输入法快捷键冲突了</p>
+<hr>
+<p>解决方法：</p>
+<p>按一下 <strong>shift+空格键</strong> 就好啦~</p>
+]]></content>
+      <categories>
+        <category>解决方案</category>
+      </categories>
+      <tags>
+        <tag>字体变大</tag>
+        <tag>输入法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>python3使用scapy.rdpcap的解码问题</title>
+    <url>/2019/03/14/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/02.python3%E4%BD%BF%E7%94%A8scapy.rdpcap%E7%9A%84%E8%A7%A3%E7%A0%81%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<p>为了实现流量的特征提取</p>
+<p>我使用scapy实现抓包数据的读取</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> scapy.<span class="built_in">all</span> <span class="keyword">import</span> rdpcap</span><br><span class="line"> </span><br><span class="line">a = rdpcap(<span class="string">&#x27;target.pcap&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(a[<span class="number">3</span>])</span><br></pre></td></tr></table></figure>
+
+<p>但是print的数据却很不人性化如下：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">b&#x27;\x00\x0c)\n\xf1\r\x00PV\xc0\x00\x08\x08\x00E\x00\x00\xa2Z\t@\x00@\x06\xb8z\xc0\xa8S\x01\xc0\xa8S\x80,]#\x8cH_\xc5\xa4L\xed0=P\x18\x01\x00\xff\x8b\x00\x00POST /getname HTTP/1.1\r\nHOST: 192.168.83.128:9100\r\ncontent-type: application/json\r\ncontent-length: 17\r\n\r\n&#123;&quot;name&quot;:&quot;kslaaa&quot;&#125;&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>这哪是人看的</p>
+<p>所以需要加上一个参数</p>
+<p><code>mysummary</code>，如下</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> scapy.<span class="built_in">all</span> <span class="keyword">import</span> rdpcap</span><br><span class="line"> </span><br><span class="line">a = rdpcap(<span class="string">&#x27;target.pcap&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(a[<span class="number">3</span>].mysummary)</span><br></pre></td></tr></table></figure>
+
+<p>print出来如下，咳咳，稍微有点人性化，至少可以处理了</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">&lt;bound method Ether.mysummary of &lt;Ether  dst=00:0c:29:0a:f1:0d src=00:50:56:c0:00:08 type=0x800 |&lt;IP  version=4 ihl=5 tos=0x0 len=162 id=23049 flags=DF frag=0 ttl=64 proto=tcp chksum=0xb87a src=192.168.83.1 dst=192.168.83.128 |&lt;TCP  sport=11357 dport=9100 seq=1214236068 ack=1290612797 dataofs=5 reserved=0 flags=PA window=256 chksum=0xff8b urgptr=0 |&lt;Raw  load=&#x27;POST /getname HTTP/1.1\r\nHOST: 192.168.83.128:9100\r\ncontent-type: application/json\r\ncontent-length: 17\r\n\r\n&#123;&quot;name&quot;:&quot;kslaaa&quot;&#125;&#x27; |&gt;&gt;&gt;&gt;&gt;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>解决方案</category>
+      </categories>
+      <tags>
+        <tag>流量解包</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>基于HTTP网络代理的校园网（局域网）网络共享</title>
+    <url>/2019/04/01/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/03.%E5%9F%BA%E4%BA%8EHTTP%E7%BD%91%E7%BB%9C%E4%BB%A3%E7%90%86%E7%9A%84%E6%A0%A1%E5%9B%AD%E7%BD%91%EF%BC%88%E5%B1%80%E5%9F%9F%E7%BD%91%EF%BC%89%E7%BD%91%E7%BB%9C%E5%85%B1%E4%BA%AB/</url>
+    <content><![CDATA[<h4 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h4><p>嗯，校园网欠费了，但是宿舍这里无法登陆，显示欠费，实验室的电脑使用的网关是可以登陆正常上网的！不显示欠费！内网远程实验室桌面，没问题，是不是有点麻烦？既然能远程，那说明可以通过代理实现网络数据的转发！网络共享，自己动手丰衣足食！</p>
+<h4 id="问题抽象"><a href="#问题抽象" class="headerlink" title="问题抽象"></a>问题抽象</h4><p>同一局域网内，有一台电脑可以上网，想要通过这台电脑，使得其他电脑或者移动设备可以上网</p>
+<h4 id="适用环境"><a href="#适用环境" class="headerlink" title="适用环境"></a>适用环境</h4><p>可以上网的电脑：Windows7及以上系统，或者能够部署HTTP代理服务器的皆可</p>
+<p>其他电脑或移动设备：安装有支持全局HTTP网络代理功能的软件，系统自带支持全局亦可</p>
+<h4 id="我的实际环境"><a href="#我的实际环境" class="headerlink" title="我的实际环境"></a>我的实际环境</h4><p>可以上网的电脑：<code>Windows 10 1703 专业版</code></p>
+<p>其他电脑或移动设备：<code>Android</code> &amp; <code>Windows 10</code> 1703 专业版 &amp; <code>iPhone</code></p>
+<p>支持全局HTTP的软件：</p>
+<p>  <code>Android</code> : 系统自带的WLAN中的HTTP代理 或 Adguard(或使用手机版SSR、v2ray等可以实现全局代理流量、支持转发sock或http的app）</p>
+<p>  <code>iPhone</code> : 系统自带的WLAN中的HTTP代理 或 支持HTTP全局代理即可（小飞机）</p>
+<p>  <code>Windows</code> : SStap | Adguard</p>
+<p>代理服务器部署：<code>CCproxy</code></p>
+<h4 id="实现步骤"><a href="#实现步骤" class="headerlink" title="实现步骤"></a>实现步骤</h4><p>① 完成相关软件的安装</p>
+<p>② 配置CCproxy</p>
+<p><img data-src="https://blog.oss.langzihan.top/images/%E5%9F%BA%E4%BA%8EHTTP%E7%BD%91%E7%BB%9C%E4%BB%A3%E7%90%86%E7%9A%84%E6%A0%A1%E5%9B%AD%E7%BD%91%EF%BC%88%E5%B1%80%E5%9F%9F%E7%BD%91%EF%BC%89%E7%BD%91%E7%BB%9C%E5%85%B1%E4%BA%AB/63bfe808300973c1c9e51edc06b8f894.png" alt="img"></p>
+<p><img data-src="https://blog.oss.langzihan.top/images/%E5%9F%BA%E4%BA%8EHTTP%E7%BD%91%E7%BB%9C%E4%BB%A3%E7%90%86%E7%9A%84%E6%A0%A1%E5%9B%AD%E7%BD%91%EF%BC%88%E5%B1%80%E5%9F%9F%E7%BD%91%EF%BC%89%E7%BD%91%E7%BB%9C%E5%85%B1%E4%BA%AB/45f1a15bd9a443b225c7946b950b38e2.png" alt="img"></p>
+<p><img data-src="https://blog.oss.langzihan.top/images/%E5%9F%BA%E4%BA%8EHTTP%E7%BD%91%E7%BB%9C%E4%BB%A3%E7%90%86%E7%9A%84%E6%A0%A1%E5%9B%AD%E7%BD%91%EF%BC%88%E5%B1%80%E5%9F%9F%E7%BD%91%EF%BC%89%E7%BD%91%E7%BB%9C%E5%85%B1%E4%BA%AB/d8534dff83bc79004557c6e93ef7e49c.png" alt="img"></p>
+<p><img data-src="https://blog.oss.langzihan.top/images/%E5%9F%BA%E4%BA%8EHTTP%E7%BD%91%E7%BB%9C%E4%BB%A3%E7%90%86%E7%9A%84%E6%A0%A1%E5%9B%AD%E7%BD%91%EF%BC%88%E5%B1%80%E5%9F%9F%E7%BD%91%EF%BC%89%E7%BD%91%E7%BB%9C%E5%85%B1%E4%BA%AB/70f5df78eccfe8beddea6a51308689ac.png" alt="img"></p>
+<p>③ 配置需要网络的电脑或移动设备的HTTP代理</p>
+<p>服务器地址就是可上网电脑CCproxy中绑定的内网地址</p>
+<p>端口是CCproxy中配置HTTP的端口号</p>
+<p>用户密码若有则是CCproxy新建的用户名与密码</p>
+<p>若无置空即可</p>
+<p>④ 可以上网了</p>
+<h4 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h4><p>当然以上通过CCproxy的HTTP代理实现的网络共享，同样也可在可上网的电脑上安装node.js搭建SSR服务器，通过SStap可实现SSR的连接，但某些情况下由于有UDP的转发，性能可能不太稳定</p>
+]]></content>
+      <categories>
+        <category>解决方案</category>
+      </categories>
+      <tags>
+        <tag>HTTP代理</tag>
+        <tag>网络共享</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>tensorboard使用时scalars没有任何内容</title>
+    <url>/2019/04/20/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/04.tensorboard%E4%BD%BF%E7%94%A8%E6%97%B6scalars%E6%B2%A1%E6%9C%89%E4%BB%BB%E4%BD%95%E5%86%85%E5%AE%B9/</url>
+    <content><![CDATA[<h4 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h4><p>使用windows上的tensorboard时，明明正确生成了graph，但是在logdir参数中赋上绝对路径后进入web板中没有任何数据显示</p>
+<h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><p>1.打开命令行，cd到生成graph的目录 &#x3D;&#x3D;OR&#x3D;&#x3D; 到目录下shift+右键菜单“在此处打开Powershell窗口”</p>
+<p>2.命令框中直接输入<br> <code>tensorboard --logdir=&quot;./&quot;</code></p>
+<p>简单暴力！</p>
+]]></content>
+      <categories>
+        <category>解决方案</category>
+      </categories>
+      <tags>
+        <tag>tensorboard</tag>
+        <tag>scalars</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>拉取github项目后Visual Studio 2017 报错system未定义识别符</title>
+    <url>/2020/08/08/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/05.%E6%8B%89%E5%8F%96github%E9%A1%B9%E7%9B%AE%E5%90%8EVisual%20Studio%202017%20%E6%8A%A5%E9%94%99system%E6%9C%AA%E5%AE%9A%E4%B9%89%E8%AF%86%E5%88%AB%E7%AC%A6/</url>
+    <content><![CDATA[<h4 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h4><p>我在实验室的电脑上的<strong>VS2017</strong>上编写好了相关代码，为了能够在自己电脑上也能同步编写，我配置好了github进行版本控制，采用推送和拉取进行项目同步，<strong>但是</strong>在我笔记本上拉取后程序却报出了<strong>未定义识别符</strong>的错误。</p>
+<p><img data-src="https://blog.oss.langzihan.top/images/%E6%8B%89%E5%8F%96github%E9%A1%B9%E7%9B%AE%E5%90%8EVisual%20Studio%202017%20%E6%8A%A5%E9%94%99system%E6%9C%AA%E5%AE%9A%E4%B9%89%E8%AF%86%E5%88%AB%E7%AC%A6/371fa24a1f3f76c146b4df9370c93560.png" alt="img"></p>
+<h4 id="问题抽象"><a href="#问题抽象" class="headerlink" title="问题抽象"></a>问题抽象</h4><p>1.VS的集成编程环境</p>
+<p>2.非本机构建的C++项目</p>
+<p>3.程序本身没有问题，但拉取克隆到本机后出现了“未定义识别符”错误</p>
+<h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><p>其实通过上面的问题抽象我已经能够推断问题原因了，出在了非本机项目的问题上，说明是环境不同所致，所以解决方案如下：</p>
+<p><code>右键解决方案</code> &gt;&gt; <code>属性</code> &gt;&gt; <code>常规</code> &gt;&gt; <code>Windows SDK 版本</code></p>
+<p>换到本机安装的对应版本即可！</p>
+<p><img data-src="https://blog.oss.langzihan.top/images/%E6%8B%89%E5%8F%96github%E9%A1%B9%E7%9B%AE%E5%90%8EVisual%20Studio%202017%20%E6%8A%A5%E9%94%99system%E6%9C%AA%E5%AE%9A%E4%B9%89%E8%AF%86%E5%88%AB%E7%AC%A6/a968f6580e926a253130e19aa945ad6e.png" alt="img"></p>
+<p><img data-src="https://blog.oss.langzihan.top/images/%E6%8B%89%E5%8F%96github%E9%A1%B9%E7%9B%AE%E5%90%8EVisual%20Studio%202017%20%E6%8A%A5%E9%94%99system%E6%9C%AA%E5%AE%9A%E4%B9%89%E8%AF%86%E5%88%AB%E7%AC%A6/ff94d5799aa6ae857274a73bfe5118dc.png" alt="img"></p>
+<p>收工！</p>
+]]></content>
+      <categories>
+        <category>解决方案</category>
+      </categories>
+      <tags>
+        <tag>未识别标识符</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Redis安装踩坑</title>
+    <url>/2021/03/21/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/06.Redis%E5%AE%89%E8%A3%85%E8%B8%A9%E5%9D%91/</url>
+    <content><![CDATA[<p>本章记录：Redis6.0.6安装于Ubuntu中遇到的坑</p>
+<p>注：使用前记得<code>apt-get update</code>一下</p>
+<p><strong>报错1：</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">python@python:/usr/local/redis$ sudo make</span><br><span class="line">sudo: make: <span class="built_in">command</span> not found</span><br></pre></td></tr></table></figure>
+
+<p>&#x3D;&#x3D;解决方案：&#x3D;&#x3D;</p>
+<p><code>sudo apt-get install make</code></p>
+<p><strong>报错2：</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">make[3]: cc: Command not found</span><br><span class="line">make[3]: *** [Makefile:201: net.o] Error 127</span><br><span class="line">make[3]: Leaving directory <span class="string">&#x27;/usr/local/redis/deps/hiredis&#x27;</span></span><br><span class="line">make[2]: *** [Makefile:50: hiredis] Error 2</span><br><span class="line">make[2]: Leaving directory <span class="string">&#x27;/usr/local/redis/deps&#x27;</span></span><br><span class="line">make[1]: [Makefile:264: persist-settings] Error 2 (ignored)</span><br><span class="line">    CC adlist.o</span><br><span class="line">/bin/sh: 1: cc: not found</span><br><span class="line">make[1]: *** [Makefile:315: adlist.o] Error 127</span><br><span class="line">make[1]: Leaving directory <span class="string">&#x27;/usr/local/redis/src&#x27;</span></span><br><span class="line">make: *** [Makefile:6: all] Error 2</span><br></pre></td></tr></table></figure>
+<p>解决方案：</p>
+<p><code>sudo apt-get install gcc</code></p>
+<p><strong>报错3：</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">cc: error: ../deps/hiredis/libhiredis.a: No such file or directory</span><br><span class="line">cc: error: ../deps/lua/src/liblua.a: No such file or directory</span><br><span class="line">make[1]: *** [Makefile:283: redis-server] Error 1</span><br><span class="line">make[1]: Leaving directory <span class="string">&#x27;/usr/local/redis/src&#x27;</span></span><br><span class="line">make: *** [Makefile:6: all] Error 2</span><br></pre></td></tr></table></figure>
+<p>解决方案：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> deps/</span><br><span class="line">make lua hiredis linenoise</span><br><span class="line"><span class="built_in">cd</span> ..</span><br><span class="line">sudo make</span><br></pre></td></tr></table></figure>
+
+<p><strong>报错4：</strong></p>
+<p><code>You need tcl 8.5 or newer in order to run the Redis test</code></p>
+<p>解决方案：</p>
+<p><a href="https://langzihan.lanzouy.com/iHzaHn5obfi">tcl8.6.1-src.tar.gz</a></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tar zxvf tcl8.6.1-src.tar.gz</span><br><span class="line"><span class="built_in">cd</span> tcl8.6.1/unix/</span><br><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">sudo make install</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>解决方案</category>
+      </categories>
+      <tags>
+        <tag>redis</tag>
+        <tag>ubuntu</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>windows环境下matplotlib图片中中文显示异常</title>
+    <url>/2021/04/28/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/07.windows%E7%8E%AF%E5%A2%83%E4%B8%8Bmatplotlib%E5%9B%BE%E7%89%87%E4%B8%AD%E4%B8%AD%E6%96%87%E6%98%BE%E7%A4%BA%E5%BC%82%E5%B8%B8/</url>
+    <content><![CDATA[<h1 id="问题描述："><a href="#问题描述：" class="headerlink" title="问题描述："></a>问题描述：</h1><p>windows环境，python3，正确使用matplotlib绘图后存在的中文显示异常问题</p>
+<h1 id="解决方案："><a href="#解决方案：" class="headerlink" title="解决方案："></a>解决方案：</h1><p>1.找到当前python环境下如下文件</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">lib\\site-packages\\matplotlib\\mpl-data\\matplotlibrc</span><br></pre></td></tr></table></figure>
+
+<p>2.采用notepad++（文本编辑器）打开matplotlibrc</p>
+<p>ctrl+f 搜索 font.family</p>
+<p>根据定位寻找到”font.family“和”font.sans-serif“字段</p>
+<p>取消注释或直接改成如下形式：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">font.family: sans-serif</span><br><span class="line">font.sans-serif: SimHei,Bitstream Vera Sans, Lucida Grande, Verdana, Geneva, Lucid, Arial, Helvetica, Avant Garde, sans-serif</span><br></pre></td></tr></table></figure>
+<p>如果存在负号显示异常则可以在添加一行<br><code>axes.unicode_minus:False</code><br>保存文件，重新加载python环境</p>
+<p><img data-src="https://blog.oss.langzihan.top/images/windows%E7%8E%AF%E5%A2%83%E4%B8%8Bmatplotlib%E5%9B%BE%E7%89%87%E4%B8%AD%E4%B8%AD%E6%96%87%E6%98%BE%E7%A4%BA%E5%BC%82%E5%B8%B8/4105835f08e5ea4f73a5cd1c726fe47f.png" alt="img"></p>
+]]></content>
+      <categories>
+        <category>解决方案</category>
+      </categories>
+      <tags>
+        <tag>matplotlib</tag>
+        <tag>中文</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>屏蔽tensorflow的日志打印</title>
+    <url>/2021/06/10/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/08.%E5%B1%8F%E8%94%BDtensorflow%E7%9A%84%E6%97%A5%E5%BF%97%E6%89%93%E5%8D%B0/</url>
+    <content><![CDATA[<p>tensorflow运行时会输出一大串的日志信息<br>眼花缭乱，用以下方法可以去除错误之外的日志信息（屏蔽通知信息和警告信息）</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line">os.environ[<span class="string">&#x27;TF_CPP_MIN_LOG_LEVEL&#x27;</span>] = <span class="string">&#x27;2&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br></pre></td></tr></table></figure>
+<p><strong>切记：日志等级设置代码要放在导入tensorflow之前！</strong></p>
+]]></content>
+      <categories>
+        <category>解决方案</category>
+      </categories>
+      <tags>
+        <tag>tensorflow</tag>
+        <tag>日志</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Cannot convert a symbolic Keras inputoutput to a numpy array</title>
+    <url>/2021/06/11/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/09.Cannot%20convert%20a%20symbolic%20Keras%20inputoutput%20to%20a%20numpy%20array/</url>
+    <content><![CDATA[<p><strong>环境：</strong> Tensorflow2.4.1<br><strong>报错：</strong> <code>Cannot convert a symbolic Keras input/output to a numpy array. This error may indicate that you&#39;re trying to pass a symbolic value to a NumPy call, which is not supported. Or, you may be trying to pass Keras symbolic inputs/outputs to a TF API that does not register dispatching, preventing Keras from automatically converting the API call to a lambda layer in the Functional Model.</code><br><strong>产生原因：</strong> 采用了tf下的Keras 自定义损函数<br><strong>分析：</strong><br>损失函数部分代码：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">vae_loss</span>(<span class="params">x, x_decoded_mean</span>):</span><br><span class="line">    xent_loss = original_dim * losses.binary_crossentropy(x, x_decoded_mean)</span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">type</span>(xent_loss))</span><br><span class="line">    kl_loss = -<span class="number">0.5</span> * K.<span class="built_in">sum</span>(<span class="number">1</span> + z_log_var - K.square(z_mean) - K.exp(z_log_var), axis=-<span class="number">1</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">type</span>(kl_loss))</span><br><span class="line">    <span class="keyword">return</span> xent_loss + kl_loss</span><br></pre></td></tr></table></figure>
+<p>这是变分自编码的自定义损失函数，从中可以发现分别得到两种张量：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">xent_loss --&gt; tensorflow.python.framework.ops.Tensor</span><br><span class="line">kl_loss --&gt; tensorflow.python.keras.engine.keras_tensor.KerasTensor</span><br></pre></td></tr></table></figure>
+<p>自定义函数的输入是KerasTensor，但是默认的loss函数输出的是Tensor，KerasTensor和Tensor是完全不同的类，kera_tensor源码中可以发现Keras可以将Tensor转成KerasTensor，但是没发现将KerasTensor转成Tensor的部分。。。<br>所以。。。我们可以说：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">Tensor+KerasTensor = KerasTensor</span><br></pre></td></tr></table></figure>
+<p>但是keras自定义损失函数输入的是KerasTensor，默认输出的是Tensor，而这里会导致输出KerasTensor，所以就报错了。</p>
+<p><strong>解决方案：</strong> 我采用的解决方案如下：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 一般情况下采用该代码能够解决问题，可以发现函数返回结果已经转化成tensorflow.python.framework.ops.Tensor类了</span></span><br><span class="line"><span class="keyword">from</span> tensorflow.python.framework.ops <span class="keyword">import</span> disable_eager_execution</span><br><span class="line">disable_eager_execution()</span><br></pre></td></tr></table></figure>
+<p>所以keras还是避免使用吧，还是用的不太灵活的亚子，我还是老老实实学明白tensorflow怎么用吧~</p>
+]]></content>
+      <categories>
+        <category>解决方案</category>
+      </categories>
+      <tags>
+        <tag>tensorflow</tag>
+        <tag>keras</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>python中base64模块解码报错“Incorrect padding”</title>
+    <url>/2021/08/10/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/10.python%E4%B8%ADbase64%E6%A8%A1%E5%9D%97%E8%A7%A3%E7%A0%81%E6%8A%A5%E9%94%99%E2%80%9CIncorrect%20padding%E2%80%9D/</url>
+    <content><![CDATA[<h4 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a><strong>问题描述</strong></h4><p>解码被base64编码过的字段信息，在base64编码解码工具中正常解码，但在python下的模块base64、binascii中的b64decode、a2b_base64等方法中出现解码报错<br><strong>报错信息如下</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">---------------------------------------------------------------------------</span><br><span class="line">Error                                     Traceback (most recent call last)</span><br><span class="line">&lt;ipython-<span class="built_in">input</span>-<span class="number">11</span>-787bc11958b4&gt; <span class="keyword">in</span> get_proxies(urls)</span><br><span class="line">     <span class="number">14</span>         <span class="keyword">try</span>:</span><br><span class="line">---&gt; <span class="number">15</span>             raw = base64.b64decode(response)</span><br><span class="line">     <span class="number">16</span>         <span class="keyword">except</span> Exception <span class="keyword">as</span> r:</span><br><span class="line"></span><br><span class="line">c:\program files\python3\lib\base64.py <span class="keyword">in</span> b64decode(s, altchars, validate)</span><br><span class="line">     <span class="number">86</span>         <span class="keyword">raise</span> binascii.Error(<span class="string">&#x27;Non-base64 digit found&#x27;</span>)</span><br><span class="line">---&gt; <span class="number">87</span>     <span class="keyword">return</span> binascii.a2b_base64(s)</span><br><span class="line">     <span class="number">88</span> </span><br><span class="line"></span><br><span class="line">Error: Incorrect padding</span><br></pre></td></tr></table></figure>
+
+<h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><p>python中的base64是4个4个的读取的，所以待解码的字段应当为4的倍数，不足添‘&#x3D;’</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 对待解码的字段a进行判断，若为4的倍数则不变，反之缺多少补多少</span></span><br><span class="line">a = a + <span class="string">&#x27;=&#x27;</span> * (<span class="number">4</span> - <span class="built_in">len</span>(a) % <span class="number">4</span>) <span class="keyword">if</span> <span class="built_in">len</span>(a) % <span class="number">4</span> != <span class="number">0</span> <span class="keyword">else</span> a</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>解决方案</category>
+      </categories>
+      <tags>
+        <tag>base64</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>hadoop集群搭建踩坑</title>
+    <url>/2021/08/20/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/11.hadoop%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA%E8%B8%A9%E5%9D%91/</url>
+    <content><![CDATA[<blockquote>
+<p><strong>问题1：</strong><br>第一次启动集群前需要将master进行hdfs格式化</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hdfs namenode -format</span><br></pre></td></tr></table></figure>
+<p>注：若以后想要再次格式化需关闭所有namenode、datanode，并删除hadoop目录下data、logs文件夹</p>
+<blockquote>
+<p><strong>问题2：</strong><br>启动报错“Attempting to operate on hdfs namenode as root”</p>
+</blockquote>
+<p>可在&#x2F;etc&#x2F;profile.d中添加一个sh脚本注入环境变量，脚本内容如下</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> HDFS_NAMENODE_USER=root</span><br><span class="line"><span class="built_in">export</span> HDFS_DATANODE_USER=root</span><br><span class="line"><span class="built_in">export</span> HDFS_SECONDARYNAMENODE_USER=root</span><br><span class="line"><span class="built_in">export</span> YARN_RESOURCEMANAGER_USER=root</span><br><span class="line"><span class="built_in">export</span> YARN_NODEMANAGER_USER=root</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>问题3：</strong><br>jps命令查询后发现datanode、namenode、nodemanager都正常启动了，唯独不见resourcemanager</p>
+</blockquote>
+<p>启动集群时，不应直接调用.&#x2F;start-all.sh，应当在master上调用.&#x2F;start-dfs.sh，在<strong>准备部署resourcemanager的服务器</strong>上调用.&#x2F;start-yarn.sh</p>
+<blockquote>
+<p><strong>问题4：</strong><br>localhost: mv: 无法获取“XXX”状态信息</p>
+</blockquote>
+<p>要么是xml文件配置存在错误，要么是防火墙存在问题<br>centos7关闭开启防火墙命令如下：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#关闭防火墙：</span></span><br><span class="line">systemctl stop firewalld.service</span><br><span class="line"><span class="comment">#开启防火墙：</span></span><br><span class="line">systemctl start firewalld.service</span><br><span class="line"><span class="comment">#关闭开机启动：</span></span><br><span class="line">systemctl <span class="built_in">disable</span> firewalld.service</span><br><span class="line"><span class="comment">#开启开机启动：</span></span><br><span class="line">systemctl <span class="built_in">enable</span> firewalld.service</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>问题5：</strong><br>secondnamenode可视化查看网页打不开</p>
+</blockquote>
+<p>同上</p>
+<blockquote>
+<p><strong>问题6：</strong><br>启动nodemanagers时报出警告“localhost: Warning: Permanently added ‘localhost’ (ECDSA) to the list of known hosts.”</p>
+</blockquote>
+<p>删除hadoop&#x2F;etc&#x2F;hadoop&#x2F;workers文件中的localhost一行即可</p>
+]]></content>
+      <categories>
+        <category>解决方案</category>
+      </categories>
+      <tags>
+        <tag>集群搭建</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>解决ubuntu使用Dash to dock后休眠出现重影两个dock</title>
+    <url>/2021/08/31/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/12.%E8%A7%A3%E5%86%B3ubuntu%E4%BD%BF%E7%94%A8Dash%20to%20dock%E5%90%8E%E4%BC%91%E7%9C%A0%E5%87%BA%E7%8E%B0%E9%87%8D%E5%BD%B1%E4%B8%A4%E4%B8%AAdock/</url>
+    <content><![CDATA[<h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><p>卸载系统自带的Dock，命令如下：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt remove gnome-shell-extension-ubuntu-dock</span><br></pre></td></tr></table></figure>
+
+<p>如果以后需要重新使用原生dock，安装命令如下：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">udo apt install gnome-shell-extension-ubuntu-dock</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>解决方案</category>
+      </categories>
+      <tags>
+        <tag>ubuntu</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>tensorflow报错显存不够的应对措施</title>
+    <url>/2021/09/13/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/13.tensorflow%E6%8A%A5%E9%94%99%E6%98%BE%E5%AD%98%E4%B8%8D%E5%A4%9F%E7%9A%84%E5%BA%94%E5%AF%B9%E6%8E%AA%E6%96%BD/</url>
+    <content><![CDATA[<p>简单粗暴</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># tensorflow 内存不够的情况 适用于tensorflow 2.x</span></span><br><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"></span><br><span class="line">os.environ[<span class="string">&quot;CUDA_VISIBLE_DEVICES&quot;</span>] = <span class="string">&quot;0&quot;</span>  <span class="comment"># 指定显卡</span></span><br><span class="line">config = tf.compat.v1.ConfigProto(allow_soft_placement=<span class="literal">True</span>)  <span class="comment"># 开启软放置，OP放到CPU上了，为啥源码默认值是7？</span></span><br><span class="line">config.gpu_options.per_process_gpu_memory_fraction = <span class="number">0.3</span>  <span class="comment"># 进程最多采用30%显存，默认是1，完整使用</span></span><br><span class="line">tf.compat.v1.keras.backend.set_session(tf.compat.v1.Session(config=config))</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>解决方案</category>
+      </categories>
+      <tags>
+        <tag>tensorflow</tag>
+        <tag>OOM</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>java中的编码转换</title>
+    <url>/2021/10/20/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/14.java%E4%B8%AD%E7%9A%84%E7%BC%96%E7%A0%81%E8%BD%AC%E6%8D%A2/</url>
+    <content><![CDATA[<p>在正常javaweb开发中经常会发现字符转换的需求，会存在中文字符转换乱码的现象，如何解决以及其转换原理我至今懵懵懂懂，于是专门写了个测试代码进行尝试，总算理清了编码，先上结论，总结如下：</p>
+<blockquote>
+<p>utf8中存放有各种语言编码，当前主流开发中会使用utf8进行编码解码，该方式不会产生乱码，产生乱码有以下几种情况<br>1、gbk（中文）、iso-8859-1（无中文）等其他方式进行编码，则只能用其对应方式进行解码，否则为乱码<br>2、使用utf8进行编码用其他方式解码则会导致乱码，需进行一次转换<br>3、使用无对应字符（中文）的字符集（iso-8859-1）编码会导致乱码，且无法还原解码</p>
+</blockquote>
+<p>以下是针对以上情况的代码测试<br>1.如何编码就如何解码</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 测试编码转换 中文 =&gt; utf-8 编码 - 解码</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test0</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">String</span> <span class="variable">test</span> <span class="operator">=</span> <span class="string">&quot;测试&quot;</span>;</span><br><span class="line">    System.out.println(Arrays.toString(test.getBytes(StandardCharsets.UTF_8)));<span class="comment">//[-26, -75, -117, -24, -81, -107]</span></span><br><span class="line">    System.out.println(<span class="keyword">new</span> <span class="title class_">String</span>(test.getBytes(StandardCharsets.UTF_8), StandardCharsets.UTF_8));<span class="comment">//测试</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 测试编码转换 中文 =&gt; gbk 编码 - 解码</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test1</span><span class="params">()</span> <span class="keyword">throws</span> UnsupportedEncodingException &#123;</span><br><span class="line">    <span class="type">String</span> <span class="variable">test</span> <span class="operator">=</span> <span class="string">&quot;测试&quot;</span>;</span><br><span class="line">    System.out.println(Arrays.toString(test.getBytes(<span class="string">&quot;gbk&quot;</span>)));<span class="comment">//[-78, -30, -54, -44]</span></span><br><span class="line">    System.out.println(<span class="keyword">new</span> <span class="title class_">String</span>(test.getBytes(<span class="string">&quot;gbk&quot;</span>), <span class="string">&quot;GBK&quot;</span>));<span class="comment">//测试</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>utf8编码 - 错误形式解码</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 测试编码转换 中文 =&gt; utf-8 编码- gbk解码</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test2</span><span class="params">()</span> <span class="keyword">throws</span> UnsupportedEncodingException &#123;</span><br><span class="line">    <span class="type">String</span> <span class="variable">test</span> <span class="operator">=</span> <span class="string">&quot;测试&quot;</span>;</span><br><span class="line">    System.out.println(Arrays.toString(test.getBytes(StandardCharsets.UTF_8)));<span class="comment">//[-26, -75, -117, -24, -81, -107]</span></span><br><span class="line">    System.out.println(<span class="keyword">new</span> <span class="title class_">String</span>(test.getBytes(StandardCharsets.UTF_8), <span class="string">&quot;gbk&quot;</span>));<span class="comment">//娴嬭瘯</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>正确做法，按错误的解码形式（gbk）作为<strong>中转</strong>，将其按错误形式（gbk）重新<strong>还原编码</strong>（utf8-encode），再使用utf8进行一次<strong>正确解码</strong>（utf8-decode）即可得到原来的字符</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 测试编码转换 中文 =&gt; utf-8 编码 - gbk 解码 ===&gt; gbk 编码 - utf-8解码</span></span><br><span class="line"><span class="comment"> * &quot;测试&quot; =&gt; (utf8-encode)[-26, -75, -117, -24, -81, -107] =&gt; (gbk-decode)娴嬭瘯</span></span><br><span class="line"><span class="comment"> * &quot;娴嬭瘯&quot; =&gt; (utf8-encode)[-26, -75, -117, -24, -81, -107] =&gt; (utf8-decode)&quot;测试&quot;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test3</span><span class="params">()</span> <span class="keyword">throws</span> UnsupportedEncodingException &#123;</span><br><span class="line">    <span class="type">String</span> <span class="variable">test</span> <span class="operator">=</span> <span class="string">&quot;测试&quot;</span>;</span><br><span class="line">    <span class="type">String</span> <span class="variable">test_gbk_utf8</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">String</span>(test.getBytes(StandardCharsets.UTF_8), <span class="string">&quot;gbk&quot;</span>);</span><br><span class="line">    System.out.println(test_gbk_utf8);<span class="comment">//娴嬭瘯</span></span><br><span class="line">    <span class="type">String</span> <span class="variable">test_utf8_gbk</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">String</span>(test_gbk_utf8.getBytes(<span class="string">&quot;gbk&quot;</span>), StandardCharsets.UTF_8);</span><br><span class="line">    System.out.println(test_utf8_gbk);<span class="comment">//测试</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>3.无对应字符编码</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test4</span><span class="params">()</span> <span class="keyword">throws</span> UnsupportedEncodingException &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">test</span> <span class="operator">=</span> <span class="string">&quot;测试&quot;</span>;</span><br><span class="line">        System.out.println(Arrays.toString(test.getBytes(StandardCharsets.ISO_8859_1)));<span class="comment">//[63, 63]</span></span><br><span class="line">        System.out.println(<span class="keyword">new</span> <span class="title class_">String</span>(test.getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.ISO_8859_1));<span class="comment">//??</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>该情况下即使使用原先的编码方式进行解码也无法还原字符了，属于不可逆的状态</p>
+]]></content>
+      <categories>
+        <category>解决方案</category>
+      </categories>
+      <tags>
+        <tag>编码转换</tag>
+        <tag>utf-8</tag>
+        <tag>gbk</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>IDEA热部署无效</title>
+    <url>/2021/10/20/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/15.IDEA%E7%83%AD%E9%83%A8%E7%BD%B2%E6%97%A0%E6%95%88/</url>
+    <content><![CDATA[<p>遇到这样的问题，我觉既不是没有设置“更新类和资源”，也不是啥插件问题，更和自动编译没啥关系<br>而是没有以<strong>debug</strong>模式运行！！<br>以run模式运行的话热部署是不起作用的。</p>
+]]></content>
+      <categories>
+        <category>解决方案</category>
+      </categories>
+      <tags>
+        <tag>热部署</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Failed to locate the winutils binary in the hadoop binary path</title>
+    <url>/2021/10/28/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/16.Failed%20to%20locate%20the%20winutils%20binary%20in%20the%20hadoop%20binary%20path/</url>
+    <content><![CDATA[<h4 id="一、问题描述"><a href="#一、问题描述" class="headerlink" title="一、问题描述"></a>一、问题描述</h4><p>win10环境下，intellj初次运行spark程序报错<code>ERROR Shell Failed to locate the winutils binary in the hadoop binary path</code></p>
+<p><img data-src="https://blog.oss.langzihan.top/images/intellj%E8%BF%90%E8%A1%8Cspark%E7%A8%8B%E5%BA%8F%E6%8A%A5%E9%94%99%20ERROR%20Shell%20Failed%20to%20locate%20the%20winutils%20binary%20in%20the%20hadoop%20binary%20path/a8075b632eb099431b8fc17bb3ae60cb.png" alt="image-20211028091940008"></p>
+<h4 id="二、解决方案"><a href="#二、解决方案" class="headerlink" title="二、解决方案"></a>二、解决方案</h4><p>前提下载好对应版本的<a href="https://github.com/CedricXu7/winutils">winutils.exe</a>并复制到hadoop的bin目录中，然后有以下三种解决方案：</p>
+<p>① 系统设置环境变量HADOOP_HOME，并且重启intellj以应用</p>
+<p>② 代码块最前面设定hadoop目录，<code>System.setProperty(&quot;hadoop.home.dir&quot;,&quot;D:\\hadoop-3.2.0&quot;)</code></p>
+<p>③ 在intellj运行配置中添加环境变量</p>
+<p><img data-src="https://blog.oss.langzihan.top/images/intellj%E8%BF%90%E8%A1%8Cspark%E7%A8%8B%E5%BA%8F%E6%8A%A5%E9%94%99%20ERROR%20Shell%20Failed%20to%20locate%20the%20winutils%20binary%20in%20the%20hadoop%20binary%20path/56b80eca87ffbcd885a4b6700b80ba28.png" alt="image-20211028093018934"></p>
+<p><img data-src="https://blog.oss.langzihan.top/images/intellj%E8%BF%90%E8%A1%8Cspark%E7%A8%8B%E5%BA%8F%E6%8A%A5%E9%94%99%20ERROR%20Shell%20Failed%20to%20locate%20the%20winutils%20binary%20in%20the%20hadoop%20binary%20path/28b5965924fcf9fd069b423f6ef6b65e.png" alt="image-20211028093119415"></p>
+<p><img data-src="https://blog.oss.langzihan.top/images/intellj%E8%BF%90%E8%A1%8Cspark%E7%A8%8B%E5%BA%8F%E6%8A%A5%E9%94%99%20ERROR%20Shell%20Failed%20to%20locate%20the%20winutils%20binary%20in%20the%20hadoop%20binary%20path/dcfe010e4292845f12e21c63ce6e8d60.png" alt="image-20211028145647619"></p>
+<p>收工！</p>
+]]></content>
+      <categories>
+        <category>解决方案</category>
+      </categories>
+      <tags>
+        <tag>spark</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>DruidDataSource异常</title>
+    <url>/2021/11/18/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/17.DruidDataSource%E5%BC%82%E5%B8%B8/</url>
+    <content><![CDATA[<p>部署一个开源项目报错</p>
+<p><code>ERROR com.alibaba.druid.pool.DruidDataSource - init datasource error, url jdbcmysql://</code></p>
+<p>很明显是数据库连接错误</p>
+<p>但排除一下错误后，我才算找到真正的错误原因</p>
+<blockquote>
+<p>数据库连接地址错误</p>
+<p>网络问题</p>
+<p>用户名密码错误</p>
+</blockquote>
+<p>最后发现是开源项目自带的<code>mysql</code>驱动版本有问题，和我安装的<code>mysql</code>对不上</p>
+<p><strong>解决方法</strong>：</p>
+<p>去<code>pom.xml</code>中删除<code>mysql</code>的版本信息，默认即可，如下</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>mysql<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mysql-connector-java<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>解决方案</category>
+      </categories>
+      <tags>
+        <tag>DruidDataSource</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>lombok包的@Data注解报错找不到符号</title>
+    <url>/2021/11/24/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/18.IDEA%20lombok%E5%8C%85%E7%9A%84@Data%E6%B3%A8%E8%A7%A3%E6%8A%A5%E9%94%99%E6%89%BE%E4%B8%8D%E5%88%B0%E7%AC%A6%E5%8F%B7/</url>
+    <content><![CDATA[<h4 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h4><p>工程编译报错<br><code>java:找不到符号</code></p>
+<h4 id="问题抽象"><a href="#问题抽象" class="headerlink" title="问题抽象"></a>问题抽象</h4><p>定位错误可以发现是getter setter的问题<br>由于采用了@Data注解，所以优先考虑是lombok的问题</p>
+<h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><p>首先排除以下可能</p>
+<blockquote>
+<p>lombok插件未安装<br>设置中注解处理未打开</p>
+</blockquote>
+<p>那么剩下的问题就是pom.xml文件中的版本设置里，调整为以下</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.projectlombok<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>lombok<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">scope</span>&gt;</span>compile<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>完美解决！</p>
+]]></content>
+      <categories>
+        <category>解决方案</category>
+      </categories>
+      <tags>
+        <tag>maven</tag>
+        <tag>lombok</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>BindingResult中拦截不到错误</title>
+    <url>/2021/11/29/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/19.BindingResult%E4%B8%AD%E6%8B%A6%E6%88%AA%E4%B8%8D%E5%88%B0%E9%94%99%E8%AF%AF/</url>
+    <content><![CDATA[<h4 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h4><p>采用JSR303规范的validation库进行后端验证，但是使用BindingResult对象后却获取不到错误信息<br>局部代码如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@TableName(&quot;pms_brand&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">BrandEntity</span> <span class="keyword">implements</span> <span class="title class_">Serializable</span> &#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">long</span> <span class="variable">serialVersionUID</span> <span class="operator">=</span> <span class="number">1L</span>;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@TableId</span></span><br><span class="line">	<span class="keyword">private</span> Long brandId;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@NotEmpty</span></span><br><span class="line">	<span class="meta">@NotBlank(message = &quot;品牌名不能为空&quot;)</span></span><br><span class="line">	<span class="keyword">private</span> String name;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(&quot;/save&quot;)</span></span><br><span class="line"><span class="keyword">public</span> R <span class="title function_">save</span><span class="params">(<span class="meta">@Valid</span> <span class="meta">@RequestBody</span> BrandEntity brand, BindingResult result)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (result.hasErrors()) &#123;</span><br><span class="line">        Map&lt;String, String&gt; map = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">        result.getFieldErrors().forEach((item)-&gt;&#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">message</span> <span class="operator">=</span> item.getDefaultMessage();</span><br><span class="line">        <span class="type">String</span> <span class="variable">field</span> <span class="operator">=</span> item.getField();</span><br><span class="line">        map.put(field, message);</span><br><span class="line">    &#125;);</span><br><span class="line">        <span class="keyword">return</span> R.error(<span class="number">400</span>, <span class="string">&quot;提交数据不合法&quot;</span>).put(<span class="string">&quot;data&quot;</span>, map);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        brandService.save(brand);</span><br><span class="line">        <span class="keyword">return</span> R.ok();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><p>仔细排除后发现实际代码并没有什么问题，debug后也发现result对象中的errors字段中并没有获取到错误对象，最后通过修改pom文件中的依赖解决了这种问题，在pom中应包含有如下两个依赖，<strong>缺一不可</strong>，我就是漏了hibernate-validator导致的错误</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>javax.validation<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>validation-api<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.0.1.Final<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.hibernate.validator<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>hibernate-validator<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>7.0.0.Alpha3<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>解决方案</category>
+      </categories>
+      <tags>
+        <tag>jsr303</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>虚拟机下ubuntu server扩容方案</title>
+    <url>/2022/05/07/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/20.%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%B8%8Bubuntu%20server%E6%89%A9%E5%AE%B9%E6%96%B9%E6%A1%88/</url>
+    <content><![CDATA[<p>总的来说，虚拟机下的ubuntu扩容分为三步：</p>
+<p>1、虚拟机扩容</p>
+<p>2、进入系统对多出来的容量新建分区</p>
+<p>3、将新分区挂在到指定目录并完成固化</p>
+<h1 id="虚拟机扩容"><a href="#虚拟机扩容" class="headerlink" title="虚拟机扩容"></a>虚拟机扩容</h1><p>这点没什么好说，VMware的虚拟机扩容得先删掉所有快照，不然没法扩容只能加磁盘</p>
+<h1 id="新建分区"><a href="#新建分区" class="headerlink" title="新建分区"></a>新建分区</h1><p>1、将多出来的内存新建分区</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">新建目录用于挂载新分出来的分区</span></span><br><span class="line">mkdir /data</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">进如root模式，不进也行，每个命令前加上sudo就行</span></span><br><span class="line">su root</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">进入fdisk交互式命令行</span></span><br><span class="line">fdisk /dev/sda</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">输入 m 可以查看命令说明</span></span><br><span class="line">Command (m for help): m</span><br><span class="line"></span><br><span class="line">Help:</span><br><span class="line"></span><br><span class="line">  Generic</span><br><span class="line">   d   delete a partition</span><br><span class="line">   F   list free unpartitioned space</span><br><span class="line">   l   list known partition types</span><br><span class="line">   n   add a new partition</span><br><span class="line">   p   print the partition table</span><br><span class="line">   t   change a partition type</span><br><span class="line">   v   verify the partition table</span><br><span class="line">   i   print information about a partition</span><br><span class="line"></span><br><span class="line">  Misc</span><br><span class="line">   m   print this menu</span><br><span class="line">   x   extra functionality (experts only)</span><br><span class="line"></span><br><span class="line">  Script</span><br><span class="line">   I   load disk layout from sfdisk script file</span><br><span class="line">   O   dump disk layout to sfdisk script file</span><br><span class="line"></span><br><span class="line">  Save &amp; Exit</span><br><span class="line">   w   write table to disk and exit</span><br><span class="line">   q   quit without saving changes</span><br><span class="line"></span><br><span class="line">  Create a new label</span><br><span class="line">   g   create a new empty GPT partition table</span><br><span class="line">   G   create a new empty SGI (IRIX) partition table</span><br><span class="line">   o   create a new empty DOS partition table</span><br><span class="line">   s   create a new empty Sun partition table</span><br><span class="line">   </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">1、输入 n 新建分区，一切默认回车即可</span></span><br><span class="line">Command (m for help): n</span><br><span class="line">Partition number (6-128, default 6): </span><br><span class="line">First sector (41940992-104857566, default 41940992): </span><br><span class="line">Last sector, +sectors or +size&#123;K,M,G,T,P&#125; (41940992-104857566, default 104857566): </span><br><span class="line"></span><br><span class="line">Created a new partition 6 of type &#x27;Linux filesystem&#x27; and of size 30 GiB.</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">2、输入 p 查看新建分区情况，sda6就是新分区</span></span><br><span class="line">Command (m for help): p</span><br><span class="line">Disk /dev/sda: 50 GiB, 53687091200 bytes, 104857600 sectors</span><br><span class="line">Units: sectors of 1 * 512 = 512 bytes</span><br><span class="line">Sector size (logical/physical): 512 bytes / 512 bytes</span><br><span class="line">I/O size (minimum/optimal): 512 bytes / 512 bytes</span><br><span class="line">Disklabel type: gpt</span><br><span class="line">Disk identifier: D7617B57-3A11-4B5B-B28D-FE5A8EEAD05D</span><br><span class="line"></span><br><span class="line">Device        Start       End  Sectors Size Type</span><br><span class="line">/dev/sda1      2048      4095     2048   1M BIOS boot</span><br><span class="line">/dev/sda2      4096   2101247  2097152   1G Linux filesystem</span><br><span class="line">/dev/sda3   2101248   8392703  6291456   3G Linux swap</span><br><span class="line">/dev/sda4   8392704  29364223 20971520  10G Linux filesystem</span><br><span class="line">/dev/sda5  29364224  41940991 12576768   6G Linux filesystem</span><br><span class="line">/dev/sda6  41940992 104857566 62916575  30G Linux filesystem</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">3、输入 w 保存分区，此时<span class="built_in">df</span> -lh还看不到新建的分区</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">4、格式化sda6分区，至此分区新建完成</span></span><br><span class="line">mkfs -t /dev/sda6</span><br></pre></td></tr></table></figure>
+
+<h1 id="挂载分区"><a href="#挂载分区" class="headerlink" title="挂载分区"></a>挂载分区</h1><p>只有将分区挂载到指定目录上，这个空间才能投入使用</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mount /dev/sda6 /data</span><br></pre></td></tr></table></figure>
+
+<p>但是这样挂载的目录有一个缺陷，重启后就没了，还得重新挂载，所以需要执行固化</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">1、确定分区uuid</span></span><br><span class="line">blkid /dev/sda6</span><br></pre></td></tr></table></figure>
+
+<p><code>/dev/sda6: UUID=&quot;01c6810e-738f-47c2-882f-2451b93a163d&quot; TYPE=&quot;ext4&quot; PARTUUID=&quot;212a7071-d49e-0f41-95df-b7a35eef881b&quot;</code></p>
+<p>复制下UUID的值，后面需要使用</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">2、将分区信息固化到系统配置信息中</span></span><br><span class="line">vim /etc/fstab</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">参照原文件格式编写</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">/etc/fstab: static file system information.</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"></span></span><br><span class="line"><span class="language-bash"><span class="comment"># Use &#x27;blkid&#x27; to print the universally unique identifier for a</span></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">device; this may be used with UUID= as a more robust way to name devices</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">that works even <span class="keyword">if</span> disks are added and removed. See fstab(5).</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"></span></span><br><span class="line"><span class="language-bash"><span class="comment"># &lt;file system&gt; &lt;mount point&gt;   &lt;type&gt;  &lt;options&gt;       &lt;dump&gt;  &lt;pass&gt;</span></span></span><br><span class="line">/dev/disk/by-uuid/bfae9057-2637-4bdb-b355-395ab9ca30f1 none swap sw 0 0</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">/ was on /dev/sda4 during curtin installation</span></span><br><span class="line">/dev/disk/by-uuid/9bdde825-6d74-45e2-bbf5-0b497e0d0fcf / ext4 defaults 0 1</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">/home was on /dev/sda5 during curtin installation</span></span><br><span class="line">/dev/disk/by-uuid/40ca4129-cacf-4d8b-a213-fd3c654ca1ce /home ext4 defaults 0 1</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">/boot was on /dev/sda2 during curtin installation</span></span><br><span class="line">/dev/disk/by-uuid/1e0131bc-9662-41b6-81e7-9a5db92f3509 /boot ext4 defaults 0 1</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">参照/home的挂载配置，追加上相似的配置信息</span></span><br><span class="line">/dev/disk/by-uuid/01c6810e-738f-47c2-882f-2451b93a163d /data ext4 defaults 0 1</span><br><span class="line">/swap.img       none    swap    sw      0       0</span><br></pre></td></tr></table></figure>
+
+<p>保存文件，重启系统，至此完成扩容，重启后就可以在<code>df -lh</code>中看到相关容量信息了</p>
+]]></content>
+      <categories>
+        <category>解决方案</category>
+      </categories>
+      <tags>
+        <tag>VMware</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>anaconda安装虚拟环境后pip异常</title>
+    <url>/2022/10/19/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/21.anaconda%E5%AE%89%E8%A3%85%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E5%90%8Epip%E5%BC%82%E5%B8%B8/</url>
+    <content><![CDATA[<h1 id="问题前置"><a href="#问题前置" class="headerlink" title="问题前置"></a>问题前置</h1><p>anaconda安装虚拟环境，删了又装，装了又删几次往复，然后导致pip异常，报以下错误：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">Traceback (most recent call last):</span><br><span class="line">  File &quot;C:\Users\xuxingchen\.conda\envs\cv\Scripts\pip-script.py&quot;, line 6, in &lt;module&gt;</span><br><span class="line">    from pip._internal.cli.main import main</span><br><span class="line">  File &quot;C:\Users\xuxingchen\.conda\envs\cv\lib\site-packages\pip\__init__.py&quot;, line 1, in &lt;module&gt; </span><br><span class="line">    from pip._internal.utils.typing import MYPY_CHECK_RUNNING</span><br><span class="line">ModuleNotFoundError: No module named &#x27;pip._internal&#x27;</span><br></pre></td></tr></table></figure>
+<p>并且执行<code>python -m ensurepip</code>查看后发现pip版本为9.x，所以直接判定pip存在版本冲突所以异常了</p>
+<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><p>1.删除出现问题的虚拟环境下中的<code>\envs\cv\Lib\site-packages\pip</code>文件夹<br>2.将正常环境下的<code>\envs\cv\Lib\site-packages\pip</code>文件夹拷贝一份放进去<br>同理还要对其他冲突的模块也操作一番</p>
+<p>收工，最后遇到这种问题最简单的方式是换个虚拟环境名重新建一个~~</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Matplotlib is currently using agg</title>
+    <url>/2022/12/01/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/22.Matplotlib%20is%20currently%20using%20agg/</url>
+    <content><![CDATA[<h1 id="问题报错"><a href="#问题报错" class="headerlink" title="问题报错"></a>问题报错</h1><p>pyplot存在大量绘图时报以下错误：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">Matplotlib is currently using agg, which is a non-GUI backend, so cannot show the figure</span><br></pre></td></tr></table></figure>
+
+<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><p>在报出异常的py文件中导包末尾部分追加</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib</span><br><span class="line">matplotlib.use(<span class="string">&#x27;TkAgg&#x27;</span>)</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>解决方案</category>
+      </categories>
+      <tags>
+        <tag>Matplotlib</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>解决Sub-process usrbindpkg returned an error code (1)</title>
+    <url>/2022/12/20/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/23.%E8%A7%A3%E5%86%B3Sub-process%20usrbindpkg%20returned%20an%20error%20code%20(1)/</url>
+    <content><![CDATA[<p> 转载源：<a href="https://blog.csdn.net/qq_44060543/article/details/124101863">https://blog.csdn.net/qq_44060543/article/details/124101863</a></p>
+<h1 id="问题报错"><a href="#问题报错" class="headerlink" title="问题报错"></a>问题报错</h1><p>apt-get执行安装后报以下错误：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">apt-get 报错 Sub-process usrbindpkg returned an error code (1)</span><br></pre></td></tr></table></figure>
+
+<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">cd /var/lib/dpkg/</span><br><span class="line">sudo mv info/ info_bak          <span class="comment"># 现将info文件夹更名</span></span><br><span class="line">sudo mkdir info                 <span class="comment"># 再新建一个新的info文件夹</span></span><br><span class="line">sudo apt-get update             <span class="comment"># 更新</span></span><br><span class="line">sudo apt-get -f install         <span class="comment"># 修复</span></span><br><span class="line">sudo mv info/* info_bak/        <span class="comment"># 执行完上一步操作后会在新的info文件夹下生成一些文件，现将这些文件全部移到info_bak文件夹下</span></span><br><span class="line">sudo rm -rf info                <span class="comment"># 把自己新建的info文件夹删掉</span></span><br><span class="line">sudo mv info_bak info           <span class="comment"># 把以前的info文件夹重新改回名</span></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>解决方案</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>git取消超过范围大文件并重新提交</title>
+    <url>/2023/04/17/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/24.git%E5%8F%96%E6%B6%88%E8%B6%85%E8%BF%87%E8%8C%83%E5%9B%B4%E5%A4%A7%E6%96%87%E4%BB%B6%E5%B9%B6%E9%87%8D%E6%96%B0%E6%8F%90%E4%BA%A4/</url>
+    <content><![CDATA[<h1 id="问题报错"><a href="#问题报错" class="headerlink" title="问题报错"></a>问题报错</h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">remote: error: File: db383b59a623629b36cc62dd3917db21c1375cf0 690.93 MB, exceeds 100.00 MB.</span><br></pre></td></tr></table></figure>
+
+<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><ol>
+<li>定位大文件位置 <code>git rev-list --objects --all | grep db383b59a623629b36cc62dd3917db21c1375cf0</code></li>
+<li>查看push失败的commit版本号 <code>git log</code></li>
+<li>回滚到无误的commit版本 <code>git reset 699db94c8edea41205b34923ae2cefb9b7dcc1d3</code></li>
+<li>定义大文件规则纳入<code>gitignore</code></li>
+<li>重新 <code>add</code> <code>commit</code> <code>push</code>三连</li>
+</ol>
+]]></content>
+      <categories>
+        <category>解决方案</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>golang交叉编译</title>
+    <url>/2023/10/17/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/25.golang%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91/</url>
+    <content><![CDATA[<p>记一次window平台下的golang交叉编译命令</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">编译linux平台</span></span><br><span class="line">go env -w  CGO_ENABLED=0  GOOS=linux  GOARCH=amd64 ; go build</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">编译macos平台</span></span><br><span class="line">go env -w  CGO_ENABLED=0  GOOS=darwin  GOARCH=amd64 ; go build</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>解决方案</category>
+      </categories>
+      <tags>
+        <tag>golang</tag>
+        <tag>交叉编译</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>python310_d.lib导致无法解析的外部符号的异常</title>
+    <url>/2023/12/14/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/26.python310_d.lib%E5%AF%BC%E8%87%B4%E6%97%A0%E6%B3%95%E8%A7%A3%E6%9E%90%E7%9A%84%E5%A4%96%E9%83%A8%E7%AC%A6%E5%8F%B7%E7%9A%84%E5%BC%82%E5%B8%B8/</url>
+    <content><![CDATA[<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>在学习C++调用python的过程中发现，和python不一样要想实现debug必须调用debug的包，而默认python安装是release的包，经过安装编译等踩坑操作后发现以下操作可以直接使用</p>
+<blockquote>
+<p>直接将release的<code>python310.lib</code>复制下改个名字成<code>python310_d.lib</code>就能用</p>
+</blockquote>
+<p>但是会报以下错误</p>
+<blockquote>
+<p>无法解析的外部符号 __imp__Py_NegativeRefcount，函数 _Py_DECREF 中引用了该符号</p>
+</blockquote>
+<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><p>实际问题在于debug与release差异造成的，造成差异的函数来自于<code>pyconfig.h</code>、<code>object.h</code></p>
+<p>以下两种方法都能解决这种问题：</p>
+<ul>
+<li>debug模式下直接不用，在cpp代码中加入</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">ifndef</span> _DEBUG</span></span><br><span class="line">...</span><br><span class="line">出现异常的关键代码</span><br><span class="line">...</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>修改源码</p>
+<ul>
+<li><strong>pyconfig.h</strong></li>
+</ul>
+  <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">ifdef</span> _DEBUG</span></span><br><span class="line"><span class="comment">//#       define Py_DEBUG</span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>object.h</strong></li>
+</ul>
+  <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">if</span> defined(Py_DEBUG) &amp;&amp; !defined(Py_REF_DEBUG)</span></span><br><span class="line"><span class="comment">//#  define Py_REF_DEBUG</span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <categories>
+        <category>解决方案</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>pytorch实现LeNet模型MNIST手写识别</title>
+    <url>/2021/08/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/00.pytorch%E5%AE%9E%E7%8E%B0LeNet%E6%A8%A1%E5%9E%8BMNIST%E6%89%8B%E5%86%99%E8%AF%86%E5%88%AB/</url>
+    <content><![CDATA[<h1 id="模块导入，常量参数设定"><a href="#模块导入，常量参数设定" class="headerlink" title="模块导入，常量参数设定"></a>模块导入，常量参数设定</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="keyword">import</span> torch.nn.functional <span class="keyword">as</span> F</span><br><span class="line"><span class="keyword">import</span> torch.optim <span class="keyword">as</span> optim</span><br><span class="line"><span class="keyword">from</span> torchvision <span class="keyword">import</span> datasets, transforms</span><br><span class="line"><span class="keyword">from</span> torchsummary <span class="keyword">import</span> summary</span><br><span class="line"></span><br><span class="line">BATCH_SIZE = <span class="number">512</span></span><br><span class="line">EPOCH = <span class="number">20</span></span><br><span class="line">DEIVCE = torch.device(<span class="string">&#x27;cuda:0&#x27;</span> <span class="keyword">if</span> torch.cuda.is_available() <span class="keyword">else</span> <span class="string">&#x27;cpu&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<h1 id="数据加载"><a href="#数据加载" class="headerlink" title="数据加载"></a>数据加载</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">train_loader = torch.utils.data.DataLoader(</span><br><span class="line">    datasets.MNIST(</span><br><span class="line">        <span class="string">&#x27;data&#x27;</span>, </span><br><span class="line">        train=<span class="literal">True</span>, </span><br><span class="line">        download=<span class="literal">False</span>,</span><br><span class="line">        transform=transforms.Compose([</span><br><span class="line">            transforms.ToTensor(),</span><br><span class="line">            transforms.Normalize((<span class="number">0.1307</span>,), (<span class="number">0.3081</span>,))</span><br><span class="line">        ])),</span><br><span class="line">    batch_size=BATCH_SIZE, shuffle=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">test_loader = torch.utils.data.DataLoader(</span><br><span class="line">    datasets.MNIST(</span><br><span class="line">        <span class="string">&#x27;data&#x27;</span>, </span><br><span class="line">        train=<span class="literal">False</span>, </span><br><span class="line">        transform=transforms.Compose([</span><br><span class="line">            transforms.ToTensor(),</span><br><span class="line">            transforms.Normalize((<span class="number">0.1307</span>,), (<span class="number">0.3081</span>,))</span><br><span class="line">        ])),</span><br><span class="line">    batch_size=BATCH_SIZE, shuffle=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+<h1 id="LeNet模型搭建"><a href="#LeNet模型搭建" class="headerlink" title="LeNet模型搭建"></a>LeNet模型搭建</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">LeNet</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">super</span>(LeNet, self).__init__()</span><br><span class="line">        <span class="comment"># nn.Conv2d(in_channels, out_channels, kernel_size, stride=1, padding=0,dilation=1,groups=1, bias=True）</span></span><br><span class="line">        self.conv1 = nn.Conv2d(<span class="number">1</span>, <span class="number">6</span>, <span class="number">5</span>)  </span><br><span class="line">        self.pool1 = nn.MaxPool2d(<span class="number">2</span>)</span><br><span class="line">        self.conv2 = nn.Conv2d(<span class="number">6</span>, <span class="number">16</span>, <span class="number">3</span>)</span><br><span class="line">        self.pool2 = nn.MaxPool2d(<span class="number">2</span>)</span><br><span class="line">        <span class="comment"># nn.Linear(in_features, out_features, bias=True)</span></span><br><span class="line">        self.fc1   = nn.Linear(<span class="number">16</span>*<span class="number">5</span>*<span class="number">5</span>, <span class="number">120</span>)</span><br><span class="line">        self.fc2   = nn.Linear(<span class="number">120</span>, <span class="number">84</span>)</span><br><span class="line">        self.fc3   = nn.Linear(<span class="number">84</span>, <span class="number">10</span>)</span><br><span class="line">        </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line">        out = F.relu(self.conv1(x))  <span class="comment"># 24</span></span><br><span class="line">        <span class="comment"># nn.MaxPool2d(kernel_size, stride=None, padding=0, dilation=1,return_indices=False,ceil_mode=False)</span></span><br><span class="line">        <span class="comment"># max_pool2d(*args, **kwargs)</span></span><br><span class="line">        out = self.pool1(out)  <span class="comment"># 12</span></span><br><span class="line">        out = F.relu(self.conv2(out))  <span class="comment"># 10</span></span><br><span class="line">        out = self.pool2(out)  <span class="comment"># 5</span></span><br><span class="line">        out = out.view(out.size(<span class="number">0</span>), -<span class="number">1</span>)  <span class="comment"># flatten</span></span><br><span class="line">        out = F.relu(self.fc1(out))</span><br><span class="line">        out = F.relu(self.fc2(out))</span><br><span class="line">        out = self.fc3(out)</span><br><span class="line">        out = F.log_softmax(out,dim=<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> out</span><br></pre></td></tr></table></figure>
+<h1 id="查看模型结构"><a href="#查看模型结构" class="headerlink" title="查看模型结构"></a>查看模型结构</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">model = LeNet()</span><br><span class="line">summary(model, (<span class="number">1</span>,<span class="number">28</span>,<span class="number">28</span>))  </span><br></pre></td></tr></table></figure>
+<h1 id="模型训练测试函数"><a href="#模型训练测试函数" class="headerlink" title="模型训练测试函数"></a>模型训练测试函数</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">model = LeNet().to(device)</span><br><span class="line">optimizer = optim.Adam(model.parameters())</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">train</span>(<span class="params">device, model, train_loader, optimizer, epoch</span>):</span><br><span class="line">    model.train()</span><br><span class="line">    <span class="keyword">for</span> batch_idx, (data, target) <span class="keyword">in</span> <span class="built_in">enumerate</span>(train_loader):</span><br><span class="line">        data, target = data.to(device), target.to(device)</span><br><span class="line">        optimizer.zero_grad()  <span class="comment"># zero all gradients</span></span><br><span class="line">        output = model(data)</span><br><span class="line">        loss = F.nll_loss(output, target)  <span class="comment"># calculate loss</span></span><br><span class="line">        loss.backward()</span><br><span class="line">        optimizer.step()  <span class="comment"># update all parameters</span></span><br><span class="line">        <span class="keyword">if</span> (batch_idx + <span class="number">1</span>) % <span class="number">30</span> == <span class="number">0</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&quot;Train Epoch <span class="subst">&#123;epoch&#125;</span> [<span class="subst">&#123;batch_idx * <span class="built_in">len</span>(data)&#125;</span>/<span class="subst">&#123;<span class="built_in">len</span>(train_loader.dataset)&#125;</span> Loss: <span class="subst">&#123;loss.item():<span class="number">.6</span>f&#125;</span>]&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">test</span>(<span class="params">device, model, test_loader</span>):</span><br><span class="line">    model.<span class="built_in">eval</span>()</span><br><span class="line">    test_loss = <span class="number">0</span></span><br><span class="line">    correct = <span class="number">0</span></span><br><span class="line">    <span class="keyword">with</span> torch.no_grad():</span><br><span class="line">        <span class="keyword">for</span> data, target <span class="keyword">in</span> test_loader:</span><br><span class="line">            data, target = data.to(device), target.to(device)</span><br><span class="line">            output = model(data)  <span class="comment"># predict class probability</span></span><br><span class="line">            test_loss += F.nll_loss(output, target, reduction=<span class="string">&#x27;sum&#x27;</span>).item()  <span class="comment"># superposition whole batch loss</span></span><br><span class="line">            pred = output.<span class="built_in">max</span>(<span class="number">1</span>, keepdim=<span class="literal">True</span>)[<span class="number">1</span>]  <span class="comment"># return max probability index</span></span><br><span class="line">            correct += pred.eq(target.view_as(pred)).<span class="built_in">sum</span>().item()</span><br><span class="line"></span><br><span class="line">    test_loss /= <span class="built_in">len</span>(test_loader.dataset)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&#x27;\nTest Epoch: Average loss: <span class="subst">&#123;test_loss:<span class="number">.4</span>f&#125;</span>, Accuracy: <span class="subst">&#123;correct&#125;</span>/<span class="subst">&#123;<span class="built_in">len</span>(test_loader.dataset)&#125;</span> (<span class="subst">&#123;<span class="number">100.</span> * correct / <span class="built_in">len</span>(test_loader.dataset):<span class="number">.2</span>f&#125;</span>%)\n&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<h1 id="模型训练，测试"><a href="#模型训练，测试" class="headerlink" title="模型训练，测试"></a>模型训练，测试</h1><pre><code class="python">for epoch in range(1, EPOCH + 1):
+    train(DEIVCE, model, train_loader, optimizer, epoch)
+    test(DEIVCE, model, train_loader)
+</code></pre>
+]]></content>
+      <categories>
+        <category>计算机视觉</category>
+      </categories>
+      <tags>
+        <tag>pytorch</tag>
+        <tag>LeNet</tag>
+        <tag>mnist</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>paddlelite模型部署</title>
+    <url>/2023/03/14/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/01.paddlelite%E6%A8%A1%E5%9E%8B%E9%83%A8%E7%BD%B2/</url>
+    <content><![CDATA[<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>对完成训练的paddlehub的可用模型(人脸检测)进行转换，使其能够部署在paddlelite环境下，已完成x86架构linux(ubuntu)中的模型部署</p>
+<h2 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h2><p>linux下配置个新的conda环境用来测试，需要添加opencv模块和paddlelite模块</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda create --name <span class="built_in">test</span> python=3.7</span><br><span class="line">conda activate <span class="built_in">test</span></span><br><span class="line">pip install paddlelite</span><br><span class="line">pip install opencv-python==4.5.1.48</span><br></pre></td></tr></table></figure>
+
+<h2 id="模型转换"><a href="#模型转换" class="headerlink" title="模型转换"></a>模型转换</h2><p>有python脚本和shell脚本两种方式，分别用于windows环境和linux环境</p>
+<ul>
+<li>python脚本</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> paddlelite.lite <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="comment"># 1. 创建opt实例</span></span><br><span class="line">opt = Opt()</span><br><span class="line"><span class="comment"># 2. 指定输入模型地址</span></span><br><span class="line">opt.set_model_dir(<span class="string">r&quot;models\ultra_light_fast_generic_face_detector_1mb_640\ultra_light_fast_generic_face_detector_1mb_640&quot;</span>)</span><br><span class="line"><span class="comment"># 3. 指定转化类型： arm、x86、opencl、xpu、npu</span></span><br><span class="line">opt.set_valid_places(<span class="string">&quot;x86&quot;</span>)</span><br><span class="line"><span class="comment"># 4. 指定模型转化类型： naive_buffer、protobuf</span></span><br><span class="line">opt.set_model_type(<span class="string">&quot;naive_buffer&quot;</span>)</span><br><span class="line"><span class="comment"># 4. 输出模型地址</span></span><br><span class="line">opt.set_optimize_out(<span class="string">r&quot;models\new_models\ultra_light_fast_generic_face_detector_1mb_640&quot;</span>)</span><br><span class="line"><span class="comment"># 5. 执行模型优化</span></span><br><span class="line">opt.run()</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>bash命令，需要先切换到安装paddlelite的环境</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">paddle_lite_opt --model_dir=./ultra_light_fast_generic_face_detector_1mb_640/ultra_light_fast_generic_face_detector_1mb_640 --optimize_out=./new_models/ultra_light_fast_generic_face_detector_1mb_640 --optimize_out_type=naive_buffer --valid_targets=x86</span><br></pre></td></tr></table></figure>
+<p><img data-src="https://blog.oss.langzihan.top/images/model-deploy-base-of-paddlelite/00e9caa951d7b7d468eecc43028668e0.jpg" alt="模型转换"></p>
+<p>通过模型转换获得一个以nb为后缀的模型文件</p>
+<h2 id="模型的加载与使用"><a href="#模型的加载与使用" class="headerlink" title="模型的加载与使用"></a>模型的加载与使用</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> paddlelite.lite <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">image_path = <span class="string">&quot;./faces/0.jpg&quot;</span></span><br><span class="line">image_orig = cv2.imread(image_path)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 人脸模型输入要求 640*480</span></span><br><span class="line">c, h, w = <span class="number">3</span>, <span class="number">480</span>, <span class="number">640</span></span><br><span class="line"><span class="comment"># 归一化</span></span><br><span class="line">image_data = cv2.cvtColor(image_orig, cv2.COLOR_BGR2RGB)</span><br><span class="line">image_data = cv2.resize(image_data, (w, h))</span><br><span class="line">image_mean = np.array([<span class="number">127</span>, <span class="number">127</span>, <span class="number">127</span>])</span><br><span class="line">image_data = (image_data - image_mean) / <span class="number">128.0</span></span><br><span class="line">image_data = np.transpose(image_data, [<span class="number">2</span>, <span class="number">0</span>, <span class="number">1</span>])</span><br><span class="line">image_data = image_data.reshape([<span class="number">1</span>, c, h, w]).astype(<span class="string">&#x27;float32&#x27;</span>)</span><br><span class="line"></span><br><span class="line">config = MobileConfig()</span><br><span class="line">config.set_model_from_file(<span class="string">&#x27;ultra_light_fast_generic_face_detector_1mb_640.nb&#x27;</span>)</span><br><span class="line">predictor = create_paddle_predictor(config)</span><br><span class="line"></span><br><span class="line">input_tensor = predictor.get_input(<span class="number">0</span>)</span><br><span class="line">input_tensor.from_numpy(image_data)</span><br><span class="line">predictor.run()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 有几个输出接几个，人脸检测模型有两路输出</span></span><br><span class="line">output_tensor_0 = predictor.get_output(<span class="number">0</span>)</span><br><span class="line">output_tensor_1 = predictor.get_output(<span class="number">1</span>)</span><br><span class="line">output_data_0 = output_tensor_0.numpy()[<span class="number">0</span>]</span><br><span class="line">output_data_1 = output_tensor_1.numpy()[<span class="number">0</span>]</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>计算机视觉</category>
+      </categories>
+      <tags>
+        <tag>paddle</tag>
+        <tag>paddle-lite</tag>
       </tags>
   </entry>
 </search>

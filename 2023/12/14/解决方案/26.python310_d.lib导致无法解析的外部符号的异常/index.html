@@ -260,7 +260,7 @@
 <ul>
 <li>debug模式下直接不用，在cpp代码中加入</li>
 </ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">ifndef</span> _DEBUG</span></span><br><span class="line"><span class="function"><span class="type">size_t</span> <span class="title">init_numpy</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">import_array</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">ifndef</span> _DEBUG</span></span><br><span class="line">...</span><br><span class="line">出现异常的关键代码</span><br><span class="line">...</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
 
 <ul>
 <li><p>修改源码</p>
