@@ -129,7 +129,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+    <div class="sidebar-inner sidebar-overview-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -142,7 +142,6 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BDSteamCMD"><span class="nav-number">1.</span> <span class="nav-text">下载SteamCMD</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8SteamCMD"><span class="nav-number">2.</span> <span class="nav-text">使用SteamCMD</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%89%A7%E8%A1%8C%E5%A6%82%E4%B8%8B%E5%91%BD%E4%BB%A4"><span class="nav-number">3.</span> <span class="nav-text">执行如下命令</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -247,17 +246,41 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h1 id="下载SteamCMD"><a href="#下载SteamCMD" class="headerlink" title="下载SteamCMD"></a>下载SteamCMD</h1><figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">官方网站：https://developer.valvesoftware.com/wiki/SteamCMD</span><br><span class="line">Windows版本下载地址：https://steamcdn-a.akamaihd.net/client/installer/steamcmd.zip </span><br></pre></td></tr></table></figure>
-
-<h1 id="使用SteamCMD"><a href="#使用SteamCMD" class="headerlink" title="使用SteamCMD"></a>使用SteamCMD</h1><ul>
-<li>1.解压得到的steamcmd.zip到任意不包含中文的目录</li>
-<li>2.运行得到的steamcmd.exe，软件会自行安装并更新，完成后会出现 Steam&gt; 提示符即表示安装完成</li>
-<li>3.使用login anonymous登录匿名账号</li>
-<li>4.后面接其他需要架设服务器的教程。</li>
+    <div class="post-body" itemprop="articleBody"><ul>
+<li><ol>
+<li>下载SteamCMD<figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">官方网站：https://developer.valvesoftware.com/wiki/SteamCMD</span><br><span class="line">Windows版本下载地址：https://steamcdn-a.akamaihd.net/client/installer/steamcmd.zip </span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+<li><ol start="2">
+<li>使用SteamCMD</li>
+</ol>
+</li>
 </ul>
-<h1 id="执行如下命令"><a href="#执行如下命令" class="headerlink" title="执行如下命令"></a>执行如下命令</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">force_install_dir &lt;目标目录&gt;</span><br><span class="line">login anonymous</span><br><span class="line">app_update 343050 validate</span><br><span class="line">quit</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>windows</p>
+</blockquote>
+<ul>
+<li>解压得到的steamcmd.zip到任意不包含中文的目录</li>
+<li>运行得到的steamcmd.exe，软件会自行安装并更新，完成后会出现 Steam&gt; 提示符即表示安装完成</li>
+<li>使用login anonymous登录匿名账号</li>
+<li>后面接其他需要架设服务器的教程。</li>
+</ul>
+<blockquote>
+<p>ubuntu</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo add-apt-repository multiverse</span><br><span class="line">sudo dpkg --add-architecture i386</span><br><span class="line">sudo apt update</span><br><span class="line">sudo apt install steamcmd</span><br></pre></td></tr></table></figure>
 
-<p>       </p>
+<blockquote>
+<p>debian</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt install software-properties-common</span><br><span class="line">sudo apt-add-repository non-free</span><br><span class="line">sudo dpkg --add-architecture i386</span><br><span class="line">sudo apt update</span><br><span class="line">sudo apt install steamcmd</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><ol start="3">
+<li>执行如下命令<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">force_install_dir &lt;目标目录&gt;</span><br><span class="line">login anonymous</span><br><span class="line">app_update 343050 validate</span><br><span class="line">quit</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+</ul>
 
     </div>
 
