@@ -129,7 +129,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -142,6 +142,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BDSteamCMD"><span class="nav-number">1.</span> <span class="nav-text">下载SteamCMD</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8SteamCMD"><span class="nav-number">2.</span> <span class="nav-text">使用SteamCMD</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%89%A7%E8%A1%8C%E5%A6%82%E4%B8%8B%E5%91%BD%E4%BB%A4"><span class="nav-number">3.</span> <span class="nav-text">执行如下命令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86"><span class="nav-number">4.</span> <span class="nav-text">异常处理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C%E5%91%BD%E4%BB%A4"><span class="nav-number">5.</span> <span class="nav-text">运行命令</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -246,17 +247,10 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><ul>
-<li><ol>
-<li>下载SteamCMD<figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">官方网站：https://developer.valvesoftware.com/wiki/SteamCMD</span><br><span class="line">Windows版本下载地址：https://steamcdn-a.akamaihd.net/client/installer/steamcmd.zip </span><br></pre></td></tr></table></figure></li>
-</ol>
-</li>
-<li><ol start="2">
-<li>使用SteamCMD</li>
-</ol>
-</li>
-</ul>
-<blockquote>
+    <div class="post-body" itemprop="articleBody"><h1 id="下载SteamCMD"><a href="#下载SteamCMD" class="headerlink" title="下载SteamCMD"></a>下载SteamCMD</h1><blockquote>
+<p>官方网站：<a target="_blank" rel="noopener" href="https://developer.valvesoftware.com/wiki/SteamCMD">https://developer.valvesoftware.com/wiki/SteamCMD</a><br>Windows版本下载地址：<a target="_blank" rel="noopener" href="https://steamcdn-a.akamaihd.net/client/installer/steamcmd.zip">https://steamcdn-a.akamaihd.net/client/installer/steamcmd.zip</a> </p>
+</blockquote>
+<h1 id="使用SteamCMD"><a href="#使用SteamCMD" class="headerlink" title="使用SteamCMD"></a>使用SteamCMD</h1><blockquote>
 <p>windows</p>
 </blockquote>
 <ul>
@@ -275,25 +269,11 @@
 </blockquote>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt install software-properties-common</span><br><span class="line">sudo apt-add-repository non-free</span><br><span class="line">sudo dpkg --add-architecture i386</span><br><span class="line">sudo apt update</span><br><span class="line">sudo apt install steamcmd</span><br></pre></td></tr></table></figure>
 
-<ul>
-<li><ol start="3">
-<li>执行如下命令<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> -p /home/lang/Applications/DST</span><br><span class="line">force_install_dir /home/lang/Applications/DST</span><br><span class="line">login anonymous</span><br><span class="line">app_update 343050 validate</span><br><span class="line">quit</span><br></pre></td></tr></table></figure></li>
-</ol>
-</li>
-<li><ol start="4">
-<li>异常处理</li>
-</ol>
-</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># libcurl-gnutls 缺失</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h1 id="执行如下命令"><a href="#执行如下命令" class="headerlink" title="执行如下命令"></a>执行如下命令</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> -p /home/lang/Applications/DST</span><br><span class="line">force_install_dir /home/lang/Applications/DST</span><br><span class="line">login anonymous</span><br><span class="line">app_update 343050 validate</span><br><span class="line">quit</span><br></pre></td></tr></table></figure>
 
-<ul>
-<li><ol start="5">
-<li>运行命令</li>
-</ol>
-</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 存档文件夹名称为 ~/.klei/DoNotStarveTogether 下的存档文件夹名称</span></span><br><span class="line">./dontstarve_dedicated_server_nullrenderer -console -cluster &lt;存档文件夹名称&gt; -shard Master</span><br><span class="line">./dontstarve_dedicated_server_nullrenderer -console -cluster &lt;存档文件夹名称&gt; -shard Cave</span><br></pre></td></tr></table></figure>
+<h1 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># libcurl-gnutls 缺失</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="运行命令"><a href="#运行命令" class="headerlink" title="运行命令"></a>运行命令</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 存档文件夹名称为 ~/.klei/DoNotStarveTogether 下的存档文件夹名称</span></span><br><span class="line">./dontstarve_dedicated_server_nullrenderer -console -cluster &lt;存档文件夹名称&gt; -shard Master</span><br><span class="line">./dontstarve_dedicated_server_nullrenderer -console -cluster &lt;存档文件夹名称&gt; -shard Cave</span><br></pre></td></tr></table></figure>
 
 <p><strong>命令拓展：</strong></p>
 <p><code>&lt;persistent_storage_root&gt;/&lt;conf_dir&gt;/&lt;cluster&gt;/&lt;shard&gt;</code> 默认为 <code>~/.klei/DoNotStarveTogether/Cluster_*/Master</code></p>
