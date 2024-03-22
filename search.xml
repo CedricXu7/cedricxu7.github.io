@@ -2405,7 +2405,7 @@ for i in range(100):
   </entry>
   <entry>
     <title>python310_d.lib导致无法解析的外部符号的异常</title>
-    <url>/2023/12/14/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/26.python310_d.lib%E5%AF%BC%E8%87%B4%E6%97%A0%E6%B3%95%E8%A7%A3%E6%9E%90%E7%9A%84%E5%A4%96%E9%83%A8%E7%AC%A6%E5%8F%B7%E7%9A%84%E5%BC%82%E5%B8%B8%20-%20%E5%89%AF%E6%9C%AC/</url>
+    <url>/2023/12/14/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/26.python310_d.lib%E5%AF%BC%E8%87%B4%E6%97%A0%E6%B3%95%E8%A7%A3%E6%9E%90%E7%9A%84%E5%A4%96%E9%83%A8%E7%AC%A6%E5%8F%B7%E7%9A%84%E5%BC%82%E5%B8%B8/</url>
     <content><![CDATA[<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>在学习C++调用python的过程中发现，和python不一样要想实现debug必须调用debug的包，而默认python安装是release的包，经过安装编译等踩坑操作后发现以下操作可以直接使用</p>
 <blockquote>
 <p>直接将release的<code>python310.lib</code>复制下改个名字成<code>python310_d.lib</code>就能用</p>
