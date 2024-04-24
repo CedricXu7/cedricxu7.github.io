@@ -185,6 +185,96 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://www.langzihan.top/2021/06/01/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/01.%E7%AE%80%E5%8D%95%E7%9A%84KNN%E5%AE%9E%E7%8E%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/img/custom-logo.jpg">
+      <meta itemprop="name" content="浪子寒">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lang's Blog">
+      <meta itemprop="description" content="子非鱼，焉知鱼之乐">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Lang's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/06/01/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/01.%E7%AE%80%E5%8D%95%E7%9A%84KNN%E5%AE%9E%E7%8E%B0/" class="post-title-link" itemprop="url">简单的KNN实现</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-06-01 14:28:36" itemprop="dateCreated datePublished" datetime="2021-06-01T14:28:36+08:00">2021-06-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">机器学习</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>KNN简介：</p>
+<blockquote>
+<p>k-Nearest Neighbor:kNN 即k近邻算法<br>分类问题：对新的样本，根据其<em>k</em>个最近邻的训练样本的类别，通过多数表决等方式进行预测。<br>回归问题：对新的样本，根据其<em>k</em>个最近邻的训练样本标签值的均值作为预测值。<br>优缺点：</p>
+<ul>
+<li>k近邻模型具有非常高的容量，这使得它在训练样本数量较大时能获得较高的精度</li>
+<li>计算成本很高</li>
+<li>在训练集较小时，泛化能力很差，非常容易陷入过拟合</li>
+<li>无法判断特征的重要性</li>
+</ul>
+</blockquote>
+<p>数据集采用阿里巴巴天池项目中的“<a target="_blank" rel="noopener" href="https://tianchi.aliyun.com/dataset/dataDetail?dataId=50009"><strong>渔船轨迹数据</strong></a>”<br>本数据集为h5数据，运行代码目录结构如下<br><img data-src="https://blog.oss.langzihan.top/images/%E7%AE%80%E5%8D%95%E7%9A%84KNN%E5%AE%9E%E7%8E%B0/01312abe9175833095b0df47f4298f2a.png" alt="img"></p>
+<p>代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</span><br><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> StandardScaler</span><br><span class="line"><span class="keyword">from</span> sklearn.neighbors <span class="keyword">import</span> KNeighborsClassifier</span><br><span class="line"><span class="keyword">import</span> pickle</span><br><span class="line"></span><br><span class="line">data = pd.read_hdf(<span class="string">&quot;data/hy_round1_train_20200102.h5&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(data.shape)</span><br><span class="line"><span class="built_in">print</span>(data.columns)</span><br><span class="line"><span class="comment"># 校验是否存在NaN</span></span><br><span class="line"><span class="comment"># print(np.all(pd.notnull(data)))</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 载入数据集</span></span><br><span class="line">data = np.array(data)</span><br><span class="line"><span class="comment"># 量化标签</span></span><br><span class="line"><span class="comment"># print(np.where(data[:,-1] == &quot;刺网&quot;))</span></span><br><span class="line">data[np.where(data[:,-<span class="number">1</span>] == <span class="string">&quot;刺网&quot;</span>),-<span class="number">1</span>] = <span class="number">0</span></span><br><span class="line">data[np.where(data[:,-<span class="number">1</span>] == <span class="string">&quot;围网&quot;</span>),-<span class="number">1</span>] = <span class="number">1</span></span><br><span class="line">data[np.where(data[:,-<span class="number">1</span>] == <span class="string">&quot;拖网&quot;</span>),-<span class="number">1</span>] = <span class="number">2</span></span><br><span class="line">x_train, x_test, y_train, y_test = train_test_split(data[:,:-<span class="number">2</span>],data[:,-<span class="number">1</span>],test_size=<span class="number">0.25</span>,random_state=<span class="number">42</span>)</span><br><span class="line"><span class="comment"># 标准化（归一化存在离群点影响弊端）</span></span><br><span class="line">transfer = StandardScaler()</span><br><span class="line">x_train = transfer.fit_transform(x_train)</span><br><span class="line">x_test = transfer.fit_transform(x_test)</span><br><span class="line">y_train = y_train.astype(<span class="string">&quot;int&quot;</span>)</span><br><span class="line">y_test = y_test.astype(<span class="string">&quot;int&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(y_train)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 模型训练</span></span><br><span class="line">estimator = KNeighborsClassifier(n_neighbors=<span class="number">5</span>)</span><br><span class="line">estimator.fit(x_train,y_train)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 保存模型</span></span><br><span class="line">f = <span class="built_in">open</span>(<span class="string">&quot;model/hy_knn_model.pickle&quot;</span>,<span class="string">&quot;wb&quot;</span>)</span><br><span class="line">pickle.dump(estimator, f)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 模型评估</span></span><br><span class="line"><span class="comment"># 预测值</span></span><br><span class="line">y_predict = estimator.predict(x_test)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;模型预测结果：\n&quot;</span>, y_predict)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;真实值对比结果：\n&quot;</span>, y_test == y_predict)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 准确率</span></span><br><span class="line">score = estimator.score(x_test,y_test)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;模型准确率：&quot;</span>,score)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://www.langzihan.top/2021/04/28/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/07.windows%E7%8E%AF%E5%A2%83%E4%B8%8Bmatplotlib%E5%9B%BE%E7%89%87%E4%B8%AD%E4%B8%AD%E6%96%87%E6%98%BE%E7%A4%BA%E5%BC%82%E5%B8%B8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -963,107 +1053,6 @@
 <h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><p>1.打开命令行，cd到生成graph的目录 &#x3D;&#x3D;OR&#x3D;&#x3D; 到目录下shift+右键菜单“在此处打开Powershell窗口”</p>
 <p>2.命令框中直接输入<br> <code>tensorboard --logdir=&quot;./&quot;</code></p>
 <p>简单暴力！</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://www.langzihan.top/2019/04/01/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/03.%E5%9F%BA%E4%BA%8EHTTP%E7%BD%91%E7%BB%9C%E4%BB%A3%E7%90%86%E7%9A%84%E6%A0%A1%E5%9B%AD%E7%BD%91%EF%BC%88%E5%B1%80%E5%9F%9F%E7%BD%91%EF%BC%89%E7%BD%91%E7%BB%9C%E5%85%B1%E4%BA%AB/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/img/custom-logo.jpg">
-      <meta itemprop="name" content="浪子寒">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Lang's Blog">
-      <meta itemprop="description" content="子非鱼，焉知鱼之乐">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Lang's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2019/04/01/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/03.%E5%9F%BA%E4%BA%8EHTTP%E7%BD%91%E7%BB%9C%E4%BB%A3%E7%90%86%E7%9A%84%E6%A0%A1%E5%9B%AD%E7%BD%91%EF%BC%88%E5%B1%80%E5%9F%9F%E7%BD%91%EF%BC%89%E7%BD%91%E7%BB%9C%E5%85%B1%E4%BA%AB/" class="post-title-link" itemprop="url">基于HTTP网络代理的校园网（局域网）网络共享</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-04-01 09:26:57" itemprop="dateCreated datePublished" datetime="2019-04-01T09:26:57+08:00">2019-04-01</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" itemprop="url" rel="index"><span itemprop="name">解决方案</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h4 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h4><p>嗯，校园网欠费了，但是宿舍这里无法登陆，显示欠费，实验室的电脑使用的网关是可以登陆正常上网的！不显示欠费！内网远程实验室桌面，没问题，是不是有点麻烦？既然能远程，那说明可以通过代理实现网络数据的转发！网络共享，自己动手丰衣足食！</p>
-<h4 id="问题抽象"><a href="#问题抽象" class="headerlink" title="问题抽象"></a>问题抽象</h4><p>同一局域网内，有一台电脑可以上网，想要通过这台电脑，使得其他电脑或者移动设备可以上网</p>
-<h4 id="适用环境"><a href="#适用环境" class="headerlink" title="适用环境"></a>适用环境</h4><p>可以上网的电脑：Windows7及以上系统，或者能够部署HTTP代理服务器的皆可</p>
-<p>其他电脑或移动设备：安装有支持全局HTTP网络代理功能的软件，系统自带支持全局亦可</p>
-<h4 id="我的实际环境"><a href="#我的实际环境" class="headerlink" title="我的实际环境"></a>我的实际环境</h4><p>可以上网的电脑：<code>Windows 10 1703 专业版</code></p>
-<p>其他电脑或移动设备：<code>Android</code> &amp; <code>Windows 10</code> 1703 专业版 &amp; <code>iPhone</code></p>
-<p>支持全局HTTP的软件：</p>
-<p>  <code>Android</code> : 系统自带的WLAN中的HTTP代理 或 Adguard(或使用手机版SSR、v2ray等可以实现全局代理流量、支持转发sock或http的app）</p>
-<p>  <code>iPhone</code> : 系统自带的WLAN中的HTTP代理 或 支持HTTP全局代理即可（小飞机）</p>
-<p>  <code>Windows</code> : SStap | Adguard</p>
-<p>代理服务器部署：<code>CCproxy</code></p>
-<h4 id="实现步骤"><a href="#实现步骤" class="headerlink" title="实现步骤"></a>实现步骤</h4><p>① 完成相关软件的安装</p>
-<p>② 配置CCproxy</p>
-<p><img data-src="https://blog.oss.langzihan.top/images/%E5%9F%BA%E4%BA%8EHTTP%E7%BD%91%E7%BB%9C%E4%BB%A3%E7%90%86%E7%9A%84%E6%A0%A1%E5%9B%AD%E7%BD%91%EF%BC%88%E5%B1%80%E5%9F%9F%E7%BD%91%EF%BC%89%E7%BD%91%E7%BB%9C%E5%85%B1%E4%BA%AB/63bfe808300973c1c9e51edc06b8f894.png" alt="img"></p>
-<p><img data-src="https://blog.oss.langzihan.top/images/%E5%9F%BA%E4%BA%8EHTTP%E7%BD%91%E7%BB%9C%E4%BB%A3%E7%90%86%E7%9A%84%E6%A0%A1%E5%9B%AD%E7%BD%91%EF%BC%88%E5%B1%80%E5%9F%9F%E7%BD%91%EF%BC%89%E7%BD%91%E7%BB%9C%E5%85%B1%E4%BA%AB/45f1a15bd9a443b225c7946b950b38e2.png" alt="img"></p>
-<p><img data-src="https://blog.oss.langzihan.top/images/%E5%9F%BA%E4%BA%8EHTTP%E7%BD%91%E7%BB%9C%E4%BB%A3%E7%90%86%E7%9A%84%E6%A0%A1%E5%9B%AD%E7%BD%91%EF%BC%88%E5%B1%80%E5%9F%9F%E7%BD%91%EF%BC%89%E7%BD%91%E7%BB%9C%E5%85%B1%E4%BA%AB/d8534dff83bc79004557c6e93ef7e49c.png" alt="img"></p>
-<p><img data-src="https://blog.oss.langzihan.top/images/%E5%9F%BA%E4%BA%8EHTTP%E7%BD%91%E7%BB%9C%E4%BB%A3%E7%90%86%E7%9A%84%E6%A0%A1%E5%9B%AD%E7%BD%91%EF%BC%88%E5%B1%80%E5%9F%9F%E7%BD%91%EF%BC%89%E7%BD%91%E7%BB%9C%E5%85%B1%E4%BA%AB/70f5df78eccfe8beddea6a51308689ac.png" alt="img"></p>
-<p>③ 配置需要网络的电脑或移动设备的HTTP代理</p>
-<p>服务器地址就是可上网电脑CCproxy中绑定的内网地址</p>
-<p>端口是CCproxy中配置HTTP的端口号</p>
-<p>用户密码若有则是CCproxy新建的用户名与密码</p>
-<p>若无置空即可</p>
-<p>④ 可以上网了</p>
-<h4 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h4><p>当然以上通过CCproxy的HTTP代理实现的网络共享，同样也可在可上网的电脑上安装node.js搭建SSR服务器，通过SStap可实现SSR的连接，但某些情况下由于有UDP的转发，性能可能不太稳定</p>
 
       
     </div>

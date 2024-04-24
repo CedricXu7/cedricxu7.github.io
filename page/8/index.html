@@ -185,6 +185,107 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://www.langzihan.top/2019/04/01/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/03.%E5%9F%BA%E4%BA%8EHTTP%E7%BD%91%E7%BB%9C%E4%BB%A3%E7%90%86%E7%9A%84%E6%A0%A1%E5%9B%AD%E7%BD%91%EF%BC%88%E5%B1%80%E5%9F%9F%E7%BD%91%EF%BC%89%E7%BD%91%E7%BB%9C%E5%85%B1%E4%BA%AB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/img/custom-logo.jpg">
+      <meta itemprop="name" content="浪子寒">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lang's Blog">
+      <meta itemprop="description" content="子非鱼，焉知鱼之乐">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Lang's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2019/04/01/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/03.%E5%9F%BA%E4%BA%8EHTTP%E7%BD%91%E7%BB%9C%E4%BB%A3%E7%90%86%E7%9A%84%E6%A0%A1%E5%9B%AD%E7%BD%91%EF%BC%88%E5%B1%80%E5%9F%9F%E7%BD%91%EF%BC%89%E7%BD%91%E7%BB%9C%E5%85%B1%E4%BA%AB/" class="post-title-link" itemprop="url">基于HTTP网络代理的校园网（局域网）网络共享</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-04-01 09:26:57" itemprop="dateCreated datePublished" datetime="2019-04-01T09:26:57+08:00">2019-04-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" itemprop="url" rel="index"><span itemprop="name">解决方案</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h4 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h4><p>嗯，校园网欠费了，但是宿舍这里无法登陆，显示欠费，实验室的电脑使用的网关是可以登陆正常上网的！不显示欠费！内网远程实验室桌面，没问题，是不是有点麻烦？既然能远程，那说明可以通过代理实现网络数据的转发！网络共享，自己动手丰衣足食！</p>
+<h4 id="问题抽象"><a href="#问题抽象" class="headerlink" title="问题抽象"></a>问题抽象</h4><p>同一局域网内，有一台电脑可以上网，想要通过这台电脑，使得其他电脑或者移动设备可以上网</p>
+<h4 id="适用环境"><a href="#适用环境" class="headerlink" title="适用环境"></a>适用环境</h4><p>可以上网的电脑：Windows7及以上系统，或者能够部署HTTP代理服务器的皆可</p>
+<p>其他电脑或移动设备：安装有支持全局HTTP网络代理功能的软件，系统自带支持全局亦可</p>
+<h4 id="我的实际环境"><a href="#我的实际环境" class="headerlink" title="我的实际环境"></a>我的实际环境</h4><p>可以上网的电脑：<code>Windows 10 1703 专业版</code></p>
+<p>其他电脑或移动设备：<code>Android</code> &amp; <code>Windows 10</code> 1703 专业版 &amp; <code>iPhone</code></p>
+<p>支持全局HTTP的软件：</p>
+<p>  <code>Android</code> : 系统自带的WLAN中的HTTP代理 或 Adguard(或使用手机版SSR、v2ray等可以实现全局代理流量、支持转发sock或http的app）</p>
+<p>  <code>iPhone</code> : 系统自带的WLAN中的HTTP代理 或 支持HTTP全局代理即可（小飞机）</p>
+<p>  <code>Windows</code> : SStap | Adguard</p>
+<p>代理服务器部署：<code>CCproxy</code></p>
+<h4 id="实现步骤"><a href="#实现步骤" class="headerlink" title="实现步骤"></a>实现步骤</h4><p>① 完成相关软件的安装</p>
+<p>② 配置CCproxy</p>
+<p><img data-src="https://blog.oss.langzihan.top/images/%E5%9F%BA%E4%BA%8EHTTP%E7%BD%91%E7%BB%9C%E4%BB%A3%E7%90%86%E7%9A%84%E6%A0%A1%E5%9B%AD%E7%BD%91%EF%BC%88%E5%B1%80%E5%9F%9F%E7%BD%91%EF%BC%89%E7%BD%91%E7%BB%9C%E5%85%B1%E4%BA%AB/63bfe808300973c1c9e51edc06b8f894.png" alt="img"></p>
+<p><img data-src="https://blog.oss.langzihan.top/images/%E5%9F%BA%E4%BA%8EHTTP%E7%BD%91%E7%BB%9C%E4%BB%A3%E7%90%86%E7%9A%84%E6%A0%A1%E5%9B%AD%E7%BD%91%EF%BC%88%E5%B1%80%E5%9F%9F%E7%BD%91%EF%BC%89%E7%BD%91%E7%BB%9C%E5%85%B1%E4%BA%AB/45f1a15bd9a443b225c7946b950b38e2.png" alt="img"></p>
+<p><img data-src="https://blog.oss.langzihan.top/images/%E5%9F%BA%E4%BA%8EHTTP%E7%BD%91%E7%BB%9C%E4%BB%A3%E7%90%86%E7%9A%84%E6%A0%A1%E5%9B%AD%E7%BD%91%EF%BC%88%E5%B1%80%E5%9F%9F%E7%BD%91%EF%BC%89%E7%BD%91%E7%BB%9C%E5%85%B1%E4%BA%AB/d8534dff83bc79004557c6e93ef7e49c.png" alt="img"></p>
+<p><img data-src="https://blog.oss.langzihan.top/images/%E5%9F%BA%E4%BA%8EHTTP%E7%BD%91%E7%BB%9C%E4%BB%A3%E7%90%86%E7%9A%84%E6%A0%A1%E5%9B%AD%E7%BD%91%EF%BC%88%E5%B1%80%E5%9F%9F%E7%BD%91%EF%BC%89%E7%BD%91%E7%BB%9C%E5%85%B1%E4%BA%AB/70f5df78eccfe8beddea6a51308689ac.png" alt="img"></p>
+<p>③ 配置需要网络的电脑或移动设备的HTTP代理</p>
+<p>服务器地址就是可上网电脑CCproxy中绑定的内网地址</p>
+<p>端口是CCproxy中配置HTTP的端口号</p>
+<p>用户密码若有则是CCproxy新建的用户名与密码</p>
+<p>若无置空即可</p>
+<p>④ 可以上网了</p>
+<h4 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h4><p>当然以上通过CCproxy的HTTP代理实现的网络共享，同样也可在可上网的电脑上安装node.js搭建SSR服务器，通过SStap可实现SSR的连接，但某些情况下由于有UDP的转发，性能可能不太稳定</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://www.langzihan.top/2019/03/14/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/02.python3%E4%BD%BF%E7%94%A8scapy.rdpcap%E7%9A%84%E8%A7%A3%E7%A0%81%E9%97%AE%E9%A2%98/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">

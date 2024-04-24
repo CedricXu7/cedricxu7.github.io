@@ -790,6 +790,23 @@ seafile目录结构如下：<br>seafile<br>├── installed<br>│   └─�
       </tags>
   </entry>
   <entry>
+    <title>Docker手动安装</title>
+    <url>/2024/04/24/%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/18.Docker%E6%89%8B%E5%8A%A8%E5%AE%89%E8%A3%85/</url>
+    <content><![CDATA[<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 1. 卸载残留</span></span><br><span class="line">sudo apt purge docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin</span><br><span class="line"><span class="comment"># 2. 安装前置</span></span><br><span class="line">sudo apt update &amp;&amp; sudo apt install ca-certificates curl gnupg</span><br><span class="line"><span class="comment"># 3. 创建目录来存储密钥环</span></span><br><span class="line">sudo install -m 0755 -d /etc/apt/keyrings</span><br><span class="line"><span class="comment"># 4. 命令下载 GPG 密钥并将其存储</span></span><br><span class="line">curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg</span><br><span class="line"><span class="comment"># 5. 更改 docker.gpg 文件的权限</span></span><br><span class="line">sudo <span class="built_in">chmod</span> a+r /etc/apt/keyrings/docker.gpg</span><br><span class="line"><span class="comment"># 6. 为 Docker 设置存储库</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;deb [arch=&quot;</span>$(dpkg --print-architecture)<span class="string">&quot; signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian \ &quot;</span>$(. /etc/os-release &amp;&amp; <span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$VERSION_CODENAME</span>&quot;</span>)<span class="string">&quot; stable&quot;</span> | sudo <span class="built_in">tee</span> /etc/apt/sources.list.d/docker.list &gt; /dev/null</span><br><span class="line"><span class="comment"># 7. 更新存储库索引并安装 Docker</span></span><br><span class="line">sudo apt update &amp;&amp; sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="非root组用户赋权"><a href="#非root组用户赋权" class="headerlink" title="非root组用户赋权"></a>非root组用户赋权</h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo groupadd docker</span><br><span class="line">sudo gpasswd -a <span class="variable">$&#123;USER&#125;</span> docker  <span class="comment"># 将当前用户添加到docker组，也可以手动指定用户名。之后使用免除sudo前缀</span></span><br><span class="line">sudo service docker restart  <span class="comment"># 重启docker服务 获得新授权的用户需要重新登陆shell客户端</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="卸载"><a href="#卸载" class="headerlink" title="卸载"></a>卸载</h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 停止 docker 服务</span></span><br><span class="line">sudo systemctl stop docker</span><br><span class="line"><span class="comment"># 删除 Docker</span></span><br><span class="line">sudo apt purge docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin </span><br><span class="line"><span class="comment"># 删除 Docker 文件</span></span><br><span class="line">sudo <span class="built_in">rm</span> -rf /var/lib/docker</span><br><span class="line">sudo <span class="built_in">rm</span> -rf /var/lib/containerd</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>安装笔记</category>
+      </categories>
+      <tags>
+        <tag>Docker</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>护眼色数值</title>
     <url>/2019/08/05/%E5%AE%9E%E7%94%A8%E9%85%8D%E7%BD%AE/00.%E6%8A%A4%E7%9C%BC%E8%89%B2%E6%95%B0%E5%80%BC/</url>
     <content><![CDATA[<p>咳咳，今天写个记录，记录自用护眼色</p>
