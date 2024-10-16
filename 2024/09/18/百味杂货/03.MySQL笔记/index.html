@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.0.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon.svg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon.svg">
+  <link rel="mask-icon" href="/img/favicon.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha256-yIDrPSXHZdOZhAqiBP7CKzIwMQmRCJ8UeB8Jo17YC4o=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.28/fancybox/fancybox.css" integrity="sha256-6cQIC71/iBIYXFK+0RHAvwmjwWzkWd+r7v/BX3/vZDc=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.langzihan.top","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"flat"},"fold":{"enable":true,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":true,"transition":{"menu_item":"fadeIn","post_block":null,"post_header":null,"post_body":null,"coll_header":null,"sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":true,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="记录学习mysql面经过程中的心得体会">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL笔记">
+<meta property="og:url" content="https://www.langzihan.top/2024/09/18/%E7%99%BE%E5%91%B3%E6%9D%82%E8%B4%A7/03.MySQL%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="Lang&#39;s Blog">
+<meta property="og:description" content="记录学习mysql面经过程中的心得体会">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-09-18T05:51:00.000Z">
+<meta property="article:modified_time" content="2024-09-23T03:42:00.000Z">
+<meta property="article:author" content="浪子寒">
+<meta property="article:tag" content="mysql">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://www.langzihan.top/2024/09/18/%E7%99%BE%E5%91%B3%E6%9D%82%E8%B4%A7/03.MySQL%E7%AC%94%E8%AE%B0/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.langzihan.top/2024/09/18/%E7%99%BE%E5%91%B3%E6%9D%82%E8%B4%A7/03.MySQL%E7%AC%94%E8%AE%B0/","path":"2024/09/18/百味杂货/03.MySQL笔记/","title":"MySQL笔记"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>MySQL笔记 | Lang's Blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Lang's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Keep writing, Keep loving</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>目录</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>时间轴</a></li><li class="menu-item menu-item-links"><a href="/links/" rel="section"><i class="fas fa-link fa-fw"></i>链接分享</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa-solid fa-mug-hot fa-fw"></i>絮絮叨叨</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%8F%E8%A7%82%E5%AE%9A%E4%B9%89"><span class="nav-number">1.</span> <span class="nav-text">宏观定义</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%8E%E9%9D%9E%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">1.1.</span> <span class="nav-text">关系型数据库与非关系型数据的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E9%9D%9E%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">1.2.</span> <span class="nav-text">什么是非关系型数据库</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E5%AE%9A%E4%B9%89"><span class="nav-number">2.</span> <span class="nav-text">基本定义</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%BF%E7%94%A8%E7%B4%A2%E5%BC%95"><span class="nav-number">2.1.</span> <span class="nav-text">为什么使用索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MySQL-%E6%89%A7%E8%A1%8C-SQL-%E7%9A%84%E6%B5%81%E7%A8%8B"><span class="nav-number">2.2.</span> <span class="nav-text">MySQL 执行 SQL 的流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MySQL-%E5%86%85%E9%83%A8%E6%9E%84%E9%80%A0"><span class="nav-number">2.3.</span> <span class="nav-text">MySQL 内部构造</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E5%AE%9A%E4%B9%89"><span class="nav-number">3.</span> <span class="nav-text">核心定义</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Innodb-%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8%E8%87%AA%E5%A2%9E-id-%E4%BD%9C%E4%B8%BA%E4%B8%BB%E9%94%AE"><span class="nav-number">3.1.</span> <span class="nav-text">Innodb 为什么要用自增 id 作为主键</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B4%A2%E5%BC%95%E4%B8%BA%E4%BB%80%E4%B9%88%E9%87%87%E7%94%A8-B-%E6%A0%91%E8%80%8C%E4%B8%8D%E6%98%AF-B-%E6%A0%91"><span class="nav-number">3.2.</span> <span class="nav-text">数据库索引为什么采用 B+树而不是 B 树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E7%B4%A2%E5%BC%95%E5%92%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B4%A2%E5%BC%95%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%BF%E7%94%A8-B-%E6%A0%91"><span class="nav-number">3.3.</span> <span class="nav-text">文件索引和数据库索引为什么使用 B+树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MyISAM-%E5%92%8C-Innodb-%E5%AE%9E%E7%8E%B0-B-%E6%A0%91%E7%B4%A2%E5%BC%95%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">3.4.</span> <span class="nav-text">MyISAM 和 Innodb 实现 B 树索引的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB"><span class="nav-number">3.5.</span> <span class="nav-text">数据库隔离级别</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E5%AE%9A%E4%B9%89"><span class="nav-number">4.</span> <span class="nav-text">操作定义</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Drop%E3%80%81Delete%E3%80%81Truncate-%E7%9A%84%E7%9B%B8%E5%90%8C%E4%B8%8E%E4%B8%8D%E5%90%8C"><span class="nav-number">4.1.</span> <span class="nav-text">Drop、Delete、Truncate 的相同与不同</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96"><span class="nav-number">5.</span> <span class="nav-text">性能优化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#MYSQL-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96"><span class="nav-number">5.1.</span> <span class="nav-text">MYSQL 性能优化</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="浪子寒"
+      src="/img/custom-logo.jpg">
+  <p class="site-author-name" itemprop="name">浪子寒</p>
+  <div class="site-description" itemprop="description">子非鱼，焉知鱼之乐</div>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/xuxingchen1996" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;xuxingchen1996" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:nebula.xu@qq.com" title="E-Mail → mailto:nebula.xu@qq.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/qq_26095375" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_26095375" rel="noopener me" target="_blank"><i class="fa-solid fa-blog fa-fw"></i>CSDN</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="http://www.langzihan.top/" title="Home → http:&#x2F;&#x2F;www.langzihan.top" rel="noopener me"><i class="fa fa-home fa-fw"></i>Home</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.langzihan.top/2024/09/18/%E7%99%BE%E5%91%B3%E6%9D%82%E8%B4%A7/03.MySQL%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/img/custom-logo.jpg">
+      <meta itemprop="name" content="浪子寒">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lang's Blog">
+      <meta itemprop="description" content="子非鱼，焉知鱼之乐">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="MySQL笔记 | Lang's Blog">
+      <meta itemprop="description" content="记录学习mysql面经过程中的心得体会">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          MySQL笔记
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-09-18 13:51:00" itemprop="dateCreated datePublished" datetime="2024-09-18T13:51:00+08:00">2024-09-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-09-23 11:42:00" itemprop="dateModified" datetime="2024-09-23T11:42:00+08:00">2024-09-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%99%BE%E5%91%B3%E6%9D%82%E8%B4%A7/" itemprop="url" rel="index"><span itemprop="name">百味杂货</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">记录学习mysql面经过程中的心得体会</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="宏观定义"><a href="#宏观定义" class="headerlink" title="宏观定义"></a>宏观定义</h1><h2 id="关系型数据库与非关系型数据的区别"><a href="#关系型数据库与非关系型数据的区别" class="headerlink" title="关系型数据库与非关系型数据的区别"></a>关系型数据库与非关系型数据的区别</h2><ul>
+<li>是否采用关系模型组织数据</li>
+<li>关系型能够保持数据一致性，非关系不能，但其基于键值对，具备较好的拓展性能够支持多种类型（图片文档）的数据存储</li>
+<li>关系型数据更新开销更小，非关系型读写效率更高</li>
+<li>关系型支持复杂查询（带 where 的子句查询）</li>
+</ul>
+<h2 id="什么是非关系型数据库"><a href="#什么是非关系型数据库" class="headerlink" title="什么是非关系型数据库"></a>什么是非关系型数据库</h2><ul>
+<li>NoSQL 采用键值对形式存储数据</li>
+<li>读写性能很高，易于扩展，可分为内存型（Redis、Memcached）、文档型（MongoDB），或分布式的 HBase</li>
+<li>适用场景：日志系统、地理位置存储、数据量巨大、高可用</li>
+</ul>
+<h1 id="基本定义"><a href="#基本定义" class="headerlink" title="基本定义"></a>基本定义</h1><h2 id="为什么使用索引"><a href="#为什么使用索引" class="headerlink" title="为什么使用索引"></a>为什么使用索引</h2><ul>
+<li>唯一性索引可以保证每一行数据的唯一性</li>
+<li>最主要的是可以大大加快数据的检索速度</li>
+<li>将随机 IO 变为顺序 IO，避免排序和临时表</li>
+<li>加速表与表之间的连接，实现数据的参考完整性</li>
+</ul>
+<h2 id="MySQL-执行-SQL-的流程"><a href="#MySQL-执行-SQL-的流程" class="headerlink" title="MySQL 执行 SQL 的流程"></a>MySQL 执行 SQL 的流程</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">flowchart TD</span><br><span class="line">	客户端 --&gt; 连接器</span><br><span class="line">	subgraph A[ ]</span><br><span class="line">		连接器 --&gt; 分析器</span><br><span class="line">		连接器 --&gt; 查询缓存</span><br><span class="line">		分析器 --&gt; 查询缓存</span><br><span class="line">		分析器 --&gt; 优化器 --&gt; 执行器</span><br><span class="line">	end</span><br><span class="line"> 	查询缓存 --&gt;命中缓存直接返回结果</span><br><span class="line">	subgraph B[ ]</span><br><span class="line">		存储引擎1</span><br><span class="line">		存储引擎2</span><br><span class="line">		存储引擎3</span><br><span class="line">	end</span><br><span class="line">	A --&gt; B</span><br></pre></td></tr></table></figure>
+<ul>
+<li>连接器：管理连接、权限验证</li>
+<li>查询缓存：命中缓存直接返回结果</li>
+<li>分析器：SQL 词法分析、语法分析（字段是否存在就在这一步判断）</li>
+<li>优化器：执行计划生成、选择索引，sql优化选择执行方案</li>
+<li>执行器：操作引擎、返回结果，判断用户执行权限后调用引擎接口</li>
+<li>存储引擎：存储数据、提供读写接口，若开启查询缓存则会缓存查询结果</li>
+</ul>
+<h2 id="MySQL-内部构造"><a href="#MySQL-内部构造" class="headerlink" title="MySQL 内部构造"></a>MySQL 内部构造</h2><ul>
+<li>服务层，包括连接器、查询缓存、分析器、优化器、执行器，涵盖大多数核心服务功能，以及所有内置函数（日期、时间、数字和加密函数等），跨存储引擎功能（存储过程、触发器、视图）在此实现</li>
+<li>存储引擎层，负责数据的存储与提取，插件式架构，支持 Innodb、MyISAM、Memory 等多个存储引擎</li>
+</ul>
+<h1 id="核心定义"><a href="#核心定义" class="headerlink" title="核心定义"></a>核心定义</h1><h2 id="Innodb-为什么要用自增-id-作为主键"><a href="#Innodb-为什么要用自增-id-作为主键" class="headerlink" title="Innodb 为什么要用自增 id 作为主键"></a>Innodb 为什么要用自增 id 作为主键</h2><ul>
+<li>自增 id 下新记录能顺序添加到当前索引节点的后续位置，能够保证当前页写满后自动开辟新的页</li>
+<li>非自增新记录会导致主键位置随机，需要对现有索引页频繁移动、分页，产生大量碎片，形成不够紧凑的索引结构，需要 optimize table 来重建并优化填充页面</li>
+</ul>
+<h2 id="数据库索引为什么采用-B-树而不是-B-树"><a href="#数据库索引为什么采用-B-树而不是-B-树" class="headerlink" title="数据库索引为什么采用 B+树而不是 B 树"></a>数据库索引为什么采用 B+树而不是 B 树</h2><ul>
+<li>B+树只要遍历叶子节点就可以实现整棵树的遍历</li>
+<li>数据库中基于范围的查询较频繁，B 树只能中序遍历所节点，效率太低</li>
+</ul>
+<h2 id="文件索引和数据库索引为什么使用-B-树"><a href="#文件索引和数据库索引为什么使用-B-树" class="headerlink" title="文件索引和数据库索引为什么使用 B+树"></a>文件索引和数据库索引为什么使用 B+树</h2><ul>
+<li>文件和数据库都需要较大的存储，需要存储到磁盘上，</li>
+</ul>
+<h2 id="MyISAM-和-Innodb-实现-B-树索引的区别"><a href="#MyISAM-和-Innodb-实现-B-树索引的区别" class="headerlink" title="MyISAM 和 Innodb 实现 B 树索引的区别"></a>MyISAM 和 Innodb 实现 B 树索引的区别</h2><ul>
+<li>data 域存储数据不一致，MyISAM 中 B+Tree 叶子节点 data 域存放数据记录地址，索引文件和数据文件是分离的，被称为“非聚集索引”，而 Innodb 中数据文件本身就是主索引，是按 B+Tree 组织的一个索引结构，索引的 key 就是主键，data 域存放完整的数据记录，其余皆是辅助索引，辅助索引 data 域同样存储的是主键的值不是地址，被称为“聚集索引”</li>
+<li>索引检索逻辑不一致，MyISAM 采用 B+Tree 搜索算法搜索索引并根据对应索引的 data 域地址读取数据记录，而 Innodb 在主索引搜索时只需找到索引的位置即可取出数据，在使用辅助索引搜索时则需要先取出主键的值再走一遍主索引（因此设计表时不建议使用过长的、非单调的字段作为主键，避免产生主索引频繁分裂）</li>
+</ul>
+<h2 id="数据库隔离级别"><a href="#数据库隔离级别" class="headerlink" title="数据库隔离级别"></a>数据库隔离级别</h2><ul>
+<li><strong>未提交读</strong>，修改事务发生，但还没有提交前能够被其他事务读到这种修改，会导致脏读、幻读或不可重复读</li>
+<li><strong>提交读</strong>，事务提交前其他事务对其不可见，可以阻止脏读，但依旧会导致幻读和不可重复读</li>
+<li><strong>重复读</strong>，对一个记录读取多次记录都是相同的，可以阻止脏读和不可重复读，但依旧可能会存在幻读</li>
+<li><strong>可串行化读</strong>，在并发下和串行化读取结果一致，不会发生脏读和幻读，可以防止脏读、不可重复读和幻读</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>隔离级别</th>
+<th>脏读</th>
+<th>不可重复读</th>
+<th>幻读</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>READ-UNCOMMITTED 未提交读</td>
+<td>√</td>
+<td>√</td>
+<td>√</td>
+</tr>
+<tr>
+<td>READ-COMMITTED 提交读</td>
+<td>×</td>
+<td>√</td>
+<td>√</td>
+</tr>
+<tr>
+<td>REPEATABLE-READ 重复读</td>
+<td>×</td>
+<td>×</td>
+<td>√</td>
+</tr>
+<tr>
+<td>SERIALIZABLE 可串行化读</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>[!tip] 注意</p>
+<ul>
+<li>MySQL InnoDB 引擎默认使用 REPEATABLE-READ重复读，但是使用了 Next-Key Lock 锁算法用于避免幻读，所以默认状态下可以完全满足事务的隔离性，可以达到可串行化读的标准，但不会造成性能损失</li>
+<li>SQL Server 的重复读未做如上处理</li>
+<li>隔离级别越低，事务请求锁越少，大部分数据库系统采用提 READ-COMMITTED交读</li>
+<li>分布式事务下 InnoDB 依旧要使用 SERIALIZABLE 可串行化隔离级别</li>
+</ul>
+</blockquote>
+<h1 id="操作定义"><a href="#操作定义" class="headerlink" title="操作定义"></a>操作定义</h1><h2 id="Drop、Delete、Truncate-的相同与不同"><a href="#Drop、Delete、Truncate-的相同与不同" class="headerlink" title="Drop、Delete、Truncate 的相同与不同"></a>Drop、Delete、Truncate 的相同与不同</h2><ul>
+<li>delete 用来删除表的全部或一部分数据，执行后需要 commit 提交或 rollback 回滚，能够触发表的 delete 触发器</li>
+<li>truncate 用来删除表的所有数据，可以清空自增序列，不能回滚，不触发触发器，比 delete 更快，占用空间更小</li>
+<li>drop 用来从数据库中删除表，表中的所有数据、索引、权限都会被删除，不能回滚，不触发触发器</li>
+<li>删除表用 drop，删除表中部分数据用 delete，清空表而不删除表用 truncate</li>
+</ul>
+<blockquote>
+<p>[!note]+ 详解</p>
+<ol>
+<li>delete 执行时是每次从表中删除一行并记录事务以便回滚，truncate 一次性清空表，不记录删除日志，无法恢复，不会触发触发器，执行速度快</li>
+<li>表和索引空间占用，truncate 执行后表和索引空间占用会恢复到初始大小，delete 不会减少空间占用，drop 释放空间</li>
+<li>一般情况下执行效率，drop &gt; truncate &gt; delete</li>
+<li>应用范围，truncate 只针对表，delete 适用表和视图</li>
+<li>truncate、delete 只删数据，drop 删表结构和数据</li>
+<li>truncate 和不带 where 的 delete 只删除数据，不删结构，drop 删除表结构、被依赖约束 constrain、触发器 trigger、索引 index，但保留依赖于该表的存储过程&#x2F;函数，其状态变更为 invalid</li>
+<li>delete 属于数据操作语言(DML)，会放到 roolback segment 回滚分片中，事务提交后才生效，会触发相应的触发器</li>
+<li>truncate、drop是数据定义语言(DDL)，操作立即生效，原数据不放到回滚分片中，不能回滚</li>
+<li>没有备份情况下谨慎使用 drop、truncate</li>
+<li>truncate 速度快效率高，通过释放存储表数据所用的数据页来删除数据，并只在事务日志中记录页的释放</li>
+<li>对由 foreign key 约束引用的表，不能使用 truncate，而是应当使用不带 where 的 delete，由于 truncate table 不记录在日志所以不能触发触发器</li>
+</ol>
+</blockquote>
+<h1 id="性能优化"><a href="#性能优化" class="headerlink" title="性能优化"></a>性能优化</h1><h2 id="MYSQL-性能优化"><a href="#MYSQL-性能优化" class="headerlink" title="MYSQL 性能优化"></a>MYSQL 性能优化</h2><ul>
+<li>为搜索字段创建索引</li>
+<li>避免使用 select * ，列出需要查询的字段</li>
+<li>垂直分割分表</li>
+<li>选择正确的存储引擎</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>分毛量力心恩重，感激深深不言多🧧</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/img/wechatpay.jpg" alt="浪子寒 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/img/alipay.jpg" alt="浪子寒 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>浪子寒
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://www.langzihan.top/2024/09/18/%E7%99%BE%E5%91%B3%E6%9D%82%E8%B4%A7/03.MySQL%E7%AC%94%E8%AE%B0/" title="MySQL笔记">https://www.langzihan.top/2024/09/18/百味杂货/03.MySQL笔记/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/mysql/" rel="tag"># mysql</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/04/24/%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/18.Docker%E6%89%8B%E5%8A%A8%E5%AE%89%E8%A3%85/" rel="prev" title="Docker手动安装">
+                  <i class="fa fa-angle-left"></i> Docker手动安装
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">天下熙熙皆为利来，天下攘攘皆为利往<br> </a>
+      <img src="/img/gongan.png" alt=""><a href="https://beian.mps.gov.cn/#/query/webSearch?code=11011202003938" rel="noopener" target="_blank">京公网安备11011202003938号&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">京ICP备2022028153号</a> </a>
+  </div>
+  <div class="copyright">
+    &copy; 2018 – 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">浪子寒</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.28/fancybox/fancybox.umd.js" integrity="sha256-ytMJGN3toR+a84u7g7NuHm91VIR06Q41kMWDr2pq7Zo=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"neutral","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.6.1/mermaid.min.js","integrity":"sha256-mm3Re3y7xlvh+yCD+l/Zs1d+PU0AEad93MkWvljfm/s="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

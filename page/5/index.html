@@ -185,6 +185,117 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://www.langzihan.top/2021/12/27/%E7%AE%97%E6%B3%95%E8%AF%A6%E8%A7%A3/02.%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/img/custom-logo.jpg">
+      <meta itemprop="name" content="浪子寒">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lang's Blog">
+      <meta itemprop="description" content="子非鱼，焉知鱼之乐">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Lang's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/12/27/%E7%AE%97%E6%B3%95%E8%AF%A6%E8%A7%A3/02.%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/" class="post-title-link" itemprop="url">梯度下降</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-12-27 09:18:05" itemprop="dateCreated datePublished" datetime="2021-12-27T09:18:05+08:00">2021-12-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95%E8%AF%A6%E8%A7%A3/" itemprop="url" rel="index"><span itemprop="name">算法详解</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>注：本篇文章因转载次数过多，我找不到源头 ORZ</p>
+<h3 id="1-梯度下降相关概念"><a href="#1-梯度下降相关概念" class="headerlink" title="1.梯度下降相关概念"></a>1.梯度下降相关概念</h3><ul>
+<li><p><strong>假设函数（hypothesis function）</strong></p>
+<p>所谓假设函数，就是监督学习中，我们拟合样本特征映射到目标变量的函数，记为$h _ θ(x)$，θ为函数的参数。例如，一个简单的线性回归拟合函数可以表示为：</p>
+</li>
+</ul>
+<p>$$<br>h_θ(x) &#x3D; θ_0 + θ_1·x<br>$$</p>
+<ul>
+<li><p><strong>损失函数 loss function</strong></p>
+<p>又称为代价函数。通常用损失函数来度量拟合的程度，从而评估模型拟合的好坏，记为*J(θ)*。注意，损失函数是关于 θ 的函数！也就是说，对于损失函数来讲，θ不再是函数的参数，而是损失函数的自变量！例如，对于线性回归的损失函数可以表示为：</p>
+</li>
+</ul>
+<p>$$<br>J(θ)&#x3D;1&#x2F;(2n) * \sum(h_θ (x_i)−y_i)^2<br>$$<br>　　其中<em>n</em>表示样本数量，$x_i$</p>
+<ul>
+<li><strong>损失函数的梯度：</strong></li>
+</ul>
+<p>　　损失函数的梯度即对$θ _ i$求偏导，由于损失函数是关于 θ 的函数，因此，θ 的取值不同，得出来的的梯度向量也是不同的。借用“下山”的比喻来解释，θ 的不同取值，相当于处于山上的不同位置，每一个位置都会计算出一个梯度向量 <em>▽J(θ)</em> 。</p>
+<h3 id="2-梯度下降过程"><a href="#2-梯度下降过程" class="headerlink" title="2.梯度下降过程"></a>2.梯度下降过程</h3><p>**(1) 学习得到损失函数<em>J(θ)<em>及样本点$x^i$的损失：</em></em></p>
+<p>　　例如，对于线性回归模型的假设函数为：$h _ θ(x) &#x3D; θ _ 0+θ _ 1·x_1+θ _ 2·x _ 2$，则损失函数为：$J(θ)&#x3D;1&#x2F;(2n) * \sum(θ _ 0+θ _ 1·x _ 1+θ _ 2·x_2-y)^2$；我们为样本添加一个维度$x_0$，$x_0$ 恒等于 1。则，我们可以变损失函数表示为：$J(θ)&#x3D;1&#x2F;(2n) * \sum(θ _ 0·x_0+θ _ 1·x_1+θ _ 2·x_2-y)^2$<br>　　为了便于讲解和理解，我们先只取一个样本点进行计算。对于样本点$x^1&#x3D;(x_0&#x3D;1, x_1&#x3D;1, x_2&#x3D;2)$，对应的目标变量$y^1 &#x3D;10$，的损失为：$J(θ)^1&#x3D;1&#x2F;2 * (θ _ 0+θ _ 1+2 * θ _ 2-10)^2$</p>
+<p><strong>(2) 求出样本点$x^i$损失函数的梯度向量：</strong></p>
+<p>　　根据*J(θ)*，求出模型损失函数的梯度向量表示为 ：<br>$$<br>▽J(θ)&#x3D;&lt;(θ_0·x_0+θ_1·x_1+θ_2·x_2-y) * x_0, (θ_0·x_0+θ_1·x_1+θ_2·x_2-y) * x_1, (θ_0·x_0+θ_1·x_1+θ_2·x_2-y) * x_2&gt;<br>$$<br>　　根据$J(θ)^1$，求出样本点$x^1$ 对应的梯度$▽J(θ)^1&#x3D;&lt;(θ _ 0+θ _ 1+2 * θ _ 2-10), (θ _ 0+θ _ 1+2 * θ _ 2-10), (θ _ 0+θ _ 1+2 * θ _ 2-10) * 2&gt;$</p>
+<p><strong>(3) 初始化假设函数的参数 θ ，得到相应的梯度向量：</strong></p>
+<p>　　对 θ 进行随机取值，假设$θ _ i$第一次全部取0，$θ_0&#x3D;&lt;0,0,0&gt;$；<br>　　将$θ^0$带入$J(θ)^1$，得到 取$θ^0$时的损失为 $J(θ)_0^1&#x3D;1&#x2F;2 * (0+0+2 * 0-10)^2&#x3D;50$<br>　　将$θ^0$带入$▽J(θ)^1$，得到$θ^0$处的梯度向量为$▽J(θ)_0^1&#x3D;&lt;-10,-10,-20&gt;$ ；　　　</p>
+<p><strong>(4) 根据梯度下降步长，进行梯度下降迭代：</strong></p>
+<p>　　设立步长α&#x3D;0.1，对$θ^0$进行梯度下降，得到$θ^1$<br>　　第一次梯度下降：</p>
+<p>$$<br>θ^1&#x3D; θ^0-α*▽J(θ) _ 0^1 &#x3D; &lt;0,0,0&gt;-0.1 * &lt;-10,-10,-20&gt; &#x3D; &lt;1,1,2&gt;<br>$$</p>
+<p>　　将$θ^1$带入$J(θ)^1$ ，得到 取$θ^0$ 时的损失为$J(θ) _ 0^1&#x3D;1&#x2F;2 * (1+1+2 * 2-10)^2&#x3D;8$<br>　　将$θ^1$带入$▽J(θ)^1$，得到$θ^0$处的梯度向量为$▽J(θ) _ 0^1&#x3D; &lt; -4,-4,-8 &gt;$；<br>　　第二次梯度下降：<br>　　<br>$$<br>θ _ 2&#x3D;θ^1-α*▽J(θ) _ 0^1&#x3D;&lt;1,1,2&gt;-0.1 * &lt;-4,-4,-8&gt;&#x3D;&lt;0.4,0.4,1.2&gt;<br>$$</p>
+<p>　　将$θ^2$带入$J(θ)^1$，得到 取$θ^2$时的损失为$J(θ) _ 0^1&#x3D;1&#x2F;2 * (0.4+0.4+2 * 1.2-10)^2&#x3D;23.12$<br>　　此时我们发现，$θ^2$处的损失为23.12，大于$θ^1$处的损失8，说明，我们可能步子迈的大了，跨过了最低点，我们重新设定α &#x3D; 0.05，重复上述过程：<br>　　重新设立步长 α &#x3D; 0.05<br>　　第一次梯度下降：<br>　　<br>$$<br>θ_1 &#x3D; θ0 - α * ▽J(θ)01  &#x3D; &lt; 0，0，0 &gt; - 0.05 * &lt; -10，-10，-20 &gt; &#x3D; &lt; 0.5，0.5，1 &gt;<br>$$</p>
+<p>　　将$θ^1$带入$J(θ)^1$ ，得到 取$θ^0$时的损失为 $J(θ) _ 0^1&#x3D;1&#x2F;2 * (0.5+0.5+2 * 1-10)^2&#x3D;24.5$<br>　　将$θ^1$带入$▽J(θ)^1$ ，得到$θ^0$处的梯度向量为$▽J(θ) _ 0^1&#x3D;&lt;-7,-7,-14&gt;$；<br>　　第二次梯度下降：<br>　　<br>$$<br>θ_2 &#x3D; θ1 - α * ▽J(θ)01  &#x3D; &lt; 1，1，2 &gt; - 0.05 * &lt; -7，-7，-14 &gt; &#x3D; &lt; 1.35，1.35，2.7 &gt;<br>$$</p>
+<p>　　将$θ^2$带入$J(θ)^1$，得到 取$θ^2$时的损失为$J(θ) _ 0^1&#x3D;1&#x2F;2 * (1.35+1.35+2 * 2.7-10)^2&#x3D;1.805$<br>　　将$θ^2$ 带入$▽J(θ)^1$，得到$θ^2$处的梯度向量为$▽J(θ) _ 0^1&#x3D;&lt;-1.9,-1.9,-3.8&gt;$</p>
+<p>　　此时可以继续进行第三次、第四次。。。第n次，那么什么时候梯度下降停止？</p>
+<p>　　我们可以设置一个梯度下降算法终止距离值 ε，即梯度下降的距离都小于 ε 时，算法终止。假设我们设置 ε &#x3D; 0.1（实际运用中，一般会设定一个更小的值，例如$1e^{-5}$），上述$θ^2$的梯度向量为&lt; -1.9，-1.9，-3.8 &gt;，梯度向量中的3个值的绝对值都大于ε ，因此继续进行梯度下降，假设经过n次迭代后的梯度向量为&lt;-0.04，-0.04，-0.08&gt;，三个值的绝对值都小于0.1，则算法终止。</p>
+<p>　　通过上述过程可以看出，重新设置步长α后，第二次梯度下降过程没有跨过损失函数最低点，而是更加接近最低点。不断的梯度下降，使得损失函数损失在不断的变小：$θ^0$的损失为50，$θ^1$的损失为24.5，$θ^2$的损失为1.805。 初始在本文的例子中，由于是我随便写的一个损失函数，所以经过2-3次梯度下降之后就接近了损失函数最低点，实际运用中当然不可能这么轻松，梯度下降可能要经过n次迭代，才能接近损失函数的极小值点。另外，梯度下降过程中，除了损失在不断减小，梯度向量也在不断变小：$θ^0$的梯度为&lt; -10，-10，-20 &gt; ，$θ^1$的梯度为&lt; -7，-7，-14 &gt;，$θ^2$的梯度为&lt; -1.9，-1.9，-3.8 &gt;。梯度越来越小，说明“山坡”越来越平缓，不像一开始那么”陡峭“，那么可以说明，我们已经接近”山谷“了。实际上，随着不断的梯度下降，梯度向量中的每个值会越来月接近于0。</p>
+<p>　　讲到这里，大家不要忘记一个事实：上述过程中，我们只选取了一个样本点$x^1$进行梯度下降。这种随机选取一个样本点进行梯度下降，找到最优参数θ的方法，就叫做<strong>随机梯度下降</strong>。而如果我们利用所有的样本数据进行梯度下降，这种方法就叫做<strong>批量梯度下降</strong>。毫无疑问，批量梯度下降要消耗更多的计算内存和训练时间；而随即梯度下降虽然训练速度快，但是可能得到只是局部最优解。我们也可以折中一下，一共有n个样本，我们取m个子样本进行梯度下降（1&lt;m&lt;n），既提高训练速度，又在一定程度上避免算法收敛到局部最优，这种方法就叫做<strong>小批量梯度下降</strong>。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://www.langzihan.top/2021/11/29/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/19.BindingResult%E4%B8%AD%E6%8B%A6%E6%88%AA%E4%B8%8D%E5%88%B0%E9%94%99%E8%AF%AF/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -931,129 +1042,6 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://www.langzihan.top/2021/09/26/%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/04.Kafka+Zookeeper%E5%AE%89%E8%A3%85/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/img/custom-logo.jpg">
-      <meta itemprop="name" content="浪子寒">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Lang's Blog">
-      <meta itemprop="description" content="子非鱼，焉知鱼之乐">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Lang's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/09/26/%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/04.Kafka+Zookeeper%E5%AE%89%E8%A3%85/" class="post-title-link" itemprop="url">Kafka+Zookeeper安装</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-09-26 15:47:59" itemprop="dateCreated datePublished" datetime="2021-09-26T15:47:59+08:00">2021-09-26</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">安装笔记</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>本文安装配置环境为多个<strong>ubuntu20.04</strong> 集群，安装包皆来自apache官网，分别为<strong>kafka2.4.1 + zookeeper3.6.3 + jdk1.8</strong>，在文章末尾附上自用的zookeeper、kafka群起脚本<br><strong>注：</strong> 本文不包含jdk安装，详情见我的上一篇jdk1.8+hadoop3.2+scala2.12+spark3.1.2配置记录</p>
-<blockquote>
-<p><em><strong>Zookeeper3.6.3安装配置</strong></em>（已完成解压，目录为&#x2F;home&#x2F;hadoop&#x2F;Zookeeper）</p>
-</blockquote>
-<p>复制配置文件并重命名</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cp</span> ~/Zookeeper/conf/zoo_sample.cfg ~/Zookeeper/conf/zoo.cfg</span><br></pre></td></tr></table></figure>
-<p>新建Data文件夹，存放运行数据</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> ~/Zookeeper/zkData</span><br></pre></td></tr></table></figure>
-<p>修改配置文件内容</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># The number of milliseconds of each tick</span></span><br><span class="line">tickTime=2000</span><br><span class="line"><span class="comment"># The number of ticks that the initial </span></span><br><span class="line"><span class="comment"># synchronization phase can take</span></span><br><span class="line">initLimit=10</span><br><span class="line"><span class="comment"># The number of ticks that can pass between </span></span><br><span class="line"><span class="comment"># sending a request and getting an acknowledgement</span></span><br><span class="line">syncLimit=5</span><br><span class="line"><span class="comment"># the directory where the snapshot is stored.</span></span><br><span class="line"><span class="comment"># do not use /tmp for storage, /tmp here is just </span></span><br><span class="line"><span class="comment"># example sakes.</span></span><br><span class="line">dataDir=/home/hadoop/Zookeeper/zkData</span><br><span class="line"><span class="comment"># the port at which the clients will connect</span></span><br><span class="line">clientPort=2181</span><br><span class="line"><span class="comment">#######################cluster##########################</span></span><br><span class="line">server.1=hadoop101:2888:3888</span><br><span class="line">server.2=hadoop102:2888:3888</span><br><span class="line">server.3=hadoop103:2888:3888</span><br><span class="line">server.4=hadoop104:2888:3888</span><br><span class="line"><span class="comment"># server.A=B:C:D。</span></span><br><span class="line"><span class="comment"># A，文件myid里面的数据就是A的值，位于zkData根目录；</span></span><br><span class="line"><span class="comment"># B，当前服务器地址；</span></span><br><span class="line"><span class="comment"># C，集群中Follower与Leader交换信息的端口；</span></span><br><span class="line"><span class="comment"># D，执行选举时服务器相互通信的端口。</span></span><br></pre></td></tr></table></figure>
-<p>运行：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/home/hadoop/Zookeeper/bin/zkServer.sh start</span><br></pre></td></tr></table></figure>
-<p>不同服务器中应修改对应的myid内容，文件路径为Zookeeper&#x2F;zkData&#x2F;myid<br>将该文件中的数值改成对应服务器序号即可，如我的hadoop101中保持1，hadoop102修改成2，以此类推。</p>
-<p><strong>注：</strong> 也可参考jdk1.8+hadoop3.2+scala2.12+spark3.1.2配置记录中将bin文件夹注入到.bashrc中作为环境变量使用</p>
-<blockquote>
-<p><em><strong>Kafka2.4.1安装配置</strong></em>（已完成解压，目录为&#x2F;home&#x2F;hadoop&#x2F;Kafka）</p>
-</blockquote>
-<p>修改Kafka&#x2F;config&#x2F;server.properties文件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">############################# Server Basics #############################</span></span><br><span class="line"><span class="comment"># broker的全局唯一编号，不能重复</span></span><br><span class="line">broker.id=1</span><br><span class="line"><span class="comment"># 删除topic功能使用</span></span><br><span class="line">delete.topic.enable=<span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">############################# Socket Server Settings #############################</span></span><br><span class="line"><span class="comment"># 处理网络请求的线程数量</span></span><br><span class="line">num.network.threads=3</span><br><span class="line"><span class="comment"># 用来处理磁盘IO的线程数量</span></span><br><span class="line">num.io.threads=8</span><br><span class="line"><span class="comment"># 发送套接字的缓冲区大小</span></span><br><span class="line">socket.send.buffer.bytes=102400</span><br><span class="line"><span class="comment"># 接收套接字的缓冲区大小</span></span><br><span class="line">socket.receive.buffer.bytes=102400</span><br><span class="line"><span class="comment"># 请求套接字的缓冲区大小</span></span><br><span class="line">socket.request.max.bytes=104857600</span><br><span class="line"></span><br><span class="line"><span class="comment">############################# Log Basics #############################</span></span><br><span class="line"><span class="comment"># kafka运行日志存放的路径</span></span><br><span class="line">log.dirs=/home/hadoop/Kafka/logs</span><br><span class="line"><span class="comment"># topic在当前broker上的分区个数</span></span><br><span class="line">num.partitions=1</span><br><span class="line"><span class="comment"># 用来恢复和清理data目录中数据的线程数量</span></span><br><span class="line">num.recovery.threads.per.data.dir=1</span><br><span class="line"></span><br><span class="line"><span class="comment">############################# Internal Topic Settings  #############################</span></span><br><span class="line">offsets.topic.replication.factor=1</span><br><span class="line">transaction.state.log.replication.factor=1</span><br><span class="line">transaction.state.log.min.isr=1</span><br><span class="line"></span><br><span class="line"><span class="comment">############################# Log Flush Policy #############################</span></span><br><span class="line"><span class="comment"># NULL</span></span><br><span class="line"></span><br><span class="line"><span class="comment">############################# Log Retention Policy #############################</span></span><br><span class="line"><span class="comment"># 日志segment文件保留的最长时间，超时将被删除</span></span><br><span class="line">log.retention.hours=168</span><br><span class="line"><span class="comment"># 日志段文件的最大大小，超过将新建日志段。</span></span><br><span class="line">log.segment.bytes=1073741824</span><br><span class="line"><span class="comment"># 日志段删除的时间间隔</span></span><br><span class="line">log.retention.check.interval.ms=300000</span><br><span class="line"></span><br><span class="line"><span class="comment">############################# Zookeeper #############################</span></span><br><span class="line"><span class="comment"># 配置连接Zookeeper集群地址</span></span><br><span class="line">zookeeper.connect=hadoop101:2181,hadoop102:2181,hadoop103:2181,hadoop104:2181/kafka</span><br><span class="line"><span class="comment"># 连接到ZooKeeper的超时时间(毫秒)</span></span><br><span class="line">zookeeper.connection.timeout.ms=18000</span><br><span class="line"></span><br><span class="line"><span class="comment">############################# Group Coordinator Settings #############################</span></span><br><span class="line">group.initial.rebalance.delay.ms=0</span><br></pre></td></tr></table></figure>
-<p><strong>注：</strong> 在每个服务器中该文件中的<strong>broker.id</strong>值应不同<br>修改kafka中的zookeeper配置，文件路径：Kafka&#x2F;config&#x2F;zookeeper.properties，修改其中dataDir为响应路径即可，其他属性按需修改</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dataDir=/home/hadoop/Zookeeper</span><br></pre></td></tr></table></figure>
-<p>运行：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/home/hadoop/Kafka/bin/kafka-server-start.sh -daemon /home/hadoop/Kafka/config/server.properties</span><br></pre></td></tr></table></figure>
-
-<p>当然在安装过程中也遇到不少<strong>问题</strong>，一下列出代表性问题，并给出解决方案：<br><strong>1、使用群启脚本启动kafka时日志报错：</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">nohup</span>: failed to run <span class="built_in">command</span> <span class="string">&#x27;java&#x27;</span>: No such file or directory</span><br></pre></td></tr></table></figure>
-<p><strong>解决方案</strong><br>修改Kafka&#x2F;bin&#x2F;kafka-run-class.sh中内容，在该文件头部添加需要使用的JAVA_HOME绝对路径即可（网传在群起脚本中添加的source &#x2F;etc&#x2F;profile无果可采取这种办法）：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> JAVA_HOME=<span class="string">&quot;/home/hadoop/JDK&quot;</span></span><br></pre></td></tr></table></figure>
-<p><strong>2、启动后kafka闪退，日志报错zookeeper连接2181超时</strong><br><strong>解决方案</strong><br>该错误有以下几点可能：</p>
-<ol>
-<li>防火墙策略问题</li>
-<li>zookeeper未安装</li>
-<li>zookeeper配置错误</li>
-<li>zookeeper没在启动Kafka之前启动</li>
-</ol>
-<p><strong>3、zookeeper本地启动无问题，但群起Zookeeper脚本会导致日志报错JAVA_HOME找不到</strong><br> <strong>解决方案</strong><br> 和问题1一样，添加JAVA_HOME的绝对路径，文件路径为Zookeeper&#x2F;bin&#x2F;zkEnv.sh</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">JAVA_HOME=<span class="string">&quot;/home/hadoop/JDK&quot;</span></span><br></pre></td></tr></table></figure>
-<p><strong>4、群起脚本跑完后发现只有一台机器成功运行zookeeper</strong><br>重点关注上文提及的唯一编号的属性值(zookeeper:<strong>myid</strong>;kafka:<strong>broker.id</strong>)是否在每台机器上作出修改，再考虑配置错误</p>
-<h4 id="群起脚本附录"><a href="#群起脚本附录" class="headerlink" title="群起脚本附录"></a>群起脚本附录</h4><blockquote>
-<p>Zookeeper</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#! /bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">case</span> <span class="variable">$1</span> <span class="keyword">in</span></span><br><span class="line">	<span class="string">&quot;start&quot;</span>)&#123;</span><br><span class="line">		<span class="keyword">for</span> i <span class="keyword">in</span> `<span class="built_in">cat</span> /home/hadoop/Hadoop/etc/hadoop/workers`</span><br><span class="line">		<span class="keyword">do</span></span><br><span class="line">			<span class="built_in">echo</span> <span class="string">&quot;========== <span class="variable">$i</span> ==========&quot;</span></span><br><span class="line">			ssh <span class="variable">$i</span> <span class="string">&quot;/home/hadoop/Zookeeper/bin/zkServer.sh start&quot;</span></span><br><span class="line">			<span class="built_in">echo</span> $?</span><br><span class="line">		<span class="keyword">done</span></span><br><span class="line">	&#125;;;</span><br><span class="line">	<span class="string">&quot;stop&quot;</span>)&#123;</span><br><span class="line">		<span class="keyword">for</span> i <span class="keyword">in</span> `<span class="built_in">cat</span> /home/hadoop/Hadoop/etc/hadoop/workers`</span><br><span class="line">		<span class="keyword">do</span></span><br><span class="line">			<span class="built_in">echo</span> <span class="string">&quot;========== <span class="variable">$i</span> ==========&quot;</span></span><br><span class="line">			ssh <span class="variable">$i</span> <span class="string">&quot;/home/hadoop/Zookeeper/bin/zkServer.sh stop&quot;</span></span><br><span class="line">			<span class="built_in">echo</span> $?</span><br><span class="line">		<span class="keyword">done</span></span><br><span class="line">	&#125;;;</span><br><span class="line">	<span class="string">&quot;status&quot;</span>)&#123;</span><br><span class="line">		<span class="keyword">for</span> i <span class="keyword">in</span> `<span class="built_in">cat</span> /home/hadoop/Hadoop/etc/hadoop/workers`</span><br><span class="line">		<span class="keyword">do</span></span><br><span class="line">			<span class="built_in">echo</span> <span class="string">&quot;========== <span class="variable">$i</span> ==========&quot;</span></span><br><span class="line">			ssh <span class="variable">$i</span> <span class="string">&quot;/home/hadoop/Zookeeper/bin/zkServer.sh status&quot;</span></span><br><span class="line">			<span class="built_in">echo</span> $?</span><br><span class="line">		<span class="keyword">done</span></span><br><span class="line">	&#125;;;</span><br><span class="line"><span class="keyword">esac</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>Kafka</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#! /bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">case</span> <span class="variable">$1</span> <span class="keyword">in</span></span><br><span class="line">	<span class="string">&quot;start&quot;</span>)&#123;</span><br><span class="line">		<span class="keyword">for</span> i <span class="keyword">in</span> `<span class="built_in">cat</span> /home/hadoop/Hadoop/etc/hadoop/workers`</span><br><span class="line">		<span class="keyword">do</span></span><br><span class="line">			<span class="built_in">echo</span> <span class="string">&quot;========== <span class="variable">$i</span> ==========&quot;</span></span><br><span class="line">			ssh <span class="variable">$i</span> <span class="string">&quot;/home/hadoop/Kafka/bin/kafka-server-start.sh -daemon /home/hadoop/Kafka/config/server.properties&quot;</span></span><br><span class="line">			<span class="built_in">echo</span> $?</span><br><span class="line">		<span class="keyword">done</span></span><br><span class="line">	&#125;;;</span><br><span class="line">	<span class="string">&quot;stop&quot;</span>)&#123;</span><br><span class="line">		<span class="keyword">for</span> i <span class="keyword">in</span> `<span class="built_in">cat</span> /home/hadoop/Hadoop/etc/hadoop/workers`</span><br><span class="line">		<span class="keyword">do</span></span><br><span class="line">			<span class="built_in">echo</span> <span class="string">&quot;========== <span class="variable">$i</span> ==========&quot;</span></span><br><span class="line">			ssh <span class="variable">$i</span> <span class="string">&quot;/home/hadoop/Kafka/bin/kafka-server-stop.sh&quot;</span></span><br><span class="line">			<span class="built_in">echo</span> $?</span><br><span class="line">		<span class="keyword">done</span></span><br><span class="line">	&#125;;;</span><br><span class="line"><span class="keyword">esac</span></span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
     <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/6/"><i class="fa fa-angle-right"></i></a>
   </nav>
@@ -1136,7 +1124,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 
